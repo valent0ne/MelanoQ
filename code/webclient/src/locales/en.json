@@ -1,4 +1,10 @@
 {
-  "message": "hello i18n !",
-  "language": "language"
+  "en": "en",
+  "univaq": "University of Studies of L'Aquila",
+  "home": "Home",
+  "welcome_message_title": "Welcome to the MelanoQ questionnaire!",
+  "welcome_message_body": "Please choose one of the profiles from the ones that are showed below:",
+  "physician": "Physician",
+  "case": "Case",
+  "control": "Control"
 }
