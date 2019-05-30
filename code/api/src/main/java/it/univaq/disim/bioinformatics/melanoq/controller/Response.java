@@ -1,4 +1,4 @@
-package it.univaq.disim.mobile.bioinformatics.controller;
+package it.univaq.disim.bioinformatics.melanoq.controller;
 
 public class Response<R> {
 

@@ -1,4 +1,4 @@
-package it.univaq.disim.mobile.differenziaquila;
+package it.univaq.disim.bioinformatics.melanoq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
