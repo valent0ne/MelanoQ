@@ -5,6 +5,7 @@ import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Document
@@ -16,33 +17,37 @@ public class Questionnaire {
 
     // actual id field inside the json document
     @Field
-    private String documentId = metaId;
+    @NotNull
+    private String documentId;
 
     // "current" or "story"
     @Field
+    @NotNull
     private String type;
 
     @Field
     private A1 a1;
 
+    public Questionnaire(){
+
+    }
+
     public String getMetaId() {
         return metaId;
     }
 
-    // i need to change both ids
+
     public void setMetaId(String metaId) {
         this.metaId = metaId;
-        this.documentId = metaId;
     }
 
     public String getDocumentId() {
         return documentId;
     }
 
-    // i need to change both ids
+
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
-        this.metaId = documentId;
     }
 
     public String getType() {

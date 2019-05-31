@@ -1,36 +1,76 @@
 package it.univaq.disim.bioinformatics.melanoq.controller;
 
+import org.springframework.http.HttpStatus;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 public class Response<R> {
 
-    public static final Response<Object> DEFAULT_RESPONSE_OK = new Response<>(true, "OK");
-    public static final Response<Object> DEFAULT_RESPONSE_KO = new Response<>(true, "KO");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static final TimeZone tz = TimeZone.getTimeZone("GMT");
 
-    private boolean result;
-    private R data;
+    /*
+        "timestamp": "2019-05-31T20:02:10.094+0000",
+        "status": 401,
+        "error": "Unauthorized",
+        "message": "Unauthorized",
+        "path": "/melanoq/api/questionnaire/test"
+    */
+
+    private String timestamp;
+    private int status;
+    private String error;
     private String message;
+    private String path;
+    private R data;
 
     public Response() {
     }
 
-    public Response(boolean esit, String message) {
-        this.result = esit;
-        this.message = message;
+    public Response(HttpStatus status) {
+        Date date = new Date(System.currentTimeMillis());
+        sdf.setTimeZone(tz);
+
+        this.status = status.value();
+        this.timestamp = sdf.format(date);
+        this.message = status.getReasonPhrase();
     }
 
-    public boolean isResult() {
-        return result;
+    public Response(HttpStatus status, HttpServletRequest request) {
+        Date date = new Date(System.currentTimeMillis());
+        sdf.setTimeZone(tz);
+
+        this.status = status.value();
+        this.timestamp = sdf.format(date);
+        this.path = request.getRequestURI();
+        this.message = status.getReasonPhrase();
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public R getData() {
-        return data;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void setData(R data) {
-        this.data = data;
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+        this.message = error;
     }
 
     public String getMessage() {
@@ -41,4 +81,31 @@ public class Response<R> {
         this.message = message;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public R getData() {
+        return data;
+    }
+
+    public void setData(R data) {
+        this.data = data;
+    }
+
+    public String toString(){
+        String s =
+                "{\n"+
+                "   \"timestamp\": \""+this.getTimestamp()+"\",\n" +
+                "   \"status\": "+this.getStatus()+",\n" +
+                "   \"error\": \""+this.getError()+"\",\n" +
+                "   \"message\": \""+this.getMessage()+"\",\n" +
+                "   \"path\": \""+this.getPath()+"\"\n" +
+                "}";
+        return s;
+    }
 }
