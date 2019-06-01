@@ -1,5 +1,10 @@
 <template>
   <div class="about">
-    <p>{{ $t('message') }}</p>  
+    <p>todo</p>
   </div>
 </template>
+<script>
+export default {
+  name: "about"
+};
+</script>

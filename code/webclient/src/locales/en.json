@@ -6,5 +6,7 @@
   "welcome_message_body": "Please choose one of the profiles from the ones that are showed below:",
   "physician": "Physician",
   "case": "Case",
-  "control": "Control"
+  "control": "Control",
+  "need_an_account": "Need an account? Click here.",
+  "sign_in": "Sign in"
 }

@@ -6,5 +6,7 @@
   "welcome_message_body": "Scegli uno dei profili tra quelli elencati:",
   "physician": "Medico",
   "case": "Paziente",
-  "control": "Controllo"
+  "control": "Controllo",
+  "need_an_account": "Hai bisogno di un account? Clicca quì.",
+  "sign_in": "Accedi"
 }

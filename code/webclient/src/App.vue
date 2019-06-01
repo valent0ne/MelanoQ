@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-light">
+  <div id="app">
     <TheHeader/>
     <router-view></router-view>
     <TheFooter/>
@@ -9,7 +9,6 @@
 <script>
 import TheHeader from "@/components/TheHeader.vue";
 import TheFooter from "@/components/TheFooter.vue";
-
 
 export default {
   name: "App",
@@ -21,5 +20,5 @@ export default {
 </script>
 
 <style>
-  @import "./assets/styles/style.css";
+@import "./assets/styles/style.css";
 </style>

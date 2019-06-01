@@ -1,15 +1,15 @@
 <template>
-  <footer if="footer" class="footer">
-    <div class="container d-flex justify-content-between">
+  <footer if="footer">
+    <nav class="navbar fixed-bottom footer">
       <div>
-        <b-link href="http://www.univaq.it/en/">&copy; {{$t('univaq')}}</b-link> -
+        <b-link href="http://www.univaq.it/en/">&copy; {{$t('univaq')}}</b-link>-
         <b-link href="https://www.disim.univaq.it/main/index.php">DISIM</b-link>
       </div>
-      <div>
-        <b-link href="https://www.linkedin.com/in/valentina-cecchini/">Valentina Cecchini</b-link> -
+      <div class="d-none d-md-block">
+        <b-link href="https://www.linkedin.com/in/valentina-cecchini/">Valentina Cecchini</b-link>&nbsp;-
         <b-link href="https://www.linkedin.com/in/stefano-valentini/">Stefano Valentini</b-link>
       </div>
-    </div>
+    </nav>
   </footer>
 </template>
 
