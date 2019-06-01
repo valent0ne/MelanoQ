@@ -17,22 +17,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
     QuestionnaireRepository questionnaireRepository;
 
 
-    public Questionnaire save(Questionnaire q){
 
-        //TODO
-        A1 a1 = new A1();
-        a1.setSubject("subjectValue");
-        a1.setTimeSdateOfQuestionnaireAdministration(new Date());
-        a1.setDatesOfUpdateQuestionnaire(null);
-        a1.setDbCodeNumber("dbCodeNumberValue");
-        a1.setTypeOfMelanoma("typeOfMelanomaValue");
-
-        Questionnaire q2 = new Questionnaire();
-        q2.setA1(a1);
-        q2.setType("story");
-
-        return questionnaireRepository.save(q2);
-    }
 
 
 }
