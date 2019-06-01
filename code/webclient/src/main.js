@@ -7,12 +7,12 @@ import bootstrap from './plugins/bootstrap'
 import vuelidate from './plugins/vuelidate'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import ApiService from "./common/api.service";
 
-library.add(faUserSecret)
+library.add(faSignOutAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

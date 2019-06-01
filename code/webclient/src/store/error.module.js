@@ -27,7 +27,7 @@ const mutations = {
       state.error = response.error;
     }
     if (response.status < 200 || response.status >= 300) {
-      state.error = "Cannot communicate with the server"
+      state.error = "rest_error_404"
     }
 
   },

@@ -2,11 +2,22 @@
   "it": "it",
   "univaq": "Università degli Studi dell'Aquila",
   "home": "Home",
+  "about": "Info",
   "welcome_message_title": "Benvenuto/a al questionario MelanoQ!",
   "welcome_message_body": "Scegli uno dei profili tra quelli elencati:",
   "physician": "Medico",
   "case": "Paziente",
   "control": "Controllo",
   "need_an_account": "Hai bisogno di un account? Clicca quì.",
-  "sign_in": "Accedi"
+  "sign_in": "Accedi",
+  "sign_out": "Esci",
+  "rest_error_404": "Impossibile contattare il server.",
+  "logged_welcome_message_title": "Hai effettuato l'accesso con il seguente profilo: ",
+  "logged_welcome_message_body": "Scegli un'azione tra quelle proposte di seguito: ",
+  "create_a_new_questionnaire": "Compila un nuovo questionario",
+  "update_an_existing_questionnaire": "Aggiorna un questionario esistente",
+  "section_a": "Sezione A",
+  "section_b": "Sezione B",
+  "section_c": "Sezione C",
+  "section_d": "Sezione D"
 }
