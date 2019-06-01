@@ -2,9 +2,22 @@
   "en": "en",
   "univaq": "University of Studies of L'Aquila",
   "home": "Home",
+  "about": "About",
   "welcome_message_title": "Welcome to the MelanoQ questionnaire!",
   "welcome_message_body": "Please choose one of the profiles from the ones that are showed below:",
   "physician": "Physician",
   "case": "Case",
-  "control": "Control"
+  "control": "Control",
+  "need_an_account": "Need an account? Click here.",
+  "sign_in": "Sign in",
+  "sign_out": "Sign out",
+  "rest_error_404": "Cannot communicate with the server.",
+  "logged_welcome_message_title": "You are now logged in with the following profile: ",
+  "logged_welcome_message_body": "Please choose an action from the following options: ",
+  "create_a_new_questionnaire": "New questionnaire",
+  "update_an_existing_questionnaire": "Update an existing questionnaire",
+  "section_a": "Section A",
+  "section_b": "Section B",
+  "section_c": "Section C",
+  "section_d": "Section D"
 }
