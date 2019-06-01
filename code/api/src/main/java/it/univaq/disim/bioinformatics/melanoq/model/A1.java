@@ -1,27 +1,31 @@
 package it.univaq.disim.bioinformatics.melanoq.model;
 
+import com.couchbase.client.java.repository.annotation.Field;
+
 import java.util.Date;
 import java.util.List;
 
 public class A1 {
 
+    @Field
     private String subject;
+
+    @Field
     private String dbCodeNumber;
-    private Date timeSdateOfQuestionnaireAdministration;
+
+    @Field
+    private String timeSdateOfQuestionnaireAdministration;
+
+    //TODO: DD-MMM-YYYY it's why we put the date as a string
+    @Field
     private List<Date> datesOfUpdateQuestionnaire;
+
+    @Field
     private String typeOfMelanoma;
 
 
     public A1(){ }
 
-
-    public A1(String subject, String dbCodeNumber, Date timeSdateOfQuestionnaireAdministration, List<Date> datesOfUpdateQuestionnaire, String typeOfMelanoma) {
-        this.subject = subject;
-        this.dbCodeNumber = dbCodeNumber;
-        this.timeSdateOfQuestionnaireAdministration = timeSdateOfQuestionnaireAdministration;
-        this.datesOfUpdateQuestionnaire = datesOfUpdateQuestionnaire;
-        this.typeOfMelanoma = typeOfMelanoma;
-    }
 
     public String getSubject() {
         return subject;
@@ -39,11 +43,11 @@ public class A1 {
         this.dbCodeNumber = dbCodeNumber;
     }
 
-    public Date getTimeSdateOfQuestionnaireAdministration() {
+    public String getTimeSdateOfQuestionnaireAdministration() {
         return timeSdateOfQuestionnaireAdministration;
     }
 
-    public void setTimeSdateOfQuestionnaireAdministration(Date timeSdateOfQuestionnaireAdministration) {
+    public void setTimeSdateOfQuestionnaireAdministration(String timeSdateOfQuestionnaireAdministration) {
         this.timeSdateOfQuestionnaireAdministration = timeSdateOfQuestionnaireAdministration;
     }
 

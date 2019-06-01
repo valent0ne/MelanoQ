@@ -31,7 +31,7 @@ public class JwtAuthenticationController {
     @Autowired
     private UserServiceImpl userService;
 
-    @PostMapping(value = "/auth")
+    @PostMapping(value = "/authentication")
     public Response createAuthenticationToken(@RequestBody User authenticationRequest, HttpServletRequest request) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
