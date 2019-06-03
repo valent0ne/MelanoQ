@@ -19,5 +19,11 @@
   "section_a": "Section A",
   "section_b": "Section B",
   "section_c": "Section C",
-  "section_d": "Section D"
+  "section_d": "Section D",
+  "new_questionnaire": "New questionnaire",
+  "choose_section": "Please choose the section to create: ",
+  "I": "I",
+  "II": "II",
+  "III": "III",
+  "evaluation": "Evaluation"
 }

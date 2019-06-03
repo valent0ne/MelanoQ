@@ -2,7 +2,7 @@
   <div id="header">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark my-nav-top">
       <img src="../assets/logo.png" class="navbar-brand-img">
-      <a class="navbar-brand" href="#">MelanoQ</a>
+      <router-link class="navbar-brand my-navbar-brand" to="/">MelanoQ</router-link>
 
       <div class="navbar-collapse offcanvas-collapse">
         <ul class="navbar-nav mr-auto">
@@ -32,13 +32,9 @@
         </ul>
         <!-- locale changer -->
         <div id="form-inline my-2 my-lg-0">
-          <b-row>
-            <b-col sm>
-              <b-form-select v-model="$i18n.locale" size="sm">
-                <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
-              </b-form-select>
-            </b-col>
-          </b-row>
+          <b-form-select v-model="$i18n.locale" size="sm">
+            <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+          </b-form-select>
         </div>
       </div>
     </nav>
@@ -100,6 +96,6 @@ export default {
 
 <style>
 .my-navbar-brand {
-  margin-right: 1rem !important;
+  font-weight: 400 !important;
 }
 </style>

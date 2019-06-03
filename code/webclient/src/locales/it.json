@@ -19,5 +19,11 @@
   "section_a": "Sezione A",
   "section_b": "Sezione B",
   "section_c": "Sezione C",
-  "section_d": "Sezione D"
+  "section_d": "Sezione D",
+  "new_questionnaire": "Nuovo questionario",
+  "choose_section": "Scegli una sezione da riempire: ",
+  "I": "I",
+  "II": "II",
+  "III": "III",
+  "evaluation": "Valutazione"
 }
