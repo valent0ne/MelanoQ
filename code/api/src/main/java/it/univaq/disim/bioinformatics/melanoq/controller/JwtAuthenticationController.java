@@ -26,9 +26,6 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private UserServiceImpl userService;
 
     @PostMapping(value = "/authentication")

@@ -3,9 +3,9 @@ package it.univaq.disim.bioinformatics.melanoq.model;
 
 import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
+import it.univaq.disim.bioinformatics.melanoq.model.section.*;
 import org.springframework.data.couchbase.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,12 +18,12 @@ public class Questionnaire {
 
     // actual id field inside the json document
     @Field
-    @NotNull
+    //@NotNull
     private String documentId;
 
     // "current" or "story"
     @Field
-    @NotNull
+    //@NotNull
     private String type;
 
     @Field

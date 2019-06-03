@@ -9,7 +9,4 @@ public interface UserRepository extends CrudRepository<User, String> {
 
     User findOneByUsername(String username);
 
-    User save(User user);
-
-
 }
