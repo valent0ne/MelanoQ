@@ -1,5 +1,6 @@
 package it.univaq.disim.bioinformatics.melanoq.controller;
 
+import it.univaq.disim.bioinformatics.melanoq.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -37,6 +38,17 @@ public class ExceptionControllerAdvice {
     public Response disabled(Exception e, HttpServletRequest request) {
 
         Response response = new Response(HttpStatus.UNAUTHORIZED);
+
+        response.setPath(request.getRequestURI());
+        response.setError(e.getMessage());
+
+        return response;
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public Response cusotmException(BusinessException e, HttpServletRequest request){
+
+        Response response = new Response(e.getHttpStatus());
 
         response.setPath(request.getRequestURI());
         response.setError(e.getMessage());

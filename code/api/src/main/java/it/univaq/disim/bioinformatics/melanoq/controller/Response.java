@@ -17,6 +17,7 @@ public class Response<R> {
         "error": "Unauthorized",
         "message": "Unauthorized",
         "path": "/melanoq/api/questionnaire/test"
+        "data": { ... }
     */
 
     private String timestamp;

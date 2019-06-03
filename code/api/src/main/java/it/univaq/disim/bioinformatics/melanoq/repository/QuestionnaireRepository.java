@@ -7,5 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QuestionnaireRepository extends CrudRepository<Questionnaire, String> {
 
-    Questionnaire save(Questionnaire q);
+
+    // do not need to re-declare update, save, delete
+
+    Questionnaire findOneByDocumentId(String documentId);
 }
