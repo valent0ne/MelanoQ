@@ -27,7 +27,6 @@ export default {
       this.$store.dispatch(DISMISS_MESSAGE, {});
     }
   },
-  components: {},
   computed: {
     ...mapState({
       error: state => state.error.error,

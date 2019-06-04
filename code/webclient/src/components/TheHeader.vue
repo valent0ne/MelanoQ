@@ -40,9 +40,14 @@
     </nav>
     <div class="nav-scroller bg-white shadow-sm">
       <nav class="nav nav-underline">
-        <a class="nav-link active" href="#" v-if="isAuthenticated">
-          <font-awesome-icon icon="sign-out-alt" flip="horizontal" :style="{ color: 'black' }"/>
-          &nbsp;{{$t('sign_out')}}
+        <a
+          class="nav-link active my-nav-link-wrapper"
+          href="#"
+          @click="signOut()"
+          v-if="isAuthenticated"
+        >
+          <font-awesome-icon icon="sign-out-alt" flip="horizontal" :style="{ color: 'black' }"/>&nbsp;
+          <span class="my-nav-link">{{$t('sign_out')}}</span>
         </a>
         <!--
         <div>
@@ -80,11 +85,20 @@
 
 <script>
 import { mapState } from "vuex";
+import { LOGOUT, ADD_MESSAGE } from "@/store/actions.type";
 
 export default {
   name: "TheHeader",
   data() {
     return { langs: Object.keys(this.$i18n.messages) };
+  },
+  methods: {
+    signOut() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$store.dispatch(ADD_MESSAGE, "success");
+        this.$router.push({ name: "home" });
+      });
+    }
   },
   computed: {
     ...mapState({
@@ -97,5 +111,11 @@ export default {
 <style>
 .my-navbar-brand {
   font-weight: 400 !important;
+}
+.my-nav-link:hover {
+  text-decoration: underline !important;
+}
+.my-nav-link-wrapper:hover {
+  color: #343a40 !important;
 }
 </style>

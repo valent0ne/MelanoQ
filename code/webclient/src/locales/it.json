@@ -25,5 +25,20 @@
   "I": "I",
   "II": "II",
   "III": "III",
-  "evaluation": "Valutazione"
+  "evaluation": "Valutazione",
+  "success": "to_translate",
+  "proceed": "to_translate",
+  "unauthorized": "to_translate",
+  "not_authenticated": "to_translate",
+  "form_dirty": "to_translate",
+  "form_success": "to_translate",
+  "submit": "to_translate",
+  "reset": "to_translate",
+  "submit_and_proceed": "to_translate",
+  "dbCodeNumber_label": "to_translate",
+  "dbCodeNumber_desc": "to_translate",
+  "dateOfQuestionnaireAdministration_label": "to_translate",
+  "dateOfQuestionnaireAdministration_desc": "to_translate",
+  "typeOfMelanoma_label": "to_translate",
+  "typeOfMelanoma_desc": "to_translate"
 }

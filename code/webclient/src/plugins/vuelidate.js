@@ -3,6 +3,6 @@ import Vuelidate from 'vuelidate'
 
 Vue.use(Vuelidate)
 
-export default{
-    
+export default {
+
 }

@@ -1,12 +1,13 @@
 export const CHECK_AUTH = "checkAuth";
 export const LOGIN = "login";
 export const LOGOUT = "logout";
+export const ADD_ERROR = "addError";
 export const DISMISS_ERROR = "dismissError";
 export const ADD_REST_ERROR = "addRestError";
 export const ADD_MESSAGE = "addMessage";
 export const DISMISS_MESSAGE = "dismissMessage";
-export const INSERT_DOC_ID = "insertDocumentId";
-export const DELETE_DOC_ID = "deleteDocumentId";
-export const INSER_A1 = "inserA1";
+export const INSERT_A1 = "insertA1";
 export const UPDATE_A1 = "updateA1";
 export const DELETE_A1 = "deleteA1";
+export const INSERT_DOC_ID = "insertDocumentId";
+export const DELETE_DOC_ID = "deleteDocumentId";

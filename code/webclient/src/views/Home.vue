@@ -15,9 +15,12 @@
       </div>
     </b-card>
 
-    <b-card v-if="!isAuthenticated">
+    <b-card v-if="isAuthenticated">
       <div class="card-body d-flex flex-column">
-        <b-card-title>{{$t('logged_welcome_message_title') + $t(user.role)}}</b-card-title>
+        <b-card-title>
+          {{$t('logged_welcome_message_title')}}
+          <strong>{{$t(type).toUpperCase()}}</strong>
+        </b-card-title>
         <b-card-text>{{$t('logged_welcome_message_body')}}</b-card-text>
         <div>
           <b-button
@@ -46,7 +49,6 @@ export default {
   data() {
     return {};
   },
-  methods: {},
   components: {
     LogIn,
     Message
@@ -54,7 +56,8 @@ export default {
   computed: {
     ...mapState({
       isAuthenticated: state => state.auth.isAuthenticated,
-      user: state => state.auth.user
+      user: state => state.auth.user,
+      type: state => state.auth.type
     })
   }
 };

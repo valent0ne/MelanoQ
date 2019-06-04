@@ -25,5 +25,20 @@
   "I": "I",
   "II": "II",
   "III": "III",
-  "evaluation": "Evaluation"
+  "evaluation": "Evaluation",
+  "success": "Operation completed successfully",
+  "proceed": "Proceed to the next section",
+  "unauthorized": "You are not authorized to access the requested functionality",
+  "not_authenticated": "You are not authenticated, choose a profile to authenticate",
+  "form_dirty": "Some of the form fields are not valid",
+  "form_success": "Data submitted successfully",
+  "submit": "Submit",
+  "reset": "Reset",
+  "submit_and_proceed": "Submit and proceed to the next section",
+  "dbCodeNumber_label": "Database code number",
+  "dbCodeNumber_desc": "Use numeric coding system. First 2 numbers= country; second 2 numbers= center; M or C (melanoma case or control subject, respectively); last 4 numbers= consecutive case/control number",
+  "dateOfQuestionnaireAdministration_label": "Date of questionnaire administration and phenotyping",
+  "dateOfQuestionnaireAdministration_desc": "DD/MMM/YYYY: use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)",
+  "typeOfMelanoma_label": "Type of melanoma (if subject is a melanoma case)",
+  "typeOfMelanoma_desc": "Sporadic, Familial, Don’t know, Other (complex family history). Note: our definition of “familial melanoma” applies to low incidence geographic regions, such as the Mediterranean basin. A different definition would apply to other regions *If there is no intention for genetic studies then a family history limited to 1st degree relatives is adequate but number of affected members in the larger family should be recorded."
 }
