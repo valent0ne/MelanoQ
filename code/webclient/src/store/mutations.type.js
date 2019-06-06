@@ -1,7 +1,10 @@
 export const PURGE_AUTH = "logOut";
 export const SET_AUTH = "setUser";
 export const SET_REST_ERROR = "setRestError";
+export const SET_ERROR = "setError";
 export const RESET_STATE = "resetModuleState";
 export const PURGE_ERROR = "purgeError";
 export const SET_MESSAGE = "setMessage";
 export const PURGE_MESSAGE = "purgeMessage";
+export const SET_DOC_ID = "setDocumentId";
+export const PURGE_DOC_ID = "purgeDocumentid";

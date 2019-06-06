@@ -2,7 +2,7 @@
   <div id="header">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark my-nav-top">
       <img src="../assets/logo.png" class="navbar-brand-img">
-      <a class="navbar-brand" href="#">MelanoQ</a>
+      <router-link class="navbar-brand my-navbar-brand" to="/">MelanoQ</router-link>
 
       <div class="navbar-collapse offcanvas-collapse">
         <ul class="navbar-nav mr-auto">
@@ -32,21 +32,22 @@
         </ul>
         <!-- locale changer -->
         <div id="form-inline my-2 my-lg-0">
-          <b-row>
-            <b-col sm>
-              <b-form-select v-model="$i18n.locale" size="sm">
-                <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
-              </b-form-select>
-            </b-col>
-          </b-row>
+          <b-form-select v-model="$i18n.locale" size="sm">
+            <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+          </b-form-select>
         </div>
       </div>
     </nav>
     <div class="nav-scroller bg-white shadow-sm">
       <nav class="nav nav-underline">
-        <a class="nav-link active" href="#" v-if="isAuthenticated">
-          <font-awesome-icon icon="sign-out-alt" flip="horizontal" :style="{ color: 'black' }"/>
-          &nbsp;{{$t('sign_out')}}
+        <a
+          class="nav-link active my-nav-link-wrapper"
+          href="#"
+          @click="signOut()"
+          v-if="isAuthenticated"
+        >
+          <font-awesome-icon icon="sign-out-alt" flip="horizontal" :style="{ color: 'black' }"/>&nbsp;
+          <span class="my-nav-link">{{$t('sign_out')}}</span>
         </a>
         <!--
         <div>
@@ -84,11 +85,20 @@
 
 <script>
 import { mapState } from "vuex";
+import { LOGOUT, ADD_MESSAGE } from "@/store/actions.type";
 
 export default {
   name: "TheHeader",
   data() {
     return { langs: Object.keys(this.$i18n.messages) };
+  },
+  methods: {
+    signOut() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$store.dispatch(ADD_MESSAGE, "success");
+        this.$router.push({ name: "home" });
+      });
+    }
   },
   computed: {
     ...mapState({
@@ -100,6 +110,12 @@ export default {
 
 <style>
 .my-navbar-brand {
-  margin-right: 1rem !important;
+  font-weight: 400 !important;
+}
+.my-nav-link:hover {
+  text-decoration: underline !important;
+}
+.my-nav-link-wrapper:hover {
+  color: #343a40 !important;
 }
 </style>

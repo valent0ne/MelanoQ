@@ -33,7 +33,7 @@
       <b-button
         :variant="variant"
         size="sm"
-        v-on:click="onSubmit(username, password);"
+        v-on:click="onSubmit(username, password, type);"
       >{{$t('sign_in')}}</b-button>
     </b-dropdown-form>
     <b-dropdown-divider></b-dropdown-divider>
@@ -57,10 +57,8 @@ export default {
     };
   },
   methods: {
-    onSubmit(username, password) {
-      this.$store
-        .dispatch(LOGIN, { username, password })
-        .then(() => this.$router.push({ name: "home" }));
+    onSubmit(username, password, type) {
+      this.$store.dispatch(LOGIN, { username, password }, type);
     }
   }
 };

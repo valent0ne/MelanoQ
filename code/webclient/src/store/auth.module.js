@@ -10,7 +10,9 @@ import { SET_AUTH, PURGE_AUTH } from "./mutations.type";
 
 const state = {
   user: {},
-  isAuthenticated: !!JwtService.getToken()
+  isAuthenticated: true, //!!JwtService.getToken(),
+  // case, control, physician
+  type: "physician"
 };
 
 const getters = {
@@ -20,15 +22,18 @@ const getters = {
   isAuthenticated(state) {
     return state.isAuthenticated;
   },
+  type(state) {
+    return state.type;
+  }
 
 };
 
 const actions = {
-  [LOGIN](context, credentials) {
+  [LOGIN](context, credentials, type) {
     return new Promise(resolve => {
       ApiService.post("authentication", { credentials })
         .then(({ data }) => {
-          context.commit(SET_AUTH, data.data);
+          context.commit(SET_AUTH, data.data, type);
           resolve(data);
         })
         .catch(({ response }) => {
@@ -57,14 +62,16 @@ const actions = {
 
 const mutations = {
 
-  [SET_AUTH](state, user) {
+  [SET_AUTH](state, user, type) {
     state.isAuthenticated = true;
     state.user = user;
+    state.type = type
     JwtService.saveToken(state.user.token);
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;
     state.user = {};
+    state.type = "";
     JwtService.destroyToken();
   }
 };
