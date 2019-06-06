@@ -130,11 +130,11 @@ public class Questionnaire {
         this.b3 = b3;
     }
 
-    public Evaluation getbEvaluation() {
+    public Evaluation getBEvaluation() {
         return bEvaluation;
     }
 
-    public void setbEvaluation(Evaluation bEvaluation) {
+    public void setBEvaluation(Evaluation bEvaluation) {
         this.bEvaluation = bEvaluation;
     }
 
@@ -162,19 +162,19 @@ public class Questionnaire {
         this.c3 = c3;
     }
 
-    public Evaluation getcEvaluation() {
+    public Evaluation getCEvaluation() {
         return cEvaluation;
     }
 
-    public void setcEvaluation(Evaluation cEvaluation) {
+    public void setCEvaluation(Evaluation cEvaluation) {
         this.cEvaluation = cEvaluation;
     }
 
-    public List<D> getdList() {
+    public List<D> getDList() {
         return dList;
     }
 
-    public void setdList(List<D> dList) {
+    public void setDList(List<D> dList) {
         this.dList = dList;
     }
 }

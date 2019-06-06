@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import it.univaq.disim.bioinformatics.melanoq.model.ErrorMessage;
 
-
+@SuppressWarnings("Duplicates")
 @Service
-@Transactional
 public class A1ServiceImpl implements A1Service{
 
     @Autowired
