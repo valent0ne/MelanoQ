@@ -7,6 +7,9 @@ import java.util.List;
 
 public class D {
 
+    @Field
+    private String identifier;
+
     // if the list is empty than there aren't case of this type
     @Field
     private List<String> preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
@@ -67,6 +70,15 @@ public class D {
     private MutationalData mutationalData;
 
     public D(){ }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
+
 
     public List<String> getPreExistingPigmentedLesionAtTheSameSiteOfMelanoma() {
         return preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
@@ -163,4 +175,8 @@ public class D {
     public void setMutationalData(MutationalData mutationalData) {
         this.mutationalData = mutationalData;
     }
+
+
 }
+
+

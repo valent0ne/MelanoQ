@@ -14,7 +14,7 @@ public class A1 {
     private String dbCodeNumber;
 
     @Field
-    private String timeSdateOfQuestionnaireAdministration;
+    private String dateOfQuestionnaireAdministration;
 
     //TODO: DD-MMM-YYYY it's why we put the date as a string
     @Field
@@ -44,11 +44,11 @@ public class A1 {
     }
 
     public String getTimeSdateOfQuestionnaireAdministration() {
-        return timeSdateOfQuestionnaireAdministration;
+        return dateOfQuestionnaireAdministration;
     }
 
-    public void setTimeSdateOfQuestionnaireAdministration(String timeSdateOfQuestionnaireAdministration) {
-        this.timeSdateOfQuestionnaireAdministration = timeSdateOfQuestionnaireAdministration;
+    public void setTimeSdateOfQuestionnaireAdministration(String dateOfQuestionnaireAdministration) {
+        this.dateOfQuestionnaireAdministration = dateOfQuestionnaireAdministration;
     }
 
     public List<Date> getDatesOfUpdateQuestionnaire() {

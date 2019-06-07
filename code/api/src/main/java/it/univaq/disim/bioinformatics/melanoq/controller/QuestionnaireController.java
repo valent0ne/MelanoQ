@@ -262,7 +262,7 @@ public class QuestionnaireController{
 
     @PostMapping("/{documentId}/b/evaluation")
     public Response insertBEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.insert(documentId, e);
+        Evaluation eObj = evaluationService.insert(documentId, e, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(eObj);
         return response;
@@ -270,7 +270,7 @@ public class QuestionnaireController{
 
     @GetMapping("/{documentId}/b/evaluation")
     public Response getBEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.get(documentId);
+        Evaluation eObj = evaluationService.get(documentId, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
         response.setData(eObj);
         return response;
@@ -278,7 +278,7 @@ public class QuestionnaireController{
 
     @PatchMapping("/{documentId}/b/evaluation")
     public Response updateBEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.update(documentId, e);
+        Evaluation eObj = evaluationService.update(documentId, e, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
         response.setData(eObj);
         return response;
@@ -286,7 +286,7 @@ public class QuestionnaireController{
 
     @DeleteMapping("/{documentId}/b/evaluation")
     public Response deleteBEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        evaluationService.delete(documentId);
+        evaluationService.delete(documentId, "b");
         return new Response<>(HttpStatus.OK, request);
     }
 
@@ -401,7 +401,7 @@ public class QuestionnaireController{
 
     @PostMapping("/{documentId}/c/evaluation")
     public Response insertCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.insert(documentId, e);
+        Evaluation eObj = evaluationService.insert(documentId, e, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(eObj);
         return response;
@@ -409,7 +409,7 @@ public class QuestionnaireController{
 
     @GetMapping("/{documentId}/b/evaluation")
     public Response getCEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.get(documentId);
+        Evaluation eObj = evaluationService.get(documentId, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
         response.setData(eObj);
         return response;
@@ -417,7 +417,7 @@ public class QuestionnaireController{
 
     @PatchMapping("/{documentId}/b/evaluation")
     public Response updateCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.update(documentId, e);
+        Evaluation eObj = evaluationService.update(documentId, e, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
         response.setData(eObj);
         return response;
@@ -425,7 +425,7 @@ public class QuestionnaireController{
 
     @DeleteMapping("/{documentId}/b/evaluation")
     public Response deleteCEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        evaluationService.delete(documentId);
+        evaluationService.delete(documentId, "c");
         return new Response<>(HttpStatus.OK, request);
     }
 
