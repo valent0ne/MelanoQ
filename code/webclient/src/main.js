@@ -7,22 +7,13 @@ import bootstrap from './plugins/bootstrap'
 import vuelidate from './plugins/vuelidate'
 import datepicker from './plugins/datepicker'
 import moment from './plugins/moment'
-
-
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSignOutAlt, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import fontawesome from './plugins/fontawesome'
 
 import ApiService from "./common/api.service"
-
-library.add(faSignOutAlt, faCheck, faTimes)
-
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 ApiService.init();
 
 Vue.config.productionTip = false
-
 
 new Vue({
   store,
@@ -32,5 +23,6 @@ new Vue({
   vuelidate,
   datepicker,
   moment,
+  fontawesome,
   render: h => h(App)
 }).$mount('#app')

@@ -1,7 +1,6 @@
 <template>
-  <!-- https://bootstrap-vue.js.org/docs/components/form -->
   <div>
-    <div class="home container my-5">
+    <div class="home container my-4">
       <Message/>
       <b-card>
         <div class="card-body d-flex flex-column">
@@ -12,8 +11,8 @@
               <label for="dbCodeNumber" class="mt-4">{{$t('dbCodeNumber_label')}}</label>
               <b-form-input
                 id="dbCodeNumber"
-                v-model="$v.a1.dbCodeNumber.$model"
-                :state="$v.a1.dbCodeNumber.$dirty ? !$v.a1.dbCodeNumber.$error : null"
+                v-model="$v.form.dbCodeNumber.$model"
+                :state="$v.form.dbCodeNumber.$dirty ? !$v.form.dbCodeNumber.$error : null"
                 type="text"
                 required
               ></b-form-input>
@@ -26,7 +25,7 @@
               >{{$t('dateOfQuestionnaireAdministration_label')}}</label>
               <date-picker
                 name="dateOfQuestionnaireAdministration"
-                v-model="a1.dateOfQuestionnaireAdministration"
+                v-model="form.dateOfQuestionnaireAdministration"
                 :config="datePickerOptions"
                 required
               ></date-picker>
@@ -41,18 +40,17 @@
               <label for="typeOfMelanoma" class="mt-4">{{$t('typeOfMelanoma_label')}}</label>
               <!--<b-form-input
                 id="typeOfMelanoma"
-                v-model="$v.a1.typeOfMelanoma.$model"
-                :state="$v.a1.typeOfMelanoma.$dirty ? !$v.a1.typeOfMelanoma.$error : null"
+                v-model="$v.form.typeOfMelanoma.$model"
+                :state="$v.form.typeOfMelanoma.$dirty ? !$v.form.typeOfMelanoma.$error : null"
                 type="text"
                 :disabled="(type === 'control')"
               ></b-form-input>-->
-              <b-form-input
+              <b-form-select
                 id="typeOfMelanoma"
-                v-model="$v.a1.typeOfMelanoma.$model"
-                :state="$v.a1.typeOfMelanoma.$dirty ? !$v.a1.typeOfMelanoma.$error : null"
-                type="text"
-              ></b-form-input>
-              <b-form-text>{{$t('typeOfMelanoma_desc')}}</b-form-text>
+                v-model="$v.form.typeOfMelanoma.$model"
+                :state="$v.form.typeOfMelanoma.$dirty ? !$v.form.typeOfMelanoma.$error : null"
+                :options="typeOfMelanomaOptions"
+              >{{$t('typeOfMelanoma_desc')}}</b-form-select>
 
               <!-- buttons -->
               <b-button
@@ -73,6 +71,8 @@
         </div>
       </b-card>
     </div>
+    <br>
+    <br>
   </div>
 </template>
 <script>
@@ -81,24 +81,30 @@ import { ADD_MESSAGE, ADD_ERROR, INSERT_A1 } from "@/store/actions.type";
 import {
   required,
   minLength,
-  maxLength
-  /*requiredIf*/
+  maxLength,
+  requiredIf
 } from "vuelidate/lib/validators";
 
 import Message from "@/components/Message.vue";
 
 export default {
-  name: "a1",
+  name: "form",
   data() {
     return {
-      a1: {
+      form: {
         dbCodeNumber: "",
         dateOfQuestionnaireAdministration: this.$moment().format("DD/MMM/YYYY"),
-        // TODO check
-        typeOfMelanoma: ""
+        typeOfMelanoma: null
       },
       show: true,
       canProceed: false,
+      typeOfMelanomaOptions: [
+        { value: null, text: this.$t("please_select_option") },
+        { value: "Sporadic", text: "Sporadic" },
+        { value: "Familial", text: "Familial" },
+        { value: "Don’t know", text: "Don’t know" },
+        { value: "Other", text: "Other" }
+      ],
       datePickerOptions: {
         // https://momentjs.com/docs/#/displaying/
         format: "DD/MMM/YYYY",
@@ -123,12 +129,12 @@ export default {
       evt.preventDefault();
 
       this.$v.$touch();
-      alert(JSON.stringify(this.a1));
+      alert(JSON.stringify(this.form));
       if (this.$v.$invalid) {
         this.$store.dispatch(ADD_ERROR, "form_dirty");
       } else {
         var that = this;
-        this.$store.dispatch(INSERT_A1, this.a1).then(() => {
+        this.$store.dispatch(INSERT_A1, this.form).then(() => {
           this.$store.dispatch(ADD_MESSAGE, "form_success");
           that.canProceed = true;
         });
@@ -137,11 +143,11 @@ export default {
     onReset(evt) {
       evt.preventDefault();
       //TODO reset
-      this.a1.dbCodeNumber = "";
-      this.a1.dateOfQuestionnaireAdministration = this.$moment().format(
+      this.form.dbCodeNumber = "";
+      this.form.dateOfQuestionnaireAdministration = this.$moment().format(
         "DD/MMM/YYYY"
       );
-      this.a1.typeOfMelanoma = "";
+      this.form.typeOfMelanoma = null;
 
       // Trick to reset/clear native browser form validation state
       this.show = false;
@@ -162,19 +168,19 @@ export default {
     action: String
   },
   validations: {
-    a1: {
+    form: {
       dbCodeNumber: {
         required,
         minLength: minLength(9),
         maxLength: maxLength(9)
       },
       dateOfQuestionnaireAdministration: { required },
-      /*typeOfMelanoma: {
+      typeOfMelanoma: {
         required: requiredIf(function() {
           return this.type !== "control";
         })
-      }*/
-      typeOfMelanoma: {}
+      }
+      // typeOfMelanoma: {}
     }
   },
   computed: {

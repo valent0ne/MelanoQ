@@ -34,6 +34,7 @@
   "form_success": "Data submitted successfully",
   "submit": "Submit",
   "reset": "Reset",
+  "please_select_option": "Please select an option",
   "submit_and_proceed": "Submit and proceed to the next section",
   "dbCodeNumber_label": "Database code number",
   "dbCodeNumber_desc": "Use numeric coding system. First 2 numbers= country; second 2 numbers= center; M or C (melanoma case or control subject, respectively); last 4 numbers= consecutive case/control number",
