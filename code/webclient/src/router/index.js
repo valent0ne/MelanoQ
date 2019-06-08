@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
-import New from '@/views/New.vue'
+import Choice from '@/views/Choice.vue'
 import Report from '@/views/Report.vue'
 import A1 from "@/views/A1.vue"
 import A2 from "@/views/A2.vue"
@@ -23,9 +23,9 @@ export default new Router({
       component: About
     },
     {
-      path: '/new',
-      name: 'new',
-      component: New
+      path: '/choice',
+      name: 'choice',
+      component: Choice
     },
     {
       path: '/report',

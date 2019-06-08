@@ -7,51 +7,58 @@
           <b-card-title>{{$t('section_a')+'.II'}}</b-card-title>
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-              <!-- dbCodeNumber -->
-              <label for="dbCodeNumber" class="mt-4">{{$t('dbCodeNumber_label')}}</label>
+              <!-- sex -->
+              <label for="sex" class="mt-4">{{$t('sex_label')}}</label>
+              <b-form-select
+                id="sex"
+                v-model="$v.form.sex.$model"
+                :state="$v.form.sex.$dirty ? !$v.form.sex.$error : null"
+                :options="sexOptions"
+              >{{$t('sex_desc')}}</b-form-select>
+
+              <!-- dateOfBirth -->
+              <label for="dateOfBirth" class="mt-4">{{$t('dateOfBirth_label')}}</label>
               <b-form-input
-                id="dbCodeNumber"
-                v-model="$v.form.dbCodeNumber.$model"
-                :state="$v.form.dbCodeNumber.$dirty ? !$v.form.dbCodeNumber.$error : null"
+                id="dateOfBirth"
+                v-model="$v.form.dateOfBirth.$model"
+                :state="$v.form.dateOfBirth.$dirty ? !$v.form.dateOfBirth.$error : null"
                 type="text"
                 required
               ></b-form-input>
-              <b-form-text>{{$t('dbCodeNumber_desc')}}</b-form-text>
+              <b-form-text>{{$t('dateOfBirth_desc')}}</b-form-text>
 
-              <!-- dateOfQuestionnaireAdministration -->
-              <label
-                for="dateOfQuestionnaireAdministration"
-                class="mt-4"
-              >{{$t('dateOfQuestionnaireAdministration_label')}}</label>
-              <date-picker
-                name="dateOfQuestionnaireAdministration"
-                v-model="form.dateOfQuestionnaireAdministration"
-                :config="datePickerOptions"
-                required
-              ></date-picker>
-              <b-form-text>{{$t('dateOfQuestionnaireAdministration_desc')}}</b-form-text>
-
-              <!-- typeOfMelanoma -->
-              <!--<label
-                :class="{ 'text-muted' : (type === 'control')}"
-                for="typeOfMelanoma"
-                class="mt-4"
-              >{{$t('typeOfMelanoma_label')}}</label>-->
-              <label for="typeOfMelanoma" class="mt-4">{{$t('typeOfMelanoma_label')}}</label>
-              <!--<b-form-input
-                id="typeOfMelanoma"
-                v-model="$v.form.typeOfMelanoma.$model"
-                :state="$v.form.typeOfMelanoma.$dirty ? !$v.form.typeOfMelanoma.$error : null"
-                type="text"
-                :disabled="(type === 'control')"
-              ></b-form-input>-->
+              <!-- cityOfBirth -->
+              <label for="cityOfBirth" class="mt-4">{{$t('cityOfBirth_label')}}</label>
               <b-form-input
-                id="typeOfMelanoma"
-                v-model="$v.form.typeOfMelanoma.$model"
-                :state="$v.form.typeOfMelanoma.$dirty ? !$v.form.typeOfMelanoma.$error : null"
+                id="cityOfBirth"
+                v-model="$v.form.cityOfBirth.$model"
+                :state="$v.form.cityOfBirth.$dirty ? !$v.form.cityOfBirth.$error : null"
                 type="text"
+                required
               ></b-form-input>
-              <b-form-select :options="typeOfMelanomaOptions">{{$t('typeOfMelanoma_desc')}}</b-form-select>
+              <b-form-text>{{$t('cityOfBirth_desc')}}</b-form-text>
+
+              <!-- provinceOfBirth -->
+              <label for="provinceOfBirth" class="mt-4">{{$t('provinceOfBirth_label')}}</label>
+              <b-form-input
+                id="provinceOfBirth"
+                v-model="$v.form.provinceOfBirth.$model"
+                :state="$v.form.provinceOfBirth.$dirty ? !$v.form.provinceOfBirth.$error : null"
+                type="text"
+                required
+              ></b-form-input>
+              <b-form-text>{{$t('provinceOfBirth_desc')}}</b-form-text>
+
+              <!-- countryOfBirth -->
+              <label for="countryOfBirth" class="mt-4">{{$t('countryOfBirth_label')}}</label>
+              <b-form-input
+                id="countryOfBirth"
+                v-model="$v.form.countryOfBirth.$model"
+                :state="$v.form.countryOfBirth.$dirty ? !$v.form.countryOfBirth.$error : null"
+                type="text"
+                required
+              ></b-form-input>
+              <b-form-text>{{$t('countryOfBirth_desc')}}</b-form-text>
 
               <!-- buttons -->
               <b-button
@@ -60,13 +67,28 @@
                 class="mr-2 mb-1 mt-5"
               >{{$t('submit')}}</b-button>
               <b-button type="reset" variant="outline-danger" class="mr-2 mb-1 mt-5">{{$t('reset')}}</b-button>
+
               <b-button
                 type="button"
                 @click="proceed()"
                 :disabled="(!canProceed)"
                 variant="outline-info"
-                class="mr-2 mb-1 mt-5 float-right"
-              >{{$t('proceed')}}</b-button>
+                class="fa-button-outline mr-2 mb-1 mt-5 float-right"
+              >
+                {{$t('proceed')}}
+                &nbsp;
+                <font-awesome-icon icon="arrow-right"/>&nbsp;
+              </b-button>
+              <b-button
+                type="button"
+                to="/choice"
+                variant="outline-info"
+                class="fa-button-outline mr-2 mb-1 mt-5 float-right"
+              >
+                <font-awesome-icon icon="arrow-right" flip="horizontal"/>
+                &nbsp;
+                {{$t('back_to_section_choice')}}
+              </b-button>
             </b-form>
           </div>
         </div>
@@ -79,12 +101,8 @@
 <script>
 import { mapState } from "vuex";
 import { ADD_MESSAGE, ADD_ERROR, INSERT_A2 } from "@/store/actions.type";
-import {
-  required,
-  minLength,
-  maxLength,
-  requiredIf
-} from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
+import { dateOfBirthValidator } from "@/plugins/vuelidate";
 
 import Message from "@/components/Message.vue";
 
@@ -92,16 +110,23 @@ export default {
   name: "form",
   data() {
     return {
-      form: {},
+      form: {
+        sex: null,
+        dateOfBirth: "",
+        cityOfBirth: "",
+        provinceOfBirth: "",
+        countryOfBirth: "",
+        weight: "",
+        height: "",
+        ethnicity: ""
+      },
       show: true,
       canProceed: false,
-      datePickerOptions: {
-        // https://momentjs.com/docs/#/displaying/
-        format: "DD/MMM/YYYY",
-        useCurrent: true,
-        showClear: true,
-        showClose: true
-      }
+      sexOptions: [
+        { value: null, text: this.$t("please_select_option") },
+        { value: "M", text: "M" },
+        { value: "F", text: "F" }
+      ]
     };
   },
   created: function() {
@@ -133,11 +158,14 @@ export default {
     onReset(evt) {
       evt.preventDefault();
       //TODO reset
-      this.form.dbCodeNumber = "";
-      this.form.dateOfQuestionnaireAdministration = this.$moment().format(
-        "DD/MMM/YYYY"
-      );
-      this.form.typeOfMelanoma = "";
+      this.form.sex = null;
+      this.form.dateOfBirth = "";
+      this.form.cityOfBirth = "";
+      this.form.provinceOfBirth = "";
+      this.form.countryOfBirth = "";
+      this.form.weight = "";
+      this.form.height = "";
+      this.form.ethnicity = "";
 
       // Trick to reset/clear native browser form validation state
       this.show = false;
@@ -159,18 +187,14 @@ export default {
   },
   validations: {
     form: {
-      dbCodeNumber: {
-        required,
-        minLength: minLength(9),
-        maxLength: maxLength(9)
-      },
-      dateOfQuestionnaireAdministration: { required },
-      typeOfMelanoma: {
-        required: requiredIf(function() {
-          return this.type !== "control";
-        })
-      }
-      // typeOfMelanoma: {}
+      sex: { required },
+      dateOfBirth: { required, dateOfBirthValidator },
+      cityOfBirth: { required },
+      provinceOfBirth: { required },
+      countryOfBirth: { required },
+      weight: { required },
+      height: { required },
+      ethnicity: { required }
     }
   },
   computed: {

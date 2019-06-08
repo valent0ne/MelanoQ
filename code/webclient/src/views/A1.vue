@@ -59,13 +59,28 @@
                 class="mr-2 mb-1 mt-5"
               >{{$t('submit')}}</b-button>
               <b-button type="reset" variant="outline-danger" class="mr-2 mb-1 mt-5">{{$t('reset')}}</b-button>
+
               <b-button
                 type="button"
                 @click="proceed()"
                 :disabled="(!canProceed)"
                 variant="outline-info"
-                class="mr-2 mb-1 mt-5 float-right"
-              >{{$t('proceed')}}</b-button>
+                class="fa-button-outline mr-2 mb-1 mt-5 float-right"
+              >
+                {{$t('proceed')}}
+                &nbsp;
+                <font-awesome-icon icon="arrow-right"/>&nbsp;
+              </b-button>
+              <b-button
+                type="button"
+                to="/choice"
+                variant="outline-info"
+                class="fa-button-outline mr-2 mb-1 mt-5 float-right"
+              >
+                <font-awesome-icon icon="arrow-right" flip="horizontal"/>
+                &nbsp;
+                {{$t('back_to_section_choice')}}
+              </b-button>
             </b-form>
           </div>
         </div>

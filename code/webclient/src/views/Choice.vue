@@ -4,7 +4,7 @@
 
     <b-card id="welcome-card">
       <div class="card-body d-flex flex-column">
-        <b-card-title>{{$t('new_questionnaire')}}</b-card-title>
+        <b-card-title>{{$t('section_selection')}}</b-card-title>
         <b-card-text>{{$t('choose_section')}}</b-card-text>
         <div>
           <SectionButton type="A" v-bind:subsections="{1:'I', 2:'II'}"/>
@@ -29,7 +29,7 @@ import Message from "@/components/Message.vue";
 import SectionButton from "@/components/SectionButton.vue";
 
 export default {
-  name: "new",
+  name: "choice",
   data() {
     return {};
   },

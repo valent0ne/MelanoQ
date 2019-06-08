@@ -10,6 +10,10 @@ body {
   height: 100vh;
 }
 
+.fa-button-outline:hover{
+  color: white;
+}
+
 @media (max-width: 991.98px) {
   .offcanvas-collapse {
     position: fixed;
