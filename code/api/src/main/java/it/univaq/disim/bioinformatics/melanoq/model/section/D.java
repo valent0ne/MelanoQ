@@ -29,19 +29,9 @@ public class D {
     @Field
     private String skinExamByPhysician;
 
-    //TODO: to ask
-    // what are section H2 and H1?
-    // Is it sufficient to create a section D for each melanoma (current or preavious)? Or we should provide a list?
     //if 0 than no, if >0 then yes
-    //@Field
-    //private String numberOfMPM;
-
-
-    //TODO: to ask
-    // based on preavious answering
-    //@Field
-    //private String dateOfDiagnosis;
-
+    @Field
+    private String numberOfMPM;
 
     @Field
     private Boolean primaryTumorKnown;
@@ -53,7 +43,7 @@ public class D {
     private Double breslowThinkness;
 
     @Field
-    private String otherMainHistopatologicfeatures;
+    private String otherMainHistopatologicFeatures;
 
     // It can be: YES, NO, Not done, Not known
     @Field
@@ -112,6 +102,14 @@ public class D {
         this.skinExamByPhysician = skinExamByPhysician;
     }
 
+    public String getNumberOfMPM() {
+        return numberOfMPM;
+    }
+
+    public void setNumberOfMPM(String numberOfMPM) {
+        this.numberOfMPM = numberOfMPM;
+    }
+
     public Boolean getPrimaryTumorKnown() {
         return primaryTumorKnown;
     }
@@ -136,12 +134,12 @@ public class D {
         this.breslowThinkness = breslowThinkness;
     }
 
-    public String getOtherMainHistopatologicfeatures() {
-        return otherMainHistopatologicfeatures;
+    public String getOtherMainHistopatologicFeatures() {
+        return otherMainHistopatologicFeatures;
     }
 
-    public void setOtherMainHistopatologicfeatures(String otherMainHistopatologicfeatures) {
-        this.otherMainHistopatologicfeatures = otherMainHistopatologicfeatures;
+    public void setOtherMainHistopatologicFeatures(String otherMainHistopatologicFeatures) {
+        this.otherMainHistopatologicFeatures = otherMainHistopatologicFeatures;
     }
 
     public String getSentinelLymphNodebiopsyDone() {

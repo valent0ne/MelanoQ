@@ -20,7 +20,7 @@ public class B1 {
     private String freckles;
 
     @Field
-    private String neviInChidhoodAdolescence;
+    private String neviInChildhoodAdolescence;
 
     public B1(){ }
 
@@ -64,11 +64,11 @@ public class B1 {
         this.freckles = freckles;
     }
 
-    public String getNeviInChidhoodAdolescence() {
-        return neviInChidhoodAdolescence;
+    public String getNeviInChildhoodAdolescence() {
+        return neviInChildhoodAdolescence;
     }
 
-    public void setNeviInChidhoodAdolescence(String neviInChidhoodAdolescence) {
-        this.neviInChidhoodAdolescence = neviInChidhoodAdolescence;
+    public void setNeviInChildhoodAdolescence(String neviInChildhoodAdolescence) {
+        this.neviInChildhoodAdolescence = neviInChildhoodAdolescence;
     }
 }
