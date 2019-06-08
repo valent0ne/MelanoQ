@@ -8,7 +8,7 @@ import java.util.List;
 public class C3 {
 
     //TODO: check if it can be more than one (in this case the list is ok) or is only one potential relative(in this case
-    // a simple variabele is sufficient
+    // a simple variable is sufficient possono esserci più di una storia
     @Field
     private List<FamilyHistory> familyHistoryOfMelanomaList;
 

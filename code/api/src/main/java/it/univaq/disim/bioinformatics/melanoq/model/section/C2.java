@@ -1,22 +1,18 @@
 package it.univaq.disim.bioinformatics.melanoq.model.section;
 
 import com.couchbase.client.java.repository.annotation.Field;
-import it.univaq.disim.bioinformatics.melanoq.model.nested.NonCutaneousNeoplasia;
-import it.univaq.disim.bioinformatics.melanoq.model.nested.NonMelanomaSkinCancer;
-import it.univaq.disim.bioinformatics.melanoq.model.nested.PregnanciesInfo;
-import it.univaq.disim.bioinformatics.melanoq.model.nested.Treatment;
+import it.univaq.disim.bioinformatics.melanoq.model.nested.*;
 
 import java.util.List;
 
 public class C2 {
 
-    //TODO: waiting to understand what it means
     @Field
-    private String historyOfMedicalDiagnoses;
+    private List<MedicalDiagnosis> medicalDiagnoses;
 
     //TODO: Optional
     @Field
-    private List<Treatment> preaviusAndConcomitantTreatments;
+    private List<Treatment> previousAndConcomitantTreatments;
 
     @Field
     private PregnanciesInfo pregnancyHistory;
@@ -29,20 +25,20 @@ public class C2 {
 
     public C2(){ }
 
-    public String getHistoryOfMedicalDiagnoses() {
-        return historyOfMedicalDiagnoses;
+    public List<MedicalDiagnosis> getMedicalDiagnoses() {
+        return medicalDiagnoses;
     }
 
-    public void setHistoryOfMedicalDiagnoses(String historyOfMedicalDiagnoses) {
-        this.historyOfMedicalDiagnoses = historyOfMedicalDiagnoses;
+    public void setMedicalDiagnoses(List<MedicalDiagnosis> medicalDiagnoses) {
+        this.medicalDiagnoses = medicalDiagnoses;
     }
 
-    public List<Treatment> getPreaviusAndConcomitantTreatments() {
-        return preaviusAndConcomitantTreatments;
+    public List<Treatment> getPreviousAndConcomitantTreatments() {
+        return previousAndConcomitantTreatments;
     }
 
-    public void setPreaviusAndConcomitantTreatments(List<Treatment> preaviusAndConcomitantTreatments) {
-        this.preaviusAndConcomitantTreatments = preaviusAndConcomitantTreatments;
+    public void setPreviousAndConcomitantTreatments(List<Treatment> previousAndConcomitantTreatments) {
+        this.previousAndConcomitantTreatments = previousAndConcomitantTreatments;
     }
 
     public PregnanciesInfo getPregnancyHistory() {

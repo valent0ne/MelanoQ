@@ -11,7 +11,7 @@ public class C1 {
     private SolarLentigines solarLentigines;
 
     @Field
-    private List<NeviCount> neviCountGratherThan2mm;
+    private List<NeviCount> neviCountGreatherThan2mm;
 
     // It can be: 0, 1-50, 51-100, 101-200, >200
     //TODO: it is an optional answer
@@ -41,31 +41,63 @@ public class C1 {
         return solarLentigines;
     }
 
-    public List<NeviCount> getNeviCountGratherThan2mm() {
-        return neviCountGratherThan2mm;
+    public void setSolarLentigines(SolarLentigines solarLentigines) {
+        this.solarLentigines = solarLentigines;
+    }
+
+    public List<NeviCount> getNeviCountGreatherThan2mm() {
+        return neviCountGreatherThan2mm;
+    }
+
+    public void setNeviCountGreatherThan2mm(List<NeviCount> neviCountGreatherThan2mm) {
+        this.neviCountGreatherThan2mm = neviCountGreatherThan2mm;
     }
 
     public String getNeviCountLessThan2mm() {
         return neviCountLessThan2mm;
     }
 
+    public void setNeviCountLessThan2mm(String neviCountLessThan2mm) {
+        this.neviCountLessThan2mm = neviCountLessThan2mm;
+    }
+
     public ClinicallyAtypicalNevi getClinicallyAtypicalNevi() {
         return clinicallyAtypicalNevi;
+    }
+
+    public void setClinicallyAtypicalNevi(ClinicallyAtypicalNevi clinicallyAtypicalNevi) {
+        this.clinicallyAtypicalNevi = clinicallyAtypicalNevi;
     }
 
     public CongenitalNevi getCongenitalNevi() {
         return congenitalNevi;
     }
 
+    public void setCongenitalNevi(CongenitalNevi congenitalNevi) {
+        this.congenitalNevi = congenitalNevi;
+    }
+
     public int getBlueNevi() {
         return blueNevi;
+    }
+
+    public void setBlueNevi(int blueNevi) {
+        this.blueNevi = blueNevi;
     }
 
     public List<ActinicKeratoses> getActinicKeratoses() {
         return actinicKeratoses;
     }
 
+    public void setActinicKeratoses(List<ActinicKeratoses> actinicKeratoses) {
+        this.actinicKeratoses = actinicKeratoses;
+    }
+
     public List<CurrentNonMelanomaSkinCancer> getCurrentNonMelanomaSkinCancers() {
         return currentNonMelanomaSkinCancers;
+    }
+
+    public void setCurrentNonMelanomaSkinCancers(List<CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers) {
+        this.currentNonMelanomaSkinCancers = currentNonMelanomaSkinCancers;
     }
 }

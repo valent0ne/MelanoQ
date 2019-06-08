@@ -19,7 +19,7 @@ public class B3 {
     // The following attribute incorporate questions 17 and 18 of session B
     // TODO: it can be optional
     @Field
-    private List<Vitamin> Vitamins;
+    private List<Vitamin> vitamins;
 
     public Smoking getSmoking() {
         return smoking;
@@ -38,10 +38,10 @@ public class B3 {
     }
 
     public List<Vitamin> getVitamins() {
-        return Vitamins;
+        return this.vitamins;
     }
 
     public void setVitamins(List<Vitamin> vitamins) {
-        Vitamins = vitamins;
+        this.vitamins = vitamins;
     }
 }
