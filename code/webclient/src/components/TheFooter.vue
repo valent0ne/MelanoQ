@@ -1,5 +1,5 @@
 <template>
-  <footer if="footer">
+  <footer id="footer">
     <nav class="navbar fixed-bottom footer">
       <div>
         <b-link href="http://www.univaq.it/en/">&copy; {{$t('univaq')}}</b-link>-
@@ -26,5 +26,9 @@ a {
 
 a:hover {
   color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.footer {
+  line-height: 40px !important;
 }
 </style>
