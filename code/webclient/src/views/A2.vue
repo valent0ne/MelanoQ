@@ -60,6 +60,164 @@
               ></b-form-input>
               <b-form-text>{{$t('countryOfBirth_desc')}}</b-form-text>
 
+              <!-- weight -->
+              <label for="weight" class="mt-4">{{$t('weight_label')}}</label>
+              <b-form-input
+                id="weight"
+                v-model="$v.form.weight.$model"
+                :state="$v.form.weight.$dirty ? !$v.form.weight.$error : null"
+                type="text"
+                required
+              ></b-form-input>
+              <b-form-text>{{$t('weight_desc')}}</b-form-text>
+
+              <!-- height -->
+              <label for="height" class="mt-4">{{$t('height_label')}}</label>
+              <b-form-input
+                id="height"
+                v-model="$v.form.height.$model"
+                :state="$v.form.height.$dirty ? !$v.form.height.$error : null"
+                type="text"
+                required
+              ></b-form-input>
+              <b-form-text>{{$t('height_desc')}}</b-form-text>
+
+              <!-- ethnicity -->
+              <label for="ethnicity" class="mt-4">{{$t('ethnicity_label')}}</label>
+              <b-form-select
+                id="etnicity"
+                v-model="$v.form.ethnicity.$model"
+                :state="$v.form.ethnicity.$dirty ? !$v.form.ethnicity.$error : null"
+                type="text"
+                required
+                :options="ethnicityOptions"
+              ></b-form-select>
+              <b-form-text>{{$t('ethnicity_desc')}}</b-form-text>
+
+              <!-- residencies -->
+              <label for="residencies" class="mt-4">{{$t('residencies_label')}}</label>
+              <b-form-text>{{$t('residencies_desc')}}</b-form-text>
+
+              <b-form inline class="mt-2">
+                <span v-for="(residency, index) in $v.form.residencies.$each.$iter" :key="index">
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="residency.residencyCountry.$model"
+                    :state="residency.residencyCountry.$dirty ? !residency.residencyCountry.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('residencyCountry_desc')"
+                  ></b-form-input>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="residency.residencyCity.$model"
+                    :state="residency.residencyCity.$dirty ? !residency.residencyCity.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('residencyCity_desc')"
+                  ></b-form-input>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="residency.residencyStartingTime.$model"
+                    :state="residency.residencyStartingTime.$dirty ? !residency.residencyStartingTime.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('residencyStartingTime_desc')"
+                  ></b-form-input>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="residency.residencyEndingTime.$model"
+                    :state="residency.residencyEndingTime.$dirty ? !residency.residencyEndingTime.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('residencyEndingTime_desc')"
+                  ></b-form-input>
+                  <hr v-if="residenciesHrVisible">
+                </span>
+                <span class="mb-2 mb-auto ml-auto">
+                  <b-button variant="outline-success" @click="addResidencyField()">
+                    <font-awesome-icon icon="plus"/>
+                  </b-button>
+                  <b-button variant="outline-danger" @click="removeResidencyField()" class="ml-2">
+                    <font-awesome-icon icon="minus"/>
+                  </b-button>
+                </span>
+              </b-form>
+
+              <!-- education -->
+              <label for="education" class="mt-4">{{$t('education_label')}}</label>
+              <b-form-select
+                id="education"
+                v-model="$v.form.education.$model"
+                :state="$v.form.education.$dirty ? !$v.form.education.$error : null"
+                type="text"
+                required
+                :options="educationOptions"
+              ></b-form-select>
+              <b-form-text>{{$t('education_desc')}}</b-form-text>
+
+              <!-- currentOccupationalStatus -->
+              <label
+                for="currentOccupationalStatus"
+                class="mt-4"
+              >{{$t('currentOccupationalStatus_label')}}</label>
+              <b-form-select
+                id="currentOccupationalStatus"
+                v-model="$v.form.currentOccupationalStatus.$model"
+                :state="$v.form.currentOccupationalStatus.$dirty ? !$v.form.currentOccupationalStatus.$error : null"
+                type="text"
+                required
+                :options="currentOccupationalStatusOptions"
+              ></b-form-select>
+              <b-form-text>{{$t('currentOccupationalStatus_desc')}}</b-form-text>
+
+              <!-- historyOfOccupations -->
+              <label for="historyOfOccupations" class="mt-4">{{$t('historyOfOccupations_label')}}</label>
+              <b-form-text>{{$t('historyOfOccupations_desc')}}</b-form-text>
+
+              <b-form inline class="mt-2">
+                <span
+                  v-for="(occupation, index) in $v.form.historyOfOccupations.$each.$iter"
+                  :key="index"
+                >
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="occupation.SICCode.$model"
+                    :state="occupation.SICCode.$dirty ? !occupation.SICCode.$error : null"
+                    type="text"
+                    :placeholder="$t('SICCode_desc')"
+                  ></b-form-input>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="occupation.occupationStartingTime.$model"
+                    :state="occupation.occupationStartingTime.$dirty ? !occupation.occupationStartingTime.$error : null"
+                    type="text"
+                    :placeholder="$t('occupationStartingTime_desc')"
+                  ></b-form-input>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="occupation.occupationEndingTime.$model"
+                    :state="occupation.occupationEndingTime.$dirty ? !occupation.occupationEndingTime.$error : null"
+                    type="text"
+                    :placeholder="$t('occupationEndingTime_desc')"
+                  ></b-form-input>
+                  <hr v-if="historyOfOccupationsHrVisible">
+                </span>
+                <span class="mb-2 mb-auto ml-auto">
+                  <b-button variant="outline-success" @click="addOccupationField()">
+                    <font-awesome-icon icon="plus"/>
+                  </b-button>
+                  <b-button variant="outline-danger" @click="removeOccupationField()" class="ml-2">
+                    <font-awesome-icon icon="minus"/>
+                  </b-button>
+                </span>
+              </b-form>
+
               <!-- buttons -->
               <b-button
                 type="submit"
@@ -101,7 +259,12 @@
 <script>
 import { mapState } from "vuex";
 import { ADD_MESSAGE, ADD_ERROR, INSERT_A2 } from "@/store/actions.type";
-import { required } from "vuelidate/lib/validators";
+import {
+  required,
+  minLength,
+  maxLength,
+  numeric
+} from "vuelidate/lib/validators";
 import { dateOfBirthValidator } from "@/plugins/vuelidate";
 
 import Message from "@/components/Message.vue";
@@ -118,14 +281,70 @@ export default {
         countryOfBirth: "",
         weight: "",
         height: "",
-        ethnicity: ""
+        ethnicity: null,
+        residencies: [
+          {
+            residencyCountry: "",
+            residencyCity: "",
+            residencyStartingTime: "",
+            residencyEndingTime: ""
+          }
+        ],
+        education: null,
+        currentOccupationalStatus: null,
+        historyOfOccupations: [
+          {
+            SICCode: "",
+            occupationStartingTime: "",
+            occupationEndingTime: ""
+          }
+        ]
       },
       show: true,
       canProceed: false,
+      residenciesHrVisible: false,
+      historyOfOccupationsHrVisible: false,
       sexOptions: [
         { value: null, text: this.$t("please_select_option") },
         { value: "M", text: "M" },
         { value: "F", text: "F" }
+      ],
+      ethnicityOptions: [
+        { value: null, text: this.$t("please_select_option") },
+        { value: "White/Europe", text: this.$t("white/europe") },
+        { value: "White/North Africa", text: this.$t("white/north_africa") },
+        { value: "White/Middle East", text: this.$t("white/middle_east") },
+        {
+          value: "White/Jewish ancestry",
+          text: this.$t("white/jewish_ancestry")
+        },
+        {
+          value: "Black or African American",
+          text: this.$t("black_or_african_american")
+        },
+        { value: "Asian", text: this.$t("asian") },
+        { value: "Hispanic or Latino", text: this.$t("hispanic_or_latino") },
+        { value: "Other", text: this.$t("other") }
+      ],
+      educationOptions: [
+        { value: null, text: this.$t("please_select_option") },
+        {
+          value: "Up to junior high school (up to 14-16 yrs)",
+          text: this.$t("up_to_junior_high_school_(up_to_14-16_yrs)")
+        },
+        {
+          value: "High school (up to 18-19 yrs)",
+          text: this.$t("high_school_(up_to_18-19_yrs)")
+        },
+        { value: "University", text: this.$t("university") }
+      ],
+      currentOccupationalStatusOptions: [
+        { value: null, text: this.$t("please_select_option") },
+        { value: "Employed", text: this.$t("employed") },
+        { value: "Working at home", text: this.$t("working_at_home") },
+        { value: "Unemployed", text: this.$t("unemployed") },
+        { value: "Student", text: this.$t("student") },
+        { value: "Retired", text: this.$t("retired") }
       ]
     };
   },
@@ -140,6 +359,39 @@ export default {
     }
   },
   methods: {
+    addResidencyField() {
+      this.form.residencies.push({
+        residencyCountry: "",
+        residencyCity: "",
+        residencyStartingTime: "",
+        residencyEndingTime: ""
+      });
+      this.residenciesHrVisible = true;
+    },
+    removeResidencyField() {
+      if (this.form.residencies.length > 1) {
+        this.form.residencies.pop();
+      }
+      if (this.form.residencies.length == 1) {
+        this.residenciesHrVisible = false;
+      }
+    },
+    addOccupationField() {
+      this.form.historyOfOccupations.push({
+        SICCode: "",
+        occupationStartingTime: "",
+        occupationEndingTime: ""
+      });
+      this.historyOfOccupationsHrVisible = true;
+    },
+    removeOccupationField() {
+      if (this.form.historyOfOccupations.length > 1) {
+        this.form.historyOfOccupations.pop();
+      }
+      if (this.form.residencies.length == 1) {
+        this.historyOfOccupationsHrVisible = false;
+      }
+    },
     onSubmit(evt) {
       evt.preventDefault();
 
@@ -165,7 +417,24 @@ export default {
       this.form.countryOfBirth = "";
       this.form.weight = "";
       this.form.height = "";
-      this.form.ethnicity = "";
+      this.form.ethnicity = null;
+      this.form.residencies = [
+        {
+          residencyCountry: "",
+          residencyCity: "",
+          residencyStartingTime: "",
+          residencyEndingTime: ""
+        }
+      ];
+      this.form.education = null;
+      this.form.currentOccupationalStatus = null;
+      this.form.historyOfOccupations = [
+        {
+          SICCode: "",
+          occupationStartingTime: "",
+          occupationEndingTime: ""
+        }
+      ];
 
       // Trick to reset/clear native browser form validation state
       this.show = false;
@@ -194,7 +463,40 @@ export default {
       countryOfBirth: { required },
       weight: { required },
       height: { required },
-      ethnicity: { required }
+      ethnicity: { required },
+      education: { required },
+      currentOccupationalStatus: { required },
+      residencies: {
+        $each: {
+          residencyCountry: { required },
+          residencyCity: { required },
+          residencyStartingTime: {
+            minLength: minLength(4),
+            maxLength: maxLength(4),
+            numeric
+          },
+          residencyEndingTime: {
+            minLength: minLength(4),
+            maxLength: maxLength(4),
+            numeric
+          }
+        }
+      },
+      historyOfOccupations: {
+        $each: {
+          SICCode: {},
+          occupationStartingTime: {
+            minLength: minLength(4),
+            maxLength: maxLength(4),
+            numeric
+          },
+          occupationEndingTime: {
+            minLength: minLength(4),
+            maxLength: maxLength(4),
+            numeric
+          }
+        }
+      }
     }
   },
   computed: {

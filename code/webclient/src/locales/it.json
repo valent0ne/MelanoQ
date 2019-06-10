@@ -43,5 +43,10 @@
   "dateOfQuestionnaireAdministration_label": "to_translate",
   "dateOfQuestionnaireAdministration_desc": "to_translate",
   "typeOfMelanoma_label": "to_translate",
-  "typeOfMelanoma_desc": "to_translate"
+  "typeOfMelanoma_desc": "to_translate",
+  "residencies_desc": "to_translate",
+  "residencyCountry_desc": "to_translate",
+  "residencyCity_desc": "to_translate",
+  "residencyStartingTime_desc": "to_translate",
+  "residencyEndingTime_desc": "to_translate"
 }

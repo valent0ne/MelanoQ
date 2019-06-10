@@ -26,7 +26,7 @@
           <b-button
             variant="outline-info"
             class="mr-2 mb-1 mt-3"
-            to="new"
+            to="choice"
           >{{$t('create_a_new_questionnaire')}}</b-button>
           <b-button
             variant="outline-primary"
