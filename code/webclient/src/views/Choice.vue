@@ -7,16 +7,18 @@
         <b-card-title>{{$t('section_selection')}}</b-card-title>
         <b-card-text>{{$t('choose_section')}}</b-card-text>
         <div>
-          <SectionButton type="A" v-bind:subsections="{1:'I', 2:'II'}"/>
+          <SectionButton type="A" variant="outline-info" v-bind:subsections="{1:'I', 2:'II'}"/>
           <SectionButton
             type="B"
+            variant="outline-info"
             v-bind:subsections="{1:'I', 2:'II', 3:'III', 'evaluation':'evaluation'}"
           />
           <SectionButton
             type="C"
+            variant="outline-info"
             v-bind:subsections="{1:'I', 2:'II', 3:'III', 'evaluation':'evaluation'}"
           />
-          <SectionButton type="D" v-bind:subsections="{1:'I'}"/>
+          <SectionButton type="D" variant="outline-info" v-bind:subsections="{1:'I'}"/>
         </div>
       </div>
     </b-card>

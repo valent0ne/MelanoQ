@@ -85,7 +85,6 @@
               <!-- ethnicity -->
               <label for="ethnicity" class="mt-4">{{$t('ethnicity_label')}}</label>
               <b-form-select
-                id="etnicity"
                 v-model="$v.form.ethnicity.$model"
                 :state="$v.form.ethnicity.$dirty ? !$v.form.ethnicity.$error : null"
                 type="text"
@@ -270,7 +269,7 @@ import { dateOfBirthValidator } from "@/plugins/vuelidate";
 import Message from "@/components/Message.vue";
 
 export default {
-  name: "form",
+  name: "a2",
   data() {
     return {
       form: {
@@ -396,7 +395,8 @@ export default {
       evt.preventDefault();
 
       this.$v.$touch();
-      alert(JSON.stringify(this.form));
+      // eslint-disable-next-line
+      console.log(JSON.stringify(this.form));
       if (this.$v.$invalid) {
         this.$store.dispatch(ADD_ERROR, "form_dirty");
       } else {
@@ -435,6 +435,7 @@ export default {
           occupationEndingTime: ""
         }
       ];
+      this.$v.$touch();
 
       // Trick to reset/clear native browser form validation state
       this.show = false;

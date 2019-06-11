@@ -103,7 +103,7 @@ import {
 import Message from "@/components/Message.vue";
 
 export default {
-  name: "form",
+  name: "a1",
   data() {
     return {
       form: {
@@ -144,7 +144,8 @@ export default {
       evt.preventDefault();
 
       this.$v.$touch();
-      alert(JSON.stringify(this.form));
+      // eslint-disable-next-line
+      console.log(JSON.stringify(this.form));
       if (this.$v.$invalid) {
         this.$store.dispatch(ADD_ERROR, "form_dirty");
       } else {
@@ -163,6 +164,7 @@ export default {
         "DD/MMM/YYYY"
       );
       this.form.typeOfMelanoma = null;
+      this.$v.$touch();
 
       // Trick to reset/clear native browser form validation state
       this.show = false;

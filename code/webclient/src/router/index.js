@@ -6,6 +6,11 @@ import Choice from '@/views/Choice.vue'
 import Report from '@/views/Report.vue'
 import A1 from "@/views/A1.vue"
 import A2 from "@/views/A2.vue"
+import B1 from "@/views/B1.vue"
+import B2 from "@/views/B2.vue"
+import B3 from "@/views/B3.vue"
+import BE from "@/views/BE.vue"
+
 
 Vue.use(Router)
 
@@ -44,6 +49,30 @@ export default new Router({
       component: A2,
       props: true
     },
+    {
+      path: '/:action/b1',
+      name: 'b1',
+      component: B1,
+      props: true
+    },
+    {
+      path: '/:action/b2',
+      name: 'b2',
+      component: B2,
+      props: true
+    },
+    {
+      path: '/:action/b3',
+      name: 'b3',
+      component: B3,
+      props: true
+    },
+    {
+      path: '/:action/be',
+      name: 'be',
+      component: BE,
+      props: true
+    }
   ]
 })
 

@@ -6,7 +6,7 @@ public class SevereSunBurns {
     private String period;
 
     // It can be: yes, no, not known
-    private String precence;
+    private String presence;
 
     // Number of sun burns
     private int number;
@@ -23,11 +23,11 @@ public class SevereSunBurns {
     }
 
     public String getPrecence() {
-        return precence;
+        return presence;
     }
 
-    public void setPrecence(String precence) {
-        this.precence = precence;
+    public void setPresence(String presence) {
+        this.presence = presence;
     }
 
     public int getNumber() {
