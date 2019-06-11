@@ -11,12 +11,12 @@
           <SectionButton
             type="B"
             variant="outline-info"
-            v-bind:subsections="{1:'I', 2:'II', 3:'III', 'evaluation':'evaluation'}"
+            v-bind:subsections="{1:'I', 2:'II', 3:'III', 'e':'evaluation'}"
           />
           <SectionButton
             type="C"
             variant="outline-info"
-            v-bind:subsections="{1:'I', 2:'II', 3:'III', 'evaluation':'evaluation'}"
+            v-bind:subsections="{1:'I', 2:'II', 3:'III', 'e':'evaluation'}"
           />
           <SectionButton type="D" variant="outline-info" v-bind:subsections="{1:'I'}"/>
         </div>

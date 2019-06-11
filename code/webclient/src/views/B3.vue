@@ -8,7 +8,9 @@
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
               <!-- smoking -->
-              <label for="smoking" class="mt-4">{{$t('smoking_label')}}</label>
+              <label for="smoking" class="mt-4">
+                <h6>{{'15. '+$t('smoking_label')}}</h6>
+              </label>
               <b-form-select
                 v-model="$v.form.smoking.howOften.$model"
                 :state="$v.form.smoking.howOften.$dirty ? !$v.form.smoking.howOften.$error : null"
@@ -44,7 +46,9 @@
 
               <!-- intakeOfVitaminesDuringLastYears -->
               <span class="form-inline mt-5">
-                <label>{{$t('intakeOfVitaminesDuringLastYears_label')}}</label>
+                <label>
+                  <h6>{{'16. '+$t('intakeOfVitaminesDuringLastYears_label')}}</h6>
+                </label>
                 <b-button-group class="ml-auto">
                   <b-button
                     :pressed="intakeOfVitaminesDuringLastYearsToggle"
@@ -70,7 +74,9 @@
               </span>
 
               <!-- vitamins -->
-              <label class="mt-4">{{$t('vitamins_label')+' '+$t('vitamins_desc')}}</label>
+              <label class="mt-4">
+                <h6>{{'17/18. '+$t('vitamins_label')+' '+$t('vitamins_desc')}}</h6>
+              </label>
 
               <b-form class="mt-2">
                 <span

@@ -182,7 +182,7 @@
   "smoking_desc": "",
   "intakeOfVitaminesDuringLastYears_label": "Have you received vitamin pills during the last year?",
   "intakeOfVitaminesDuringLastYears_desc": "",
-  "vitamins_label": "",
+  "vitamins_label": "What type of vitamins did you receive? (how often and for how long)",
   "vitamins_desc": "",
   "former_smoker_(quit_one_year_before_diagnosis_or_earlier)": "Former smoker (quit one year before diagnosis or earlier)",
   "current_smoker": "Current smoker",
@@ -204,5 +204,14 @@
   "vitamin_c": "Vitamin C",
   "vitamin_d": "Vitamin D",
   "vitamin_e": "Vitamin E",
-  "multivitamins": "Multivitamins"
+  "multivitamins": "Multivitamins",
+  "subject_label": "Subject",
+  "complexityOfTheQuestionnaire_label": "Were you able to respond to the questions of this Section?",
+  "complexityOfTheQuestionnaire_desc": "",
+  "difficultQuestions_label": "There were some questions in this Section that you consider difficult to fill in?",
+  "difficultQuestionsNumber_desc": "Question #",
+  "all_questions": "All questions",
+  "most_questions": "Most questions",
+  "nearly_half_of_the_questions": "Nearly half of the questions",
+  "very_few_questions": "Very few questions"
 }

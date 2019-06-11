@@ -9,7 +9,9 @@
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
               <!-- occupationalSunExposure -->
               <span class="form-inline mt-4">
-                <label>{{$t('occupationalSunExposure_label')}}</label>
+                <label>
+                  <h6>{{'6. '+$t('occupationalSunExposure_label')}}</h6>
+                </label>
                 <b-button-group class="ml-auto">
                   <b-button
                     :pressed="occupationalSunExposureToggle"
@@ -69,7 +71,9 @@
 
               <!-- recreationalSunExposure -->
               <span class="form-inline mt-4">
-                <label>{{$t('recreationalSunExposure_label')}}</label>
+                <label>
+                  <h6>{{'7. '+$t('recreationalSunExposure_label')}}</h6>
+                </label>
                 <b-button-group class="ml-auto">
                   <b-button
                     :pressed="recreationalSunExposureToggle"
@@ -128,7 +132,9 @@
               <b-form-text>{{$t('recreationalSunExposure_desc')}}</b-form-text>
 
               <!-- intermittentSunExposure -->
-              <label class="mt-4">{{$t('intermittentSunExposure_label')}}</label>
+              <label class="mt-4">
+                <h6>{{'8. '+$t('intermittentSunExposure_label')}}</h6>
+              </label>
               <b-form-text>{{$t('intermittentSunExposure_desc')}}</b-form-text>
 
               <b-form class="mt-2">
@@ -161,10 +167,9 @@
               </b-form>
 
               <!-- mostRecentIntermittentSunExposure -->
-              <label
-                for="mostRecentIntermittentSunExposure"
-                class="mt-4"
-              >{{$t('mostRecentIntermittentSunExposure_label')}}</label>
+              <label for="mostRecentIntermittentSunExposure" class="mt-4">
+                <h6>{{'9. '+$t('mostRecentIntermittentSunExposure_label')}}</h6>
+              </label>
               <b-form-input
                 id="mostRecentIntermittentSunExposure"
                 v-model="$v.form.mostRecentIntermittentSunExposure.$model"
@@ -175,7 +180,9 @@
               <b-form-text>{{$t('mostRecentIntermittentSunExposure_desc')}}</b-form-text>
 
               <!-- severeSunBurns -->
-              <label class="mt-4">{{$t('severeSunBurns_label')}}</label>
+              <label class="mt-4">
+                <h6>{{'10. '+$t('severeSunBurns_label')}}</h6>
+              </label>
 
               <span
                 class="form-inline mt-2"
@@ -213,7 +220,9 @@
               <b-form-text>{{$t('severeSunBurns_desc')}}</b-form-text>
 
               <!-- sunscreenUse -->
-              <label class="mt-4">{{$t('sunscreenUse_label')+' '+$t('sunscreenUse_desc')}}</label>
+              <label class="mt-4">
+                <h6>{{'11. '+$t('sunscreenUse_label')+' '+$t('sunscreenUse_desc')}}</h6>
+              </label>
 
               <b-form class="mt-2">
                 <span
@@ -243,10 +252,9 @@
               </b-form>
 
               <!-- sunProtectionOtherThanSunscreenUseHat -->
-              <label
-                for="sunProtectionOtherThanSunscreenUseHat"
-                class="mt-4"
-              >{{$t('sunProtectionOtherThanSunscreenUseHat_label')}}</label>
+              <label for="sunProtectionOtherThanSunscreenUseHat" class="mt-4">
+                <h6>{{'12. '+$t('sunProtectionOtherThanSunscreenUseHat_label')}}</h6>
+              </label>
               <b-form-select
                 v-model="$v.form.sunProtectionOtherThanSunscreenUseHat.$model"
                 :state="$v.form.sunProtectionOtherThanSunscreenUseHat.$dirty ? !$v.form.sunProtectionOtherThanSunscreenUseHat.$error : null"
@@ -279,7 +287,9 @@
 
               <!-- sunlampsSunbeds -->
               <span class="form-inline mt-5">
-                <label>{{$t('sunlampsSunbeds_label')}}</label>
+                <label>
+                  <h6>{{'13. '+$t('sunlampsSunbeds_label')}}</h6>
+                </label>
                 <b-button-group class="ml-auto">
                   <b-button
                     :pressed="sunlampsSunbedsToggle"
@@ -321,7 +331,9 @@
               <b-form-text>{{$t('sunlampsSunbeds_desc')}}</b-form-text>
 
               <!-- phototherapyUVBPUVA -->
-              <label for="phototherapyUVBPUVA" class="mt-4">{{$t('phototherapyUVBPUVA_label')}}</label>
+              <label for="phototherapyUVBPUVA" class="mt-4">
+                <h6>{{'14. '+$t('phototherapyUVBPUVA_label')}}</h6>
+              </label>
               <b-form-select
                 v-model="$v.form.phototherapyUVBPUVA.$model"
                 :state="$v.form.phototherapyUVBPUVA.$dirty ? !$v.form.phototherapyUVBPUVA.$error : null"

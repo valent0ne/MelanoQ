@@ -7,8 +7,15 @@
           <b-card-title>{{$t('section_a')+'.I'}}</b-card-title>
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+              <label for="dbCodeNumber" class="mt-4">
+                <h6>{{'1. '+$t('subject_label')+': '+$t(this.type)}}</h6>
+              </label>
+              <br>
+
               <!-- dbCodeNumber -->
-              <label for="dbCodeNumber" class="mt-4">{{$t('dbCodeNumber_label')}}</label>
+              <label for="dbCodeNumber" class="mt-4">
+                <h6>{{'2. '+$t('dbCodeNumber_label')}}</h6>
+              </label>
               <b-form-input
                 id="dbCodeNumber"
                 v-model="$v.form.dbCodeNumber.$model"
@@ -19,10 +26,9 @@
               <b-form-text>{{$t('dbCodeNumber_desc')}}</b-form-text>
 
               <!-- dateOfQuestionnaireAdministration -->
-              <label
-                for="dateOfQuestionnaireAdministration"
-                class="mt-4"
-              >{{$t('dateOfQuestionnaireAdministration_label')}}</label>
+              <label for="dateOfQuestionnaireAdministration" class="mt-4">
+                <h6>{{'3. '+$t('dateOfQuestionnaireAdministration_label')}}</h6>
+              </label>
               <date-picker
                 name="dateOfQuestionnaireAdministration"
                 v-model="form.dateOfQuestionnaireAdministration"
@@ -31,20 +37,10 @@
               ></date-picker>
               <b-form-text>{{$t('dateOfQuestionnaireAdministration_desc')}}</b-form-text>
 
-              <!-- typeOfMelanoma -->
-              <!--<label
-                :class="{ 'text-muted' : (type === 'control')}"
-                for="typeOfMelanoma"
-                class="mt-4"
-              >{{$t('typeOfMelanoma_label')}}</label>-->
-              <label for="typeOfMelanoma" class="mt-4">{{$t('typeOfMelanoma_label')}}</label>
-              <!--<b-form-input
-                id="typeOfMelanoma"
-                v-model="$v.form.typeOfMelanoma.$model"
-                :state="$v.form.typeOfMelanoma.$dirty ? !$v.form.typeOfMelanoma.$error : null"
-                type="text"
-                :disabled="(type === 'control')"
-              ></b-form-input>-->
+              <label for="typeOfMelanoma" class="mt-4">
+                <h6>{{'5. '+$t('typeOfMelanoma_label')}}</h6>
+              </label>
+
               <b-form-select
                 id="typeOfMelanoma"
                 v-model="$v.form.typeOfMelanoma.$model"

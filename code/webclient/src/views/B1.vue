@@ -8,7 +8,9 @@
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
               <!-- skinType1 -->
-              <label for="skinType1" class="mt-4">{{$t('skinType1_desc')}}</label>
+              <label for="skinType1" class="mt-4">
+                <h6>{{'1a. '+$t('skinType1_desc')}}</h6>
+              </label>
               <b-form-select
                 id="skinType1"
                 v-model="$v.form.skinType1.$model"
@@ -17,26 +19,26 @@
               >{{$t('skinType1_desc')}}</b-form-select>
 
               <!-- skinType2 -->
-              <label for="skinType2" class="mt-4">{{$t('skinType2_desc')}}</label>
+              <label for="skinType2" class="mt-4">
+                <h6>{{'1b. '+$t('skinType2_desc')}}</h6>
+              </label>
               <b-form-select
                 id="skinType2"
                 v-model="$v.form.skinType2.$model"
                 :state="$v.form.skinType2.$dirty ? !$v.form.skinType2.$error : null"
-                type="text"
-                required
                 :options="skinType2Options"
               ></b-form-select>
               <b-img src="@/assets/images/jdv15208-sup-0001-figs1.png" fluid-grow class="mt-2"></b-img>
               <hr>
 
               <!-- eyeColor -->
-              <label for="eyeColor" class="mt-4">{{$t('eyeColor_label')}}</label>
+              <label for="eyeColor" class="mt-4">
+                <h6>{{'2. '+$t('eyeColor_label')}}</h6>
+              </label>
               <b-form-select
                 id="eyeColor"
                 v-model="$v.form.eyeColor.$model"
                 :state="$v.form.eyeColor.$dirty ? !$v.form.eyeColor.$error : null"
-                type="text"
-                required
                 :options="eyeColorOptions"
               ></b-form-select>
               <b-img src="@/assets/images/jdv15208-sup-0002-figs2.png" fluid-grow class="mt-2"></b-img>
@@ -44,13 +46,13 @@
               <hr>
 
               <!-- hairColor -->
-              <label for="hairColor" class="mt-4">{{$t('hairColor_label')}}</label>
+              <label for="hairColor" class="mt-4">
+                <h6>{{'3. '+$t('hairColor_label')}}</h6>
+              </label>
               <b-form-select
                 id="hairColor"
                 v-model="$v.form.hairColor.$model"
                 :state="$v.form.hairColor.$dirty ? !$v.form.hairColor.$error : null"
-                type="text"
-                required
                 :options="hairColorOptions"
               ></b-form-select>
               <b-img src="@/assets/images/jdv15208-sup-0003-figs3.png" fluid-grow class="mt-2"></b-img>
@@ -58,7 +60,9 @@
               <hr>
 
               <!-- freckles -->
-              <label for="freckles" class="mt-4">{{$t('freckles_label')}}</label>
+              <label for="freckles" class="mt-4">
+                <h6>{{'4. '+$t('freckles_label')}}</h6>
+              </label>
               <b-form-select
                 id="freckles"
                 v-model="$v.form.freckles.$model"
@@ -72,10 +76,9 @@
               <hr>
 
               <!-- neviInChildhoodAdolescence -->
-              <label
-                for="neviInChildhoodAdolescence"
-                class="mt-4"
-              >{{$t('neviInChildhoodAdolescence_label')}}</label>
+              <label for="neviInChildhoodAdolescence" class="mt-4">
+                <h6>{{'5. '+$t('neviInChildhoodAdolescence_label')}}</h6>
+              </label>
               <b-form-select
                 id="neviInChildhoodAdolescence"
                 v-model="$v.form.neviInChildhoodAdolescence.$model"

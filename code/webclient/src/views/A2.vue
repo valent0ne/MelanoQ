@@ -8,7 +8,9 @@
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
               <!-- sex -->
-              <label for="sex" class="mt-4">{{$t('sex_label')}}</label>
+              <label for="sex" class="mt-4">
+                <h6>{{'6. '+$t('sex_label')}}</h6>
+              </label>
               <b-form-select
                 id="sex"
                 v-model="$v.form.sex.$model"
@@ -17,7 +19,9 @@
               >{{$t('sex_desc')}}</b-form-select>
 
               <!-- dateOfBirth -->
-              <label for="dateOfBirth" class="mt-4">{{$t('dateOfBirth_label')}}</label>
+              <label for="dateOfBirth" class="mt-4">
+                <h6>{{'7a. '+$t('dateOfBirth_label')}}</h6>
+              </label>
               <b-form-input
                 id="dateOfBirth"
                 v-model="$v.form.dateOfBirth.$model"
@@ -28,7 +32,9 @@
               <b-form-text>{{$t('dateOfBirth_desc')}}</b-form-text>
 
               <!-- cityOfBirth -->
-              <label for="cityOfBirth" class="mt-4">{{$t('cityOfBirth_label')}}</label>
+              <label for="cityOfBirth" class="mt-4">
+                <h6>{{'7b. '+$t('cityOfBirth_label')}}</h6>
+              </label>
               <b-form-input
                 id="cityOfBirth"
                 v-model="$v.form.cityOfBirth.$model"
@@ -39,7 +45,9 @@
               <b-form-text>{{$t('cityOfBirth_desc')}}</b-form-text>
 
               <!-- provinceOfBirth -->
-              <label for="provinceOfBirth" class="mt-4">{{$t('provinceOfBirth_label')}}</label>
+              <label for="provinceOfBirth" class="mt-4">
+                <h6>{{'7c. '+$t('provinceOfBirth_label')}}</h6>
+              </label>
               <b-form-input
                 id="provinceOfBirth"
                 v-model="$v.form.provinceOfBirth.$model"
@@ -50,7 +58,9 @@
               <b-form-text>{{$t('provinceOfBirth_desc')}}</b-form-text>
 
               <!-- countryOfBirth -->
-              <label for="countryOfBirth" class="mt-4">{{$t('countryOfBirth_label')}}</label>
+              <label for="countryOfBirth" class="mt-4">
+                <h6>{{'7d. '+$t('countryOfBirth_label')}}</h6>
+              </label>
               <b-form-input
                 id="countryOfBirth"
                 v-model="$v.form.countryOfBirth.$model"
@@ -61,7 +71,9 @@
               <b-form-text>{{$t('countryOfBirth_desc')}}</b-form-text>
 
               <!-- weight -->
-              <label for="weight" class="mt-4">{{$t('weight_label')}}</label>
+              <label for="weight" class="mt-4">
+                <h6>{{'8a. '+$t('weight_label')}}</h6>
+              </label>
               <b-form-input
                 id="weight"
                 v-model="$v.form.weight.$model"
@@ -72,7 +84,9 @@
               <b-form-text>{{$t('weight_desc')}}</b-form-text>
 
               <!-- height -->
-              <label for="height" class="mt-4">{{$t('height_label')}}</label>
+              <label for="height" class="mt-4">
+                <h6>{{'8b. '+$t('height_label')}}</h6>
+              </label>
               <b-form-input
                 id="height"
                 v-model="$v.form.height.$model"
@@ -83,7 +97,9 @@
               <b-form-text>{{$t('height_desc')}}</b-form-text>
 
               <!-- ethnicity -->
-              <label for="ethnicity" class="mt-4">{{$t('ethnicity_label')}}</label>
+              <label for="ethnicity" class="mt-4">
+                <h6>{{'9. '+$t('ethnicity_label')}}</h6>
+              </label>
               <b-form-select
                 v-model="$v.form.ethnicity.$model"
                 :state="$v.form.ethnicity.$dirty ? !$v.form.ethnicity.$error : null"
@@ -94,7 +110,9 @@
               <b-form-text>{{$t('ethnicity_desc')}}</b-form-text>
 
               <!-- residencies -->
-              <label for="residencies" class="mt-4">{{$t('residencies_label')}}</label>
+              <label for="residencies" class="mt-4">
+                <h6>{{'10. '+$t('residencies_label')}}</h6>
+              </label>
               <b-form-text>{{$t('residencies_desc')}}</b-form-text>
 
               <b-form inline class="mt-2">
@@ -147,7 +165,9 @@
               </b-form>
 
               <!-- education -->
-              <label for="education" class="mt-4">{{$t('education_label')}}</label>
+              <label for="education" class="mt-4">
+                <h6>{{'11. '+$t('education_label')}}</h6>
+              </label>
               <b-form-select
                 id="education"
                 v-model="$v.form.education.$model"
@@ -159,10 +179,9 @@
               <b-form-text>{{$t('education_desc')}}</b-form-text>
 
               <!-- currentOccupationalStatus -->
-              <label
-                for="currentOccupationalStatus"
-                class="mt-4"
-              >{{$t('currentOccupationalStatus_label')}}</label>
+              <label for="currentOccupationalStatus" class="mt-4">
+                <h6>{{'12. '+$t('currentOccupationalStatus_label')}}</h6>
+              </label>
               <b-form-select
                 id="currentOccupationalStatus"
                 v-model="$v.form.currentOccupationalStatus.$model"
@@ -174,7 +193,9 @@
               <b-form-text>{{$t('currentOccupationalStatus_desc')}}</b-form-text>
 
               <!-- historyOfOccupations -->
-              <label for="historyOfOccupations" class="mt-4">{{$t('historyOfOccupations_label')}}</label>
+              <label for="historyOfOccupations" class="mt-4">
+                <h6>{{'13. '+$t('historyOfOccupations_label')}}</h6>
+              </label>
               <b-form-text>{{$t('historyOfOccupations_desc')}}</b-form-text>
 
               <b-form inline class="mt-2">
@@ -387,7 +408,7 @@ export default {
       if (this.form.historyOfOccupations.length > 1) {
         this.form.historyOfOccupations.pop();
       }
-      if (this.form.residencies.length == 1) {
+      if (this.form.historyOfOccupations.length == 1) {
         this.historyOfOccupationsHrVisible = false;
       }
     },

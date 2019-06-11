@@ -182,7 +182,7 @@
   "smoking_desc": "",
   "intakeOfVitaminesDuringLastYears_label": "to_translate",
   "intakeOfVitaminesDuringLastYears_desc": "",
-  "vitamins_label": "",
+  "vitamins_label": "to_translate",
   "vitamins_desc": "",
   "former_smoker_(quit_one_year_before_diagnosis_or_earlier)": "to_translate",
   "current_smoker": "to_translate",
@@ -204,5 +204,14 @@
   "vitamin_c": "to_translate",
   "vitamin_d": "to_translate",
   "vitamin_e": "to_translate",
-  "multivitamins": "to_translate"
+  "multivitamins": "to_translate",
+  "subject_label": "to_translate",
+  "complexityOfTheQuestionnaire_label": "to_translate",
+  "complexityOfTheQuestionnaire_desc": "",
+  "difficultQuestions_label": "to_translate",
+  "difficultQuestionsNumber_desc": "to_translate",
+  "all_questions": "to_translate",
+  "most_questions": "to_translate",
+  "nearly_half_of_the_questions": "to_translate",
+  "very_few_questions": "to_translate"
 }
