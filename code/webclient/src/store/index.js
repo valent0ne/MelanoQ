@@ -11,6 +11,10 @@ import b1 from "./b1.module";
 import b2 from "./b2.module";
 import b3 from "./b3.module";
 import be from "./be.module";
+import c1 from "./c1.module";
+import c2 from "./c2.module";
+import c3 from "./c3.module";
+import ce from "./ce.module";
 
 
 Vue.use(Vuex);
@@ -26,6 +30,10 @@ export default new Vuex.Store({
     b1,
     b2,
     b3,
-    be
+    be,
+    c1,
+    c2,
+    c3,
+    ce
   }
 });

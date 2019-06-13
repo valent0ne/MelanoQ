@@ -2,6 +2,11 @@ import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 
 // custom validators
+
+export const pregnancyHistoryNumberOfMiscarriagesValidator = (value, vm) => {
+  return (value >= 0 && value <= vm.numberOfFullTermPregnancies)
+}
+
 export const dateOfBirthValidator = (value) => {
   var months = [
     "gen",
@@ -43,6 +48,8 @@ export const dateOfBirthValidator = (value) => {
   }
   return true;
 }
+
+
 
 
 Vue.use(Vuelidate)

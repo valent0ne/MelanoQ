@@ -12,9 +12,9 @@ public class PregnanciesInfo {
 
     private Boolean melanomaOccurDuringPregnancy;
 
-    private Boolean melanomaOccurBeforPregnancy;
+    private Boolean melanomaOccurBeforePregnancy;
 
-    private String howManyYearsBeforPregnancy;
+    private String howManyYearsBeforePregnancy;
 
     private Boolean melanomaOccurAfterPregnancy;
 
@@ -56,20 +56,20 @@ public class PregnanciesInfo {
         this.melanomaOccurDuringPregnancy = melanomaOccurDuringPregnancy;
     }
 
-    public Boolean getMelanomaOccurBeforPregnancy() {
-        return melanomaOccurBeforPregnancy;
+    public Boolean getMelanomaOccurBeforePregnancy() {
+        return melanomaOccurBeforePregnancy;
     }
 
-    public void setMelanomaOccurBeforPregnancy(Boolean melanomaOccurBeforPregnancy) {
-        this.melanomaOccurBeforPregnancy = melanomaOccurBeforPregnancy;
+    public void setMelanomaOccurBeforePregnancy(Boolean melanomaOccurBeforePregnancy) {
+        this.melanomaOccurBeforePregnancy = melanomaOccurBeforePregnancy;
     }
 
-    public String getHowManyYearsBeforPregnancy() {
-        return howManyYearsBeforPregnancy;
+    public String getHowManyYearsBeforePregnancy() {
+        return howManyYearsBeforePregnancy;
     }
 
-    public void setHowManyYearsBeforPregnancy(String howManyYearsBeforPregnancy) {
-        this.howManyYearsBeforPregnancy = howManyYearsBeforPregnancy;
+    public void setHowManyYearsBeforePregnancy(String howManyYearsBeforePregnancy) {
+        this.howManyYearsBeforePregnancy = howManyYearsBeforePregnancy;
     }
 
     public Boolean getMelanomaOccurAfterPregnancy() {

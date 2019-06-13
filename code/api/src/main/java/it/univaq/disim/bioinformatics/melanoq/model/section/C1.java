@@ -30,7 +30,7 @@ public class C1 {
     private int blueNevi;
 
     @Field
-    private List<ActinicKeratoses> actinicKeratoses;
+    private ActinicKeratoses actinicKeratoses;
 
     @Field
     private List<CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers;
@@ -85,19 +85,19 @@ public class C1 {
         this.blueNevi = blueNevi;
     }
 
-    public List<ActinicKeratoses> getActinicKeratoses() {
+    public ActinicKeratoses getActinicKeratoses() {
         return actinicKeratoses;
     }
 
-    public void setActinicKeratoses(List<ActinicKeratoses> actinicKeratoses) {
+    public void setActinicKeratoses(ActinicKeratoses actinicKeratoses) {
         this.actinicKeratoses = actinicKeratoses;
     }
 
-    public List<CurrentNonMelanomaSkinCancer> getCurrentNonMelanomaSkinCancers() {
+    public List<CurrentNonMelanomaSkinCancer> getList<CurrentNonMelanomaSkinCancer>s() {
         return currentNonMelanomaSkinCancers;
     }
 
-    public void setCurrentNonMelanomaSkinCancers(List<CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers) {
+    public void setList<CurrentNonMelanomaSkinCancer>s(List<CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers) {
         this.currentNonMelanomaSkinCancers = currentNonMelanomaSkinCancers;
     }
 }

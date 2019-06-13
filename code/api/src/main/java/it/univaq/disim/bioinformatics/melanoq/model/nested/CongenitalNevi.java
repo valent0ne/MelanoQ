@@ -15,7 +15,7 @@ public class CongenitalNevi {
     private int numberOfGiantNevi;
 
     // TODO: to fill only if the preavious attribute has a value grather than 0
-    private String siteOfGiantNevi;
+    private String siteOfGiantSizedNevi;
 
     public CongenitalNevi(){ }
 
@@ -60,10 +60,10 @@ public class CongenitalNevi {
     }
 
     public String getSiteOfGiantNevi() {
-        return siteOfGiantNevi;
+        return siteOfGiantSizedNevi;
     }
 
-    public void setSiteOfGiantNevi(String siteOfGiantNevi) {
-        this.siteOfGiantNevi = siteOfGiantNevi;
+    public void setSiteOfGiantNevi(String siteOfGiantSizedNevi) {
+        this.siteOfGiantSizedNevi = siteOfGiantSizedNevi;
     }
 }

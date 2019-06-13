@@ -10,6 +10,10 @@ import B1 from "@/views/B1.vue"
 import B2 from "@/views/B2.vue"
 import B3 from "@/views/B3.vue"
 import BE from "@/views/BE.vue"
+import C1 from "@/views/C1.vue"
+import C2 from "@/views/C2.vue"
+import C3 from "@/views/C3.vue"
+import CE from "@/views/CE.vue"
 
 
 Vue.use(Router)
@@ -71,6 +75,30 @@ export default new Router({
       path: '/:action/be',
       name: 'be',
       component: BE,
+      props: true
+    },
+    {
+      path: '/:action/c1',
+      name: 'c1',
+      component: C1,
+      props: true
+    },
+    {
+      path: '/:action/c2',
+      name: 'c2',
+      component: C2,
+      props: true
+    },
+    {
+      path: '/:action/c3',
+      name: 'c3',
+      component: C3,
+      props: true
+    },
+    {
+      path: '/:action/ce',
+      name: 'ce',
+      component: CE,
       props: true
     }
   ]
