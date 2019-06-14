@@ -112,7 +112,7 @@
 
               <!-- pregnancyHistoryNumberOfFullTermPregnancies -->
               <label for="pregnancyHistoryNumberOfFullTermPregnancies" class="mt-4">
-                <h6>{{'11a. '+$t('pregnancyHistoryNumberOfFullTermPregnancies_label')}}</h6>
+                <h6>{{'11. '+$t('pregnancyHistoryNumberOfFullTermPregnancies_label')}}</h6>
               </label>
               <b-form-input
                 v-model="$v.form.pregnancyHistory.numberOfFullTermPregnancies.$model"
@@ -126,7 +126,7 @@
 
               <span v-if="$v.form.pregnancyHistory.dateOfBirthOfChildren.$model.length > 0">
                 <label for="pregnancyHistoryDateOfBirthOfChildren" class="mt-4">
-                  <h6>{{'11b. '+$t('pregnancyHistoryDateOfBirthOfChildren_label')}}</h6>
+                  <h6>{{'11.a. '+$t('pregnancyHistoryDateOfBirthOfChildren_label')}}</h6>
                 </label>
                 <span
                   v-for="(dbc, index) in $v.form.pregnancyHistory.dateOfBirthOfChildren.$each.$iter"
@@ -147,7 +147,7 @@
 
                 <!-- pregnancyHistoryNumberOfMiscarriages -->
                 <label for="pregnancyHistoryNumberOfMiscarriages" class="mt-4">
-                  <h6>{{'11c. '+$t('pregnancyHistoryNumberOfMiscarriages_label')}}</h6>
+                  <h6>{{'11.b. '+$t('pregnancyHistoryNumberOfMiscarriages_label')}}</h6>
                 </label>
 
                 <b-form-input
@@ -160,7 +160,7 @@
 
                 <!-- pregnancyHistoryMelanomaOccurDuringPregnancy -->
                 <label for="pregnancyHistoryMelanomaOccurDuringPregnancy" class="mt-4">
-                  <h6>{{'11d. '+$t('pregnancyHistoryMelanomaOccurDuringPregnancy_label')}}</h6>
+                  <h6>{{'11.c. '+$t('pregnancyHistoryMelanomaOccurDuringPregnancy_label')}}</h6>
                 </label>
 
                 <b-form-checkbox
@@ -170,7 +170,7 @@
 
                 <!-- pregnancyHistoryMelanomaOccurBeforePregnancy -->
                 <label for="pregnancyHistoryMelanomaOccurBeforePregnancy" class="mt-4">
-                  <h6>{{'11e. '+$t('pregnancyHistoryMelanomaOccurBeforePregnancy_label')}}</h6>
+                  <h6>{{'11.d. '+$t('pregnancyHistoryMelanomaOccurBeforePregnancy_label')}}</h6>
                 </label>
 
                 <b-form-checkbox
@@ -181,7 +181,7 @@
                 <span v-if="$v.form.pregnancyHistory.melanomaOccurBeforePregnancy.$model">
                   <!-- pregnancyHistoryHowManyYearsBeforePregnancy -->
                   <label for="pregnancyHistoryHowManyYearsBeforePregnancy" class="mt-4">
-                    <h6>{{'11e.I. '+$t('pregnancyHistoryHowManyYearsBeforePregnancy_label')}}</h6>
+                    <h6>{{'11.d.I. '+$t('pregnancyHistoryHowManyYearsBeforePregnancy_label')}}</h6>
                   </label>
 
                   <b-form-input
@@ -195,7 +195,7 @@
 
                 <!-- pregnancyHistoryMelanomaOccurAfterPregnancy -->
                 <label for="pregnancyHistoryMelanomaOccurAfterPregnancy" class="mt-4">
-                  <h6>{{'11f. '+$t('pregnancyHistoryMelanomaOccurAfterPregnancy_label')}}</h6>
+                  <h6>{{'11.e. '+$t('pregnancyHistoryMelanomaOccurAfterPregnancy_label')}}</h6>
                 </label>
 
                 <b-form-checkbox
@@ -206,7 +206,7 @@
                 <span v-if="$v.form.pregnancyHistory.melanomaOccurAfterPregnancy.$model">
                   <!-- pregnancyHistoryHowManyYearsAfterPregnancy -->
                   <label for="pregnancyHistoryHowManyYearsAfterPregnancy" class="mt-4">
-                    <h6>{{'11f.I. '+$t('pregnancyHistoryHowManyYearsAfterPregnancy_label')}}</h6>
+                    <h6>{{'11.e.I. '+$t('pregnancyHistoryHowManyYearsAfterPregnancy_label')}}</h6>
                   </label>
 
                   <b-form-input
@@ -217,17 +217,145 @@
                     :placeholder="$t('pregnancyHistoryHowManyYearsAfterPregnancy_desc')"
                   ></b-form-input>
                 </span>
+                <!-- pregnancyHistoryIVFBeforeDiagnosis -->
+                <label for="pregnancyHistoryIVFBeforeDiagnosisy" class="mt-4">
+                  <h6>{{'11.f. '+$t('pregnancyHistoryIVFBeforeDiagnosis_label')}}</h6>
+                </label>
+                <b-form-checkbox
+                  v-model="$v.form.pregnancyHistory.IVFBeforeDiagnosis.$model"
+                  :state="$v.form.pregnancyHistory.IVFBeforeDiagnosis.$dirty ? !$v.form.pregnancyHistory.IVFBeforeDiagnosis.$error : null"
+                >{{$t('pregnancyHistoryIVFBeforeDiagnosis_desc')}}</b-form-checkbox>
               </span>
 
-              <!-- pregnancyHistoryIVFBeforeDiagnosis -->
-              <label for="pregnancyHistoryIVFBeforeDiagnosisy" class="mt-4">
-                <h6>{{'11g '+$t('pregnancyHistoryIVFBeforeDiagnosis_label')}}</h6>
-              </label>
+              <!-- lifetimeHistoryOfNonMelanomaSkinCancer -->
+              <span class="form-inline mt-4">
+                <label for="lifetimeHistoryOfNonMelanomaSkinCancer" class="mt-4">
+                  <h6>{{'12. '+$t('lifetimeHistoryOfNonMelanomaSkinCancer_label')}}</h6>
+                </label>
+                <span class="ml-auto mt-auto">
+                  <b-button
+                    variant="outline-success"
+                    @click="addLifetimeHistoryOfNonMelanomaSkinCAncerField()"
+                  >
+                    <font-awesome-icon icon="plus"/>
+                  </b-button>
+                  <b-button
+                    variant="outline-danger"
+                    @click="removeLifetimeHistoryOfNonMelanomaSkinCAncerField()"
+                    class="ml-2"
+                  >
+                    <font-awesome-icon icon="minus"/>
+                  </b-button>
+                </span>
+              </span>
+              <b-form-text>{{$t('lifetimeHistoryOfNonMelanomaSkinCancer_desc')}}</b-form-text>
 
-              <b-form-checkbox
-                v-model="$v.form.pregnancyHistory.IVFBeforeDiagnosis.$model"
-                :state="$v.form.pregnancyHistory.IVFBeforeDiagnosis.$dirty ? !$v.form.pregnancyHistory.IVFBeforeDiagnosis.$error : null"
-              >{{$t('pregnancyHistoryIVFBeforeDiagnosis_desc')}}</b-form-checkbox>
+              <b-form class="mt-2">
+                <span
+                  v-for="(lhnmsc, index) in $v.form.lifetimeHistoryOfNonMelanomaSkinCancer.$each.$iter"
+                  :key="index"
+                >
+                  <b-form-select
+                    class="mr-2 mb-2"
+                    v-model="lhnmsc.type.$model"
+                    :state="lhnmsc.type.$dirty ? !lhnmsc.type.$error : null"
+                    :options="lifetimeHistoryOfNonMelanomaSkinCancerTypeOptions"
+                  ></b-form-select>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="lhnmsc.number.$model"
+                    :state="lhnmsc.number.$dirty ? !lhnmsc.number.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('lifetimeHistoryOfNonMelanomaSkinCancerDiagnosisNumber_desc')"
+                  ></b-form-input>
+
+                  <b-form-select
+                    class="mr-2 mb-2"
+                    v-model="lhnmsc.when.$model"
+                    :state="lhnmsc.when.$dirty ? !lhnmsc.when.$error : null"
+                    :options="lifetimeHistoryOfNonMelanomaSkinCancerWhenOptions"
+                  ></b-form-select>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="lhnmsc.site.$model"
+                    :state="lhnmsc.site.$dirty ? !lhnmsc.site.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('lifetimeHistoryOfNonMelanomaSkinCancerDiagnosisSite_desc')"
+                  ></b-form-input>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="lhnmsc.dateOfDiagnosis.$model"
+                    :state="lhnmsc.dateOfDiagnosis.$dirty ? !lhnmsc.dateOfDiagnosis.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('lifetimeHistoryOfNonMelanomaSkinCancerDateOfDiagnosis_desc')"
+                  ></b-form-input>
+
+                  <hr v-if="lifetimeHistoryOfNonMelanomaSkinCancerHrVisible">
+                </span>
+              </b-form>
+
+              <!-- nonCutaneousNeoplasias -->
+              <span class="form-inline mt-4">
+                <label for="nonCutaneousNeoplasias" class="mt-4">
+                  <h6>{{'13. '+$t('nonCutaneousNeoplasias_label')}}</h6>
+                </label>
+                <span class="ml-auto mt-auto">
+                  <b-button variant="outline-success" @click="addNonCutaneousNeoplasiasField()">
+                    <font-awesome-icon icon="plus"/>
+                  </b-button>
+                  <b-button
+                    variant="outline-danger"
+                    @click="removeNonCutaneousNeoplasiasField()"
+                    class="ml-2"
+                  >
+                    <font-awesome-icon icon="minus"/>
+                  </b-button>
+                </span>
+              </span>
+              <b-form-text>{{$t('nonCutaneousNeoplasias_desc')}}</b-form-text>
+
+              <b-form class="mt-2">
+                <span
+                  v-for="(ncn, index) in $v.form.nonCutaneousNeoplasias.$each.$iter"
+                  :key="index"
+                >
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="ncn.type.$model"
+                    :state="ncn.type.$dirty ? !ncn.type.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('nonCutaneousNeoplasiasDiagnosisType_desc')"
+                  ></b-form-input>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="ncn.ageOfDiagnosis.$model"
+                    :state="ncn.ageOfDiagnosis.$dirty ? !ncn.ageOfDiagnosis.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('nonCutaneousNeoplasiasDiagnosisAgeOfDiagnosis_desc')"
+                  ></b-form-input>
+
+                  <b-form-input
+                    class="mr-2 mb-2"
+                    v-model="ncn.yearOfDiagnoses.$model"
+                    :state="ncn.yearOfDiagnoses.$dirty ? !ncn.yearOfDiagnoses.$error : null"
+                    type="text"
+                    required
+                    :placeholder="$t('nonCutaneousNeoplasiasDiagnosisYearOfDiagnoses_desc')"
+                  ></b-form-input>
+
+                  <hr v-if="nonCutaneousNeoplasiasHrVisible">
+                </span>
+              </b-form>
+
               <!-- buttons -->
               <b-button
                 type="submit"
@@ -274,7 +402,8 @@ import {
   minLength,
   maxLength,
   numeric,
-  requiredIf
+  requiredIf,
+  between
 } from "vuelidate/lib/validators";
 import { pregnancyHistoryNumberOfMiscarriagesValidator } from "@/plugins/vuelidate";
 
@@ -297,11 +426,40 @@ export default {
           melanomaOccurAfterPregnancy: false,
           howManyYearsAfterPregnancy: "",
           IVFBeforeDiagnosis: false
-        }
+        },
+        lifetimeHistoryOfNonMelanomaSkinCancer: [],
+        nonCutaneousNeoplasias: []
       },
+
+      lifetimeHistoryOfNonMelanomaSkinCancerTypeOptions: [
+        {
+          value: null,
+          text: this.$t("lifetimeHistoryOfNonMelanomaSkinCancerType_desc")
+        },
+        { value: "BCC", text: this.$t("BCC") },
+        { value: "Invasive SCC", text: this.$t("invasive_scc") },
+        { value: "In situ SCC", text: this.$t("in_situ_scc") }
+      ],
+
+      lifetimeHistoryOfNonMelanomaSkinCancerWhenOptions: [
+        {
+          value: null,
+          text: this.$t("lifetimeHistoryOfNonMelanomaSkinCancerWhen_desc")
+        },
+        {
+          value: "Before melanoma diagnosis",
+          text: this.$t("before_melanoma_diagnosis")
+        },
+        {
+          value: "After melanoma diagnosis",
+          text: this.$t("after_melanoma_diagnosis")
+        }
+      ],
 
       medicalDiagnosesHrVisible: false,
       previousAndConcomitantTreatmentsHrVisible: false,
+      lifetimeHistoryOfNonMelanomaSkinCancerHrVisible: false,
+      nonCutaneousNeoplasiasHrVisible: false,
 
       show: true,
       canProceed: false
@@ -318,6 +476,44 @@ export default {
     }
   },
   methods: {
+    addNonCutaneousNeoplasiasField() {
+      this.form.nonCutaneousNeoplasias.push({
+        type: "",
+        ageOfDiagnosis: "",
+        yearOfDiagnoses: ""
+      });
+      if (this.form.nonCutaneousNeoplasias.length > 1) {
+        this.nonCutaneousNeoplasiasHrVisible = true;
+      }
+    },
+    removeNonCutaneousNeoplasiasField() {
+      if (this.form.nonCutaneousNeoplasias.length > 0) {
+        this.form.nonCutaneousNeoplasias.pop();
+      }
+      if (this.form.nonCutaneousNeoplasias.length == 1) {
+        this.nonCutaneousNeoplasiasHrVisible = false;
+      }
+    },
+    addLifetimeHistoryOfNonMelanomaSkinCAncerField() {
+      this.form.lifetimeHistoryOfNonMelanomaSkinCancer.push({
+        type: null,
+        number: "",
+        when: null,
+        site: "",
+        dateOfDiagnosis: ""
+      });
+      if (this.form.lifetimeHistoryOfNonMelanomaSkinCancer.length > 1) {
+        this.lifetimeHistoryOfNonMelanomaSkinCancerHrVisible = true;
+      }
+    },
+    removeLifetimeHistoryOfNonMelanomaSkinCAncerField() {
+      if (this.form.lifetimeHistoryOfNonMelanomaSkinCancer.length > 0) {
+        this.form.lifetimeHistoryOfNonMelanomaSkinCancer.pop();
+      }
+      if (this.form.lifetimeHistoryOfNonMelanomaSkinCancer.length == 1) {
+        this.lifetimeHistoryOfNonMelanomaSkinCancerHrVisible = false;
+      }
+    },
     fillPregnancyHistoryDateOfBirthOfChildren() {
       this.form.pregnancyHistory.dateOfBirthOfChildren = [];
 
@@ -403,6 +599,12 @@ export default {
         IVFBeforeDiagnosis: false
       };
 
+      this.form.lifetimeHistoryOfNonMelanomaSkinCancer = [];
+      this.form.nonCutaneousNeoplasias = [];
+
+      this.lifetimeHistoryOfNonMelanomaSkinCancerHrVisible = false;
+      this.nonCutaneousNeoplasiasHrVisible = false;
+
       this.$v.$touch();
 
       // Trick to reset/clear native browser form validation state
@@ -485,6 +687,22 @@ export default {
           })
         },
         IVFBeforeDiagnosis: { required }
+      },
+      lifetimeHistoryOfNonMelanomaSkinCancer: {
+        $each: {
+          type: { required },
+          number: { required, numeric },
+          when: { required },
+          site: { required },
+          dateOfDiagnosis: {}
+        }
+      },
+      nonCutaneousNeoplasias: {
+        $each: {
+          type: { required },
+          ageOfDiagnosis: { required, numeric, between: between(0, 150) },
+          yearOfDiagnoses: { required }
+        }
       }
     }
   },

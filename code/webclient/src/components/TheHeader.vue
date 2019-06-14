@@ -32,7 +32,7 @@
         </ul>
         <!-- locale changer -->
         <div id="form-inline my-2 my-lg-0">
-          <b-form-select v-model="$i18n.locale" size="sm">
+          <b-form-select v-model="$i18n.locale" v-on:input="saveLocale()" size="sm">
             <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
           </b-form-select>
         </div>
@@ -93,6 +93,9 @@ export default {
     return { langs: Object.keys(this.$i18n.messages) };
   },
   methods: {
+    saveLocale() {
+      window.localStorage.setItem("locale", this.$i18n.locale);
+    },
     signOut() {
       this.$store.dispatch(LOGOUT).then(() => {
         this.$store.dispatch(ADD_MESSAGE, "success");

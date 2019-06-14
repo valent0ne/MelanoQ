@@ -10,9 +10,9 @@ public class NonMelanomaSkinCancer {
     //It can be after or before melanoma
     private String when;
 
-    private String Site;
+    private String site;
 
-    private String dateOfDiagnoses;
+    private String dateOfDiagnosis;
 
     public NonMelanomaSkinCancer(){ }
 
@@ -40,19 +40,19 @@ public class NonMelanomaSkinCancer {
         this.when = when;
     }
 
-    public String getSite() {
-        return Site;
+    public String getsite() {
+        return site;
     }
 
-    public void setSite(String site) {
-        Site = site;
+    public void setsite(String site) {
+        site = site;
     }
 
-    public String getDateOfDiagnoses() {
-        return dateOfDiagnoses;
+    public String getDateOfDiagnosis() {
+        return dateOfDiagnosis;
     }
 
-    public void setDateOfDiagnoses(String dateOfDiagnoses) {
-        this.dateOfDiagnoses = dateOfDiagnoses;
+    public void setDateOfDiagnosis(String dateOfDiagnosis) {
+        this.dateOfDiagnosis = dateOfDiagnosis;
     }
 }

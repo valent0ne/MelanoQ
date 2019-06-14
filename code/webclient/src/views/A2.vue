@@ -20,7 +20,7 @@
 
               <!-- dateOfBirth -->
               <label for="dateOfBirth" class="mt-4">
-                <h6>{{'7a. '+$t('dateOfBirth_label')}}</h6>
+                <h6>{{'7.a. '+$t('dateOfBirth_label')}}</h6>
               </label>
               <b-form-input
                 id="dateOfBirth"
@@ -33,7 +33,7 @@
 
               <!-- cityOfBirth -->
               <label for="cityOfBirth" class="mt-4">
-                <h6>{{'7b. '+$t('cityOfBirth_label')}}</h6>
+                <h6>{{'7.b. '+$t('cityOfBirth_label')}}</h6>
               </label>
               <b-form-input
                 id="cityOfBirth"
@@ -46,7 +46,7 @@
 
               <!-- provinceOfBirth -->
               <label for="provinceOfBirth" class="mt-4">
-                <h6>{{'7c. '+$t('provinceOfBirth_label')}}</h6>
+                <h6>{{'7.c. '+$t('provinceOfBirth_label')}}</h6>
               </label>
               <b-form-input
                 id="provinceOfBirth"
@@ -59,7 +59,7 @@
 
               <!-- countryOfBirth -->
               <label for="countryOfBirth" class="mt-4">
-                <h6>{{'7d. '+$t('countryOfBirth_label')}}</h6>
+                <h6>{{'7.d. '+$t('countryOfBirth_label')}}</h6>
               </label>
               <b-form-input
                 id="countryOfBirth"
@@ -72,7 +72,7 @@
 
               <!-- weight -->
               <label for="weight" class="mt-4">
-                <h6>{{'8a. '+$t('weight_label')}}</h6>
+                <h6>{{'8.a. '+$t('weight_label')}}</h6>
               </label>
               <b-form-input
                 id="weight"
@@ -85,7 +85,7 @@
 
               <!-- height -->
               <label for="height" class="mt-4">
-                <h6>{{'8b. '+$t('height_label')}}</h6>
+                <h6>{{'8.b. '+$t('height_label')}}</h6>
               </label>
               <b-form-input
                 id="height"

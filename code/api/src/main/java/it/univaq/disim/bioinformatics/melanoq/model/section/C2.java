@@ -18,7 +18,7 @@ public class C2 {
     private PregnanciesInfo pregnancyHistory;
 
     @Field
-    private List<NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCAncer;
+    private List<NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCancer;
 
     @Field
     private List<NonCutaneousNeoplasia> nonCutaneousNeoplasias;
@@ -50,11 +50,11 @@ public class C2 {
     }
 
     public List<NonMelanomaSkinCancer> getLifetimeHistoryOfNonMelanomaSkinCAncer() {
-        return lifetimeHistoryOfNonMelanomaSkinCAncer;
+        return lifetimeHistoryOfNonMelanomaSkinCancer;
     }
 
-    public void setLifetimeHistoryOfNonMelanomaSkinCAncer(List<NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCAncer) {
-        this.lifetimeHistoryOfNonMelanomaSkinCAncer = lifetimeHistoryOfNonMelanomaSkinCAncer;
+    public void setLifetimeHistoryOfNonMelanomaSkinCAncer(List<NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCancer) {
+        this.lifetimeHistoryOfNonMelanomaSkinCancer = lifetimeHistoryOfNonMelanomaSkinCancer;
     }
 
     public List<NonCutaneousNeoplasia> getNonCutaneousNeoplasias() {

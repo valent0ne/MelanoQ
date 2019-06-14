@@ -9,7 +9,7 @@
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
               <!-- skinType1 -->
               <label for="skinType1" class="mt-4">
-                <h6>{{'1a. '+$t('skinType1_desc')}}</h6>
+                <h6>{{'1.a. '+$t('skinType1_desc')}}</h6>
               </label>
               <b-form-select
                 id="skinType1"
@@ -20,7 +20,7 @@
 
               <!-- skinType2 -->
               <label for="skinType2" class="mt-4">
-                <h6>{{'1b. '+$t('skinType2_desc')}}</h6>
+                <h6>{{'1.b. '+$t('skinType2_desc')}}</h6>
               </label>
               <b-form-select
                 id="skinType2"

@@ -92,7 +92,7 @@
               <!-- congenitalNeviMedium -->
               <span class="form-inline mt-4">
                 <label>
-                  <h6>{{'5a. '+$t('congenitalNeviMedium_label')}}</h6>
+                  <h6>{{'5.a. '+$t('congenitalNeviMedium_label')}}</h6>
                 </label>
                 <b-button-group class="ml-auto">
                   <b-button
@@ -128,7 +128,7 @@
               <!-- congenitalNeviLarge -->
               <span class="form-inline mt-4">
                 <label>
-                  <h6>{{'5b. '+$t('congenitalNeviLarge_label')}}</h6>
+                  <h6>{{'5.b. '+$t('congenitalNeviLarge_label')}}</h6>
                 </label>
                 <b-button-group class="ml-auto">
                   <b-button
@@ -164,7 +164,7 @@
               <!-- congenitalNeviGiant -->
               <span class="form-inline mt-4">
                 <label>
-                  <h6>{{'5c. '+$t('congenitalNeviGiant_label')}}</h6>
+                  <h6>{{'5.c. '+$t('congenitalNeviGiant_label')}}</h6>
                 </label>
                 <b-button-group class="ml-auto">
                   <b-button
@@ -261,7 +261,7 @@
               <!-- currentNonMelanomaSkinCancersBCC -->
               <span class="form-inline mt-4">
                 <label>
-                  <h6>{{'8a. '+$t('currentNonMelanomaSkinCancersBCC_label')}}</h6>
+                  <h6>{{'8.a. '+$t('currentNonMelanomaSkinCancersBCC_label')}}</h6>
                 </label>
                 <b-button-group class="ml-auto">
                   <b-button
@@ -296,7 +296,7 @@
               <!-- currentNonMelanomaSkinCancersInvasiveSCC -->
               <span class="form-inline mt-4">
                 <label>
-                  <h6>{{'8b. '+$t('currentNonMelanomaSkinCancersInvasiveSCC_label')}}</h6>
+                  <h6>{{'8.b. '+$t('currentNonMelanomaSkinCancersInvasiveSCC_label')}}</h6>
                 </label>
                 <b-button-group class="ml-auto">
                   <b-button
@@ -331,7 +331,7 @@
               <!-- currentNonMelanomaSkinCancersInsituSCC -->
               <span class="form-inline mt-4">
                 <label>
-                  <h6>{{'8c. '+$t('currentNonMelanomaSkinCancersInsituSCC_label')}}</h6>
+                  <h6>{{'8.c. '+$t('currentNonMelanomaSkinCancersInsituSCC_label')}}</h6>
                 </label>
                 <b-button-group class="ml-auto">
                   <b-button
