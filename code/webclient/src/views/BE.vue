@@ -167,8 +167,7 @@ export default {
       this.form.difficultQuestions = [{ number: "" }];
       this.difficultQuestionsToggle = false;
 
-      this.$v.$touch();
-
+      this.$v.$reset();
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {

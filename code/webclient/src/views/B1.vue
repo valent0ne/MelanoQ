@@ -103,7 +103,7 @@
                 @click="proceed()"
                 :disabled="(!canProceed)"
                 variant="outline-info"
-                class="fa-button-outline mr-2 mb-1 mt-5 float-right"
+                class="fa-button-outline mb-1 mt-5 float-right"
               >
                 {{$t('proceed')}}
                 &nbsp;
@@ -301,8 +301,7 @@ export default {
       this.form.hairColor = null;
       this.form.freckles = null;
       this.form.neviInChildhoodAdolescence = null;
-      this.$v.$touch();
-
+      this.$v.$reset();
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {

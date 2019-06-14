@@ -4,13 +4,13 @@
       <Message/>
       <b-card>
         <div class="card-body d-flex flex-column">
-          <b-card-title>{{$t('section_b')+' - '+$t('evaluation')}}</b-card-title>
+          <b-card-title>{{$t('section_c')+' - '+$t('evaluation')}}</b-card-title>
 
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
               <!-- complexityOfTheQuestionnaire -->
               <label for="complexityOfTheQuestionnaire" class="mt-4">
-                <h6>{{'19. '+$t('complexityOfTheQuestionnaire_label')}}</h6>
+                <h6>{{'17. '+$t('complexityOfTheQuestionnaire_label')}}</h6>
               </label>
               <b-form-select
                 id="complexityOfTheQuestionnaire"
@@ -23,7 +23,7 @@
               <!-- difficultQuestions -->
               <span class="form-inline mt-4">
                 <label for="difficultQuestions" class="mt-4">
-                  <h6>{{'20. '+$t('difficultQuestions_label')}}</h6>
+                  <h6>{{'18. '+$t('difficultQuestions_label')}}</h6>
                 </label>
 
                 <b-button-group class="ml-auto">
@@ -167,8 +167,7 @@ export default {
       this.form.difficultQuestions = [{ number: "" }];
       this.difficultQuestionsToggle = false;
 
-      this.$v.$touch();
-
+      this.$v.$reset();
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {

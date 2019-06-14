@@ -1,8 +1,9 @@
 <template>
   <footer id="footer">
     <nav class="navbar fixed-bottom footer">
-      <div>
-        <b-link href="http://www.univaq.it/en/">&copy; {{$t('univaq')}}</b-link>-
+      <div class="form-inline">
+        <b-link href="http://www.univaq.it/en/">&copy; {{$t('univaq')}}</b-link>
+        <span>&nbsp;-&nbsp;</span>
         <b-link href="https://www.disim.univaq.it/main/index.php">DISIM</b-link>
       </div>
       <div class="d-none d-md-block">

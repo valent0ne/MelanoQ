@@ -12,7 +12,7 @@ public class D {
 
     // if the list is empty than there aren't case of this type
     @Field
-    private List<String> preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
+    private String preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
 
     // It can be Patient, Relative/Spouse/Friend, Physician , Other
     //TODO: optional
@@ -32,6 +32,9 @@ public class D {
     //if 0 than no, if >0 then yes
     @Field
     private String numberOfMPM;
+
+    @Field
+    private String dateOfDiagnosis;
 
     @Field
     private Boolean primaryTumorKnown;
@@ -70,11 +73,19 @@ public class D {
     }
 
 
-    public List<String> getPreExistingPigmentedLesionAtTheSameSiteOfMelanoma() {
+    public String getDateOfDiagnosis() {
+        return dateOfDiagnosis;
+    }
+
+    public void setDateOfDiagnosis(String dateOfDiagnosis) {
+        this.dateOfDiagnosis = dateOfDiagnosis;
+    }
+
+    public String getPreExistingPigmentedLesionAtTheSameSiteOfMelanoma() {
         return preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
     }
 
-    public void setPreExistingPigmentedLesionAtTheSameSiteOfMelanoma(List<String> preExistingPigmentedLesionAtTheSameSiteOfMelanoma) {
+    public void setPreExistingPigmentedLesionAtTheSameSiteOfMelanoma(String preExistingPigmentedLesionAtTheSameSiteOfMelanoma) {
         this.preExistingPigmentedLesionAtTheSameSiteOfMelanoma = preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
     }
 
