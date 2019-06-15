@@ -18,7 +18,11 @@
             variant="outline-info"
             v-bind:subsections="{1:'I', 2:'II', 3:'III', 'e':'evaluation'}"
           />
-          <SectionButton type="D" variant="outline-info" v-bind:subsections="{1:'I'}"/>
+          <b-button
+            variant="outline-info"
+            class="mr-2 mb-1 mt-3"
+            :to="'/insert/d'"
+          >{{$t('section_d')}}</b-button>
         </div>
       </div>
     </b-card>

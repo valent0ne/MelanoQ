@@ -4,7 +4,10 @@ import Vuelidate from 'vuelidate'
 // custom validators
 
 export const pregnancyHistoryNumberOfMiscarriagesValidator = (value, vm) => {
-  return (value >= 0 && value <= vm.numberOfFullTermPregnancies)
+  if(vm.numberOfFullTermPregnancies != "" && vm.numberOfFullTermPregnancies != "0" && !isNaN(vm.numberOfFullTermPregnancies)){
+      return (value >= 0 && value <= vm.numberOfFullTermPregnancies)
+  }
+  return true
 }
 
 export const dateOfBirthValidator = (value) => {

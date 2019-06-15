@@ -95,6 +95,7 @@ export default {
   methods: {
     saveLocale() {
       window.localStorage.setItem("locale", this.$i18n.locale);
+      window.location.reload();
     },
     signOut() {
       this.$store.dispatch(LOGOUT).then(() => {

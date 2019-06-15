@@ -2,6 +2,7 @@ package it.univaq.disim.bioinformatics.melanoq.model.section;
 
 import com.couchbase.client.java.repository.annotation.Field;
 import it.univaq.disim.bioinformatics.melanoq.model.nested.MutationalData;
+import it.univaq.disim.bioinformatics.melanoq.model.nested.OtherMainHistopatologicFeatures;
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class D {
     private Double breslowThinkness;
 
     @Field
-    private String otherMainHistopatologicFeatures;
+    private OtherMainHistopatologicFeatures otherMainHistopatologicFeatures;
 
     // It can be: YES, NO, Not done, Not known
     @Field
@@ -145,11 +146,11 @@ public class D {
         this.breslowThinkness = breslowThinkness;
     }
 
-    public String getOtherMainHistopatologicFeatures() {
+    public OtherMainHistopatologicFeatures getOtherMainHistopatologicFeatures() {
         return otherMainHistopatologicFeatures;
     }
 
-    public void setOtherMainHistopatologicFeatures(String otherMainHistopatologicFeatures) {
+    public void setOtherMainHistopatologicFeatures(OtherMainHistopatologicFeatures otherMainHistopatologicFeatures) {
         this.otherMainHistopatologicFeatures = otherMainHistopatologicFeatures;
     }
 

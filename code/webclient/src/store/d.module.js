@@ -2,9 +2,9 @@ import ApiService from "@/common/api.service";
 import JwtService from "@/common/jwt.service";
 import {
   ADD_REST_ERROR,
-  INSERT_D1,
-  UPDATE_D1,
-  DELETE_D1
+  INSERT_D,
+  UPDATE_D,
+  DELETE_D
 } from "./actions.type";
 
 const state = {
@@ -16,10 +16,10 @@ const getters = {
 };
 
 const actions = {
-  [INSERT_D1](context, payload) {
+  [INSERT_D](context, payload) {
     return new Promise(resolve => {
       ApiService.setHeader(JwtService.getToken())
-      ApiService.post("questionnaire/" + context.getters.documentId + "/d1", { payload })
+      ApiService.post("questionnaire/" + context.getters.documentId + "/d", { payload })
         .then(({ response }) => {
           resolve(response);
         })
@@ -28,10 +28,10 @@ const actions = {
         });
     });
   },
-  [UPDATE_D1](context, payload) {
+  [UPDATE_D](context, payload) {
     return new Promise(resolve => {
       ApiService.setHeader(JwtService.getToken())
-      ApiService.patch("questionnaire/" + context.getters.documentId + "/d1", { payload })
+      ApiService.patch("questionnaire/" + context.getters.documentId + "/d", { payload })
         .then(({ response }) => {
           resolve(response);
         })
@@ -40,10 +40,10 @@ const actions = {
         });
     });
   },
-  [DELETE_D1](context) {
+  [DELETE_D](context) {
     return new Promise(resolve => {
       ApiService.setHeader(JwtService.getToken())
-      ApiService.delete("questionnaire/" + context.getters.documentId + "/d1", {})
+      ApiService.delete("questionnaire/" + context.getters.documentId + "/d", {})
         .then(({ response }) => {
           resolve(response);
         })

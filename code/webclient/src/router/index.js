@@ -14,7 +14,7 @@ import C1 from "@/views/C1.vue"
 import C2 from "@/views/C2.vue"
 import C3 from "@/views/C3.vue"
 import CE from "@/views/CE.vue"
-import D1 from "@/views/D1.vue"
+import D from "@/views/D.vue"
 
 
 Vue.use(Router)
@@ -103,9 +103,9 @@ export default new Router({
       props: true
     },
     {
-      path: '/:action/d1',
-      name: 'd1',
-      component: D1,
+      path: '/:action/d',
+      name: 'd',
+      component: D,
       props: true
     },
   ]

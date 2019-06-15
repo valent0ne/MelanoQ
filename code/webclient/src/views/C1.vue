@@ -1,10 +1,35 @@
 <template>
   <div>
-    <div class="home container my-4">
+    <div id="main-container" class="home container my-4">
       <Message/>
       <b-card>
         <div class="card-body d-flex flex-column">
-          <b-card-title>{{$t('section_c')+'.I'}}</b-card-title>
+          <b-card-title>
+            <span class="float-left mt-1">{{$t('section_c')+'.I'}}</span>
+            <!-- buttons -->
+            <b-button
+              type="button"
+              @click="proceed()"
+              :disabled="(!canProceed)"
+              variant="outline-info"
+              class="fa-button-outline float-right"
+            >
+              {{$t('proceed')}}
+              &nbsp;
+              <font-awesome-icon icon="arrow-right"/>&nbsp;
+            </b-button>
+            <b-button
+              type="button"
+              to="/choice"
+              variant="outline-info"
+              class="fa-button-outline mr-2 float-right"
+            >
+              <font-awesome-icon icon="arrow-right" flip="horizontal"/>
+              &nbsp;
+              {{$t('back_to_section_choice')}}
+            </b-button>
+          </b-card-title>
+
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
               <!-- solarLentigines -->
@@ -365,34 +390,17 @@
               <b-form-text>{{$t('currentNonMelanomaSkinCancers_desc')}}</b-form-text>
 
               <!-- buttons -->
+              <hr class="mt-5">
+              <b-button
+                type="reset"
+                variant="outline-danger"
+                class="float-right mb-1"
+              >{{$t('reset')}}</b-button>
               <b-button
                 type="submit"
                 variant="outline-success"
-                class="mr-2 mb-1 mt-5"
+                class="float-right mr-2 mb-1"
               >{{$t('submit')}}</b-button>
-              <b-button type="reset" variant="outline-danger" class="mr-2 mb-1 mt-5">{{$t('reset')}}</b-button>
-
-              <b-button
-                type="button"
-                @click="proceed()"
-                :disabled="(!canProceed)"
-                variant="outline-info"
-                class="fa-button-outline mb-1 mt-5 float-right"
-              >
-                {{$t('proceed')}}
-                &nbsp;
-                <font-awesome-icon icon="arrow-right"/>&nbsp;
-              </b-button>
-              <b-button
-                type="button"
-                to="/choice"
-                variant="outline-info"
-                class="fa-button-outline mr-2 mb-1 mt-5 float-right"
-              >
-                <font-awesome-icon icon="arrow-right" flip="horizontal"/>
-                &nbsp;
-                {{$t('back_to_section_choice')}}
-              </b-button>
             </b-form>
           </div>
         </div>
@@ -577,6 +585,12 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
 
+      document.body.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
+
       this.$v.$touch();
       // eslint-disable-next-line
       console.log(JSON.stringify(this.form));
@@ -592,6 +606,11 @@ export default {
     },
     onReset(evt) {
       evt.preventDefault();
+      document.body.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
 
       this.form.solarLentigines = {
         howMany: null,
