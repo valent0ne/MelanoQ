@@ -14,7 +14,7 @@
       >
         <b-form-input
           :id="'dropdown-form-username-'+type"
-          v-model="password"
+          v-model="form.username"
           size="sm"
           placeholder="Username"
         ></b-form-input>
@@ -26,15 +26,11 @@
           type="password"
           size="sm"
           placeholder="Password"
-          v-model="password"
+          v-model="form.password"
         ></b-form-input>
       </b-form-group>
 
-      <b-button
-        :variant="variant"
-        size="sm"
-        v-on:click="onSubmit(username, password, type);"
-      >{{$t('sign_in')}}</b-button>
+      <b-button :variant="variant" size="sm" v-on:click="onSubmit(type);">{{$t('sign_in')}}</b-button>
     </b-dropdown-form>
     <b-dropdown-divider></b-dropdown-divider>
     <b-dropdown-item-button>{{$t('need_an_account')}}</b-dropdown-item-button>
@@ -52,13 +48,17 @@ export default {
   },
   data() {
     return {
-      username: null,
-      password: null
+      form: {
+        username: null,
+        password: null,
+        type: null
+      }
     };
   },
   methods: {
-    onSubmit(username, password, type) {
-      this.$store.dispatch(LOGIN, { username, password }, type);
+    onSubmit(type) {
+      this.form.type = type;
+      this.$store.dispatch(LOGIN, this.form);
     }
   }
 };

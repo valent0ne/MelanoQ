@@ -16,7 +16,6 @@ import it.univaq.disim.bioinformatics.melanoq.configuration.JwtTokenUtil;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@CrossOrigin
 public class JwtAuthenticationController {
 
     @Autowired
@@ -33,14 +32,22 @@ public class JwtAuthenticationController {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
-        final String token = jwtTokenUtil.generateToken(userDetails);
+        final String userToken = jwtTokenUtil.generateToken(userDetails);
+        final String userRole = userService.findOneByUsername(userDetails.getUsername()).getRole();
 
-        Response<String> response = new Response<>(HttpStatus.OK, request);
-        response.setData(token);
+        final User loggedUser = new User();
+        loggedUser.setUsername(userDetails.getUsername());
+        loggedUser.setRole(userRole);
+        loggedUser.setToken(userToken);
+        loggedUser.setType(authenticationRequest.getType());
+
+        Response<User> response = new Response<>(HttpStatus.OK, request);
+        response.setData(loggedUser);
         return response;
     }
 
     private void authenticate(String username, String password) throws Exception {
+
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {

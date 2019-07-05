@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home container my-4">
-      <Message/>
+      <Message />
       <b-card>
         <div class="card-body d-flex flex-column">
           <b-card-title>
@@ -16,7 +16,7 @@
             >
               {{$t('proceed')}}
               &nbsp;
-              <font-awesome-icon icon="arrow-right"/>&nbsp;
+              <font-awesome-icon icon="arrow-right" />&nbsp;
             </b-button>
             <b-button
               type="button"
@@ -24,7 +24,7 @@
               variant="outline-info"
               class="fa-button-outline mr-2 float-right"
             >
-              <font-awesome-icon icon="arrow-right" flip="horizontal"/>
+              <font-awesome-icon icon="arrow-right" flip="horizontal" />
               &nbsp;
               {{$t('back_to_section_choice')}}
             </b-button>
@@ -32,9 +32,9 @@
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
               <label for="dbCodeNumber" class="mt-4">
-                <h6>{{'1. '+$t('subject_label')+': '+$t(this.type)}}</h6>
+                <h6>{{'1. '+$t('subject_label')+': '+$t(this.user.type)}}</h6>
               </label>
-              <br>
+              <br />
 
               <!-- dbCodeNumber -->
               <label for="dbCodeNumber" class="mt-4">
@@ -73,7 +73,7 @@
               >{{$t('typeOfMelanoma_desc')}}</b-form-select>
 
               <!-- buttons -->
-              <hr class="mt-5">
+              <hr class="mt-5" />
               <b-button
                 type="reset"
                 variant="outline-danger"
@@ -89,8 +89,8 @@
         </div>
       </b-card>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
   </div>
 </template>
 <script>
@@ -118,10 +118,10 @@ export default {
       canProceed: false,
       typeOfMelanomaOptions: [
         { value: null, text: this.$t("please_select_option") },
-        { value: "Sporadic", text: "Sporadic" },
-        { value: "Familial", text: "Familial" },
-        { value: "Don’t know", text: "Don’t know" },
-        { value: "Other", text: "Other" }
+        { value: "Sporadic", text: this.$t("sporadic") },
+        { value: "Familial", text: this.$t("familial") },
+        { value: "Don’t know", text: this.$t("dont_know") },
+        { value: "Other", text: this.$t("other") }
       ],
       datePickerOptions: {
         // https://momentjs.com/docs/#/displaying/
@@ -133,7 +133,7 @@ export default {
     };
   },
   created: function() {
-    if (this.type !== "physician") {
+    if (this.user.type !== "physician") {
       this.$store.dispatch(ADD_ERROR, "unauthorized");
       this.$router.push({ name: "home" });
     }
@@ -204,7 +204,7 @@ export default {
       dateOfQuestionnaireAdministration: { required },
       typeOfMelanoma: {
         required: requiredIf(function() {
-          return this.type !== "control";
+          return this.user.type !== "control";
         })
       }
       // typeOfMelanoma: {}
@@ -213,8 +213,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.auth.user,
-      isAuthenticated: state => state.auth.isAuthenticated,
-      type: state => state.auth.type
+      isAuthenticated: state => state.auth.isAuthenticated
     })
   }
 };

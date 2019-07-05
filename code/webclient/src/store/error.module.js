@@ -26,11 +26,23 @@ const actions = {
 
 const mutations = {
   [SET_REST_ERROR](state, response) {
-    if (response.error) {
+    // eslint-disable-next-line
+    console.log("analysing error: " + response)
+
+
+    if (!response) {
+      state.error = "connection_error"
+    }
+    else if (response.error) {
       state.error = response.error;
     }
-    if (response.status < 200 || response.status >= 300) {
-      state.error = "rest_error_404"
+    else if (response.status) {
+      if (response.status < 200 || response.status >= 300) {
+        state.error = "rest_error_404"
+      }
+    }
+    else {
+      state.error = "connection_error"
     }
 
   },

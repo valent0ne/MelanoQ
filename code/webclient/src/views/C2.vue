@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home container my-4">
-      <Message/>
+      <Message />
       <b-card>
         <div class="card-body d-flex flex-column">
           <b-card-title>
@@ -16,7 +16,7 @@
             >
               {{$t('proceed')}}
               &nbsp;
-              <font-awesome-icon icon="arrow-right"/>&nbsp;
+              <font-awesome-icon icon="arrow-right" />&nbsp;
             </b-button>
             <b-button
               type="button"
@@ -24,7 +24,7 @@
               variant="outline-info"
               class="fa-button-outline mr-2 float-right"
             >
-              <font-awesome-icon icon="arrow-right" flip="horizontal"/>
+              <font-awesome-icon icon="arrow-right" flip="horizontal" />
               &nbsp;
               {{$t('back_to_section_choice')}}
             </b-button>
@@ -39,14 +39,14 @@
                 </label>
                 <span class="ml-auto mt-auto">
                   <b-button variant="outline-success" @click="addMedicalDiagnosesField()">
-                    <font-awesome-icon icon="plus"/>
+                    <font-awesome-icon icon="plus" />
                   </b-button>
                   <b-button
                     variant="outline-danger"
                     @click="removeMedicalDiagnosesField()"
                     class="ml-2"
                   >
-                    <font-awesome-icon icon="minus"/>
+                    <font-awesome-icon icon="minus" />
                   </b-button>
                 </span>
               </span>
@@ -72,7 +72,7 @@
                     :placeholder="$t('medicalDiagnosesDiagnosisICD10Code_desc')"
                   ></b-form-input>
 
-                  <hr v-if="medicalDiagnosesHrVisible">
+                  <hr v-if="medicalDiagnosesHrVisible" />
                 </span>
               </b-form>
 
@@ -86,14 +86,14 @@
                     variant="outline-success"
                     @click="addPreviousAndConcomitantTreatmentsField()"
                   >
-                    <font-awesome-icon icon="plus"/>
+                    <font-awesome-icon icon="plus" />
                   </b-button>
                   <b-button
                     variant="outline-danger"
                     @click="removePreviousAndConcomitantTreatmentsField()"
                     class="ml-2"
                   >
-                    <font-awesome-icon icon="minus"/>
+                    <font-awesome-icon icon="minus" />
                   </b-button>
                 </span>
               </span>
@@ -131,7 +131,7 @@
                     :placeholder="$t('previousAndConcomitantTreatmentsTreatmentEndingTime_desc')"
                   ></b-form-input>
 
-                  <hr v-if="previousAndConcomitantTreatmentsHrVisible">
+                  <hr v-if="previousAndConcomitantTreatmentsHrVisible" />
                 </span>
               </b-form>
 
@@ -262,14 +262,14 @@
                     variant="outline-success"
                     @click="addLifetimeHistoryOfNonMelanomaSkinCAncerField()"
                   >
-                    <font-awesome-icon icon="plus"/>
+                    <font-awesome-icon icon="plus" />
                   </b-button>
                   <b-button
                     variant="outline-danger"
                     @click="removeLifetimeHistoryOfNonMelanomaSkinCAncerField()"
                     class="ml-2"
                   >
-                    <font-awesome-icon icon="minus"/>
+                    <font-awesome-icon icon="minus" />
                   </b-button>
                 </span>
               </span>
@@ -321,7 +321,7 @@
                     :placeholder="$t('lifetimeHistoryOfNonMelanomaSkinCancerDateOfDiagnosis_desc')"
                   ></b-form-input>
 
-                  <hr v-if="lifetimeHistoryOfNonMelanomaSkinCancerHrVisible">
+                  <hr v-if="lifetimeHistoryOfNonMelanomaSkinCancerHrVisible" />
                 </span>
               </b-form>
 
@@ -332,14 +332,14 @@
                 </label>
                 <span class="ml-auto mt-auto">
                   <b-button variant="outline-success" @click="addNonCutaneousNeoplasiasField()">
-                    <font-awesome-icon icon="plus"/>
+                    <font-awesome-icon icon="plus" />
                   </b-button>
                   <b-button
                     variant="outline-danger"
                     @click="removeNonCutaneousNeoplasiasField()"
                     class="ml-2"
                   >
-                    <font-awesome-icon icon="minus"/>
+                    <font-awesome-icon icon="minus" />
                   </b-button>
                 </span>
               </span>
@@ -377,12 +377,12 @@
                     :placeholder="$t('nonCutaneousNeoplasiasDiagnosisYearOfDiagnoses_desc')"
                   ></b-form-input>
 
-                  <hr v-if="nonCutaneousNeoplasiasHrVisible">
+                  <hr v-if="nonCutaneousNeoplasiasHrVisible" />
                 </span>
               </b-form>
 
               <!-- buttons -->
-              <hr class="mt-5">
+              <hr class="mt-5" />
               <b-button
                 type="reset"
                 variant="outline-danger"
@@ -398,8 +398,8 @@
         </div>
       </b-card>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
   </div>
 </template>
 <script>
@@ -474,7 +474,7 @@ export default {
     };
   },
   created: function() {
-    if (this.type !== "physician") {
+    if (this.user.type !== "physician") {
       this.$store.dispatch(ADD_ERROR, "unauthorized");
       this.$router.push({ name: "home" });
     }
@@ -728,8 +728,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.auth.user,
-      isAuthenticated: state => state.auth.isAuthenticated,
-      type: state => state.auth.type
+      isAuthenticated: state => state.auth.isAuthenticated
     })
   }
 };

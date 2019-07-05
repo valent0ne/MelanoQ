@@ -1,18 +1,18 @@
 import ApiService from "@/common/api.service";
-import JwtService from "@/common/jwt.service";
+import AuthService from "@/common/auth.service";
 import {
   LOGIN,
   LOGOUT,
-  CHECK_AUTH,
   ADD_REST_ERROR,
+  ADD_MESSAGE
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH } from "./mutations.type";
 
 const state = {
-  user: {},
-  isAuthenticated: true, //!!JwtService.getToken(),
-  // case, control, physician
-  type: "physician"
+  // user.role = physician, nurse, researcher, admin
+  // user.type = physician, case, control
+  user: AuthService.getUser(),
+  isAuthenticated: !!AuthService.getUser().token,
 };
 
 const getters = {
@@ -29,50 +29,40 @@ const getters = {
 };
 
 const actions = {
-  [LOGIN](context, credentials, type) {
+  [LOGIN](context, credentials) {
     return new Promise(resolve => {
-      ApiService.post("authentication", { credentials })
+      ApiService.post("authentication", credentials)
         .then(({ data }) => {
-          context.commit(SET_AUTH, data.data, type);
+          if (data.error || data.data == null) {
+            throw data
+          }
+          context.commit(SET_AUTH, data.data);
+          context.dispatch(ADD_MESSAGE, "success")
           resolve(data);
         })
-        .catch(({ response }) => {
+        .catch((response) => {
           context.dispatch(ADD_REST_ERROR, response);
         });
     });
   },
   [LOGOUT](context) {
     context.commit(PURGE_AUTH);
-  },
-  [CHECK_AUTH](context) {
-    if (JwtService.getToken()) {
-      ApiService.setHeader();
-      ApiService.get("user")
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data.data);
-        })
-        .catch(({ response }) => {
-          context.dispatch(ADD_REST_ERROR, response);
-        });
-    } else {
-      context.commit(PURGE_AUTH);
-    }
+    context.dispatch(ADD_MESSAGE, "success")
+
   }
 };
 
 const mutations = {
 
-  [SET_AUTH](state, user, type) {
+  [SET_AUTH](state, user) {
     state.isAuthenticated = true;
     state.user = user;
-    state.type = type
-    JwtService.saveToken(state.user.token);
+    AuthService.saveUser(user);
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;
     state.user = {};
-    state.type = "";
-    JwtService.destroyToken();
+    AuthService.destroyUser();
   }
 };
 

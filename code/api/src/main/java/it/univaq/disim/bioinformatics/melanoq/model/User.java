@@ -2,6 +2,7 @@ package it.univaq.disim.bioinformatics.melanoq.model;
 
 import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
+import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -25,6 +26,12 @@ public class User implements Serializable {
     @Field
     @NotNull
     private String role;
+
+    @Nullable
+    private String token;
+
+    @Nullable
+    private String type;
 
     public User(){
 
@@ -60,5 +67,23 @@ public class User implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Nullable
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(@Nullable String token) {
+        this.token = token;
+    }
+
+    @Nullable
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

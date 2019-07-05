@@ -1,5 +1,4 @@
-// import ApiService from "@/common/api.service";
-// import JwtService from "@/common/jwt.service";
+
 import { INSERT_DOC_ID, DELETE_DOC_ID } from "./actions.type";
 import { SET_DOC_ID, PURGE_DOC_ID } from "./mutations.type";
 

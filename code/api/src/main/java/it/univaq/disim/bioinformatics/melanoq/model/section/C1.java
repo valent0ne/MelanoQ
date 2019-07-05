@@ -93,11 +93,11 @@ public class C1 {
         this.actinicKeratoses = actinicKeratoses;
     }
 
-    public List<CurrentNonMelanomaSkinCancer> getList<CurrentNonMelanomaSkinCancer>s() {
+    public List<CurrentNonMelanomaSkinCancer> getCurrentNonMelanomaSkinCancers() {
         return currentNonMelanomaSkinCancers;
     }
 
-    public void setList<CurrentNonMelanomaSkinCancer>s(List<CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers) {
+    public void setCurrentNonMelanomaSkinCancers(List<CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers) {
         this.currentNonMelanomaSkinCancers = currentNonMelanomaSkinCancers;
     }
 }

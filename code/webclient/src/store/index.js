@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import auth from "./auth.module";
 import error from "./error.module";
 import message from "./message.module";
+import user from "./user.module";
 import questionnaire from "./questionnaire.module";
 import a1 from "./a1.module";
 import a2 from "./a2.module";
@@ -15,7 +16,7 @@ import c1 from "./c1.module";
 import c2 from "./c2.module";
 import c3 from "./c3.module";
 import ce from "./ce.module";
-
+import d from "./d.module";
 
 Vue.use(Vuex);
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     auth,
     error,
     message,
+    user,
     questionnaire,
     a1,
     a2,
@@ -34,6 +36,7 @@ export default new Vuex.Store({
     c1,
     c2,
     c3,
-    ce
+    ce,
+    d
   }
 });

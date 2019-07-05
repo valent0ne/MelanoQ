@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -17,8 +19,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtTokenUtil implements Serializable {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
+
     private static final long serialVersionUID = -2550185165626007488L;
-    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+    private static final long JWT_TOKEN_VALIDITY = Integer.MAX_VALUE;
     private static final String JWT_TOKEN_ISSUER = "melanoq-api";
     private static final String JWT_TOKEN_AUDIENCE = "melanoq-webclient";
 

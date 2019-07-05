@@ -1,5 +1,5 @@
 import ApiService from "@/common/api.service";
-import JwtService from "@/common/jwt.service";
+import AuthService from "@/common/auth.service";
 import {
   ADD_REST_ERROR,
   INSERT_B1,
@@ -18,36 +18,45 @@ const getters = {
 const actions = {
   [INSERT_B1](context, payload) {
     return new Promise(resolve => {
-      ApiService.setHeader(JwtService.getToken())
+      ApiService.setHeader(AuthService.getUser().token)
       ApiService.post("questionnaire/" + context.getters.documentId + "/b1", { payload })
-        .then(({ response }) => {
-          resolve(response);
+        .then(({ data }) => {
+          if (data.error || data.data == null) {
+            throw data
+          }
+          resolve(data);
         })
-        .catch(({ response }) => {
+        .catch((response) => {
           context.dispatch(ADD_REST_ERROR, response);
         });
     });
   },
   [UPDATE_B1](context, payload) {
     return new Promise(resolve => {
-      ApiService.setHeader(JwtService.getToken())
+      ApiService.setHeader(AuthService.getUser().token)
       ApiService.patch("questionnaire/" + context.getters.documentId + "/b1", { payload })
-        .then(({ response }) => {
-          resolve(response);
+        .then(({ data }) => {
+          if (data.error || data.data == null) {
+            throw data
+          }
+          resolve(data);
         })
-        .catch(({ response }) => {
+        .catch((response) => {
           context.dispatch(ADD_REST_ERROR, response);
         });
     });
   },
   [DELETE_B1](context) {
     return new Promise(resolve => {
-      ApiService.setHeader(JwtService.getToken())
+      ApiService.setHeader(AuthService.getUser().token)
       ApiService.delete("questionnaire/" + context.getters.documentId + "/b1", {})
-        .then(({ response }) => {
-          resolve(response);
+        .then(({ data }) => {
+          if (data.error || data.data == null) {
+            throw data
+          }
+          resolve(data);
         })
-        .catch(({ response }) => {
+        .catch((response) => {
           context.dispatch(ADD_REST_ERROR, response);
         });
     });

@@ -40,6 +40,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String requestTokenHeader = request.getHeader("Authorization");
+
+        //LOGGER.info(requestTokenHeader);
+
         String username = null;
         String jwtToken = null;
         // JWT Token is in the form "Bearer token". Remove Bearer word and get
@@ -50,7 +53,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (Exception e) {
                 //e.printStackTrace();
-                LOGGER.warn(e.getMessage());
+                //LOGGER.warn(e.getMessage());
                 Response r = new Response(HttpStatus.UNAUTHORIZED);
                 r.setPath(request.getRequestURI());
                 r.setError("Token not valid");

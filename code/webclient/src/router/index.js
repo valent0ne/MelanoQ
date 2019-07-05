@@ -15,6 +15,7 @@ import C2 from "@/views/C2.vue"
 import C3 from "@/views/C3.vue"
 import CE from "@/views/CE.vue"
 import D from "@/views/D.vue"
+import User from "@/views/User.vue"
 
 
 Vue.use(Router)
@@ -108,6 +109,12 @@ export default new Router({
       component: D,
       props: true
     },
+    {
+      path: '/:action/user',
+      name: 'user',
+      component: User,
+      props: true
+    }
   ]
 })
 

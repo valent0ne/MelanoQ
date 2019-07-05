@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="main-container" class="home container my-4">
-      <Message/>
+      <Message />
       <b-card>
         <div class="card-body d-flex flex-column">
           <b-card-title>
@@ -16,7 +16,7 @@
             >
               {{$t('proceed')}}
               &nbsp;
-              <font-awesome-icon icon="arrow-right"/>&nbsp;
+              <font-awesome-icon icon="arrow-right" />&nbsp;
             </b-button>
             <b-button
               type="button"
@@ -24,7 +24,7 @@
               variant="outline-info"
               class="fa-button-outline mr-2 float-right"
             >
-              <font-awesome-icon icon="arrow-right" flip="horizontal"/>
+              <font-awesome-icon icon="arrow-right" flip="horizontal" />
               &nbsp;
               {{$t('back_to_section_choice')}}
             </b-button>
@@ -80,7 +80,7 @@
                     type="text"
                     :placeholder="$t('neviCountGreatherThan2mmRightZoneNumber_desc')"
                   ></b-form-input>
-                  <hr>
+                  <hr />
                 </span>
               </b-form>
 
@@ -390,7 +390,7 @@
               <b-form-text>{{$t('currentNonMelanomaSkinCancers_desc')}}</b-form-text>
 
               <!-- buttons -->
-              <hr class="mt-5">
+              <hr class="mt-5" />
               <b-button
                 type="reset"
                 variant="outline-danger"
@@ -406,8 +406,8 @@
         </div>
       </b-card>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
   </div>
 </template>
 <script>
@@ -572,7 +572,7 @@ export default {
     };
   },
   created: function() {
-    if (this.type !== "physician") {
+    if (this.user.type !== "physician") {
       this.$store.dispatch(ADD_ERROR, "unauthorized");
       this.$router.push({ name: "home" });
     }
@@ -838,8 +838,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.auth.user,
-      isAuthenticated: state => state.auth.isAuthenticated,
-      type: state => state.auth.type
+      isAuthenticated: state => state.auth.isAuthenticated
     })
   }
 };

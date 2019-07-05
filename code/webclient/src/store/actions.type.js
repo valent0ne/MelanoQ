@@ -1,4 +1,3 @@
-export const CHECK_AUTH = "checkAuth";
 export const LOGIN = "login";
 export const LOGOUT = "logout";
 export const ADD_ERROR = "addError";
@@ -41,3 +40,4 @@ export const UPDATE_D = "updateD";
 export const DELETE_D = "deleteD";
 export const INSERT_DOC_ID = "insertDocumentId";
 export const DELETE_DOC_ID = "deleteDocumentId";
+export const INSERT_USER = "insertUser";

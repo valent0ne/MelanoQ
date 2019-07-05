@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+import { getLocale } from "@/common/locale.service.js";
 
 Vue.use(VueI18n)
 
@@ -17,7 +18,7 @@ function loadLocaleMessages() {
 }
 
 function loadLocale() {
-  var savedLocale = window.localStorage.getItem('locale');
+  var savedLocale = getLocale();
   if (savedLocale != "" && savedLocale != null) {
     return savedLocale;
   }

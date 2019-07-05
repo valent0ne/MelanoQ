@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home container my-4">
-      <Message/>
+      <Message />
       <b-card>
         <div class="card-body d-flex flex-column">
           <b-card-title>
@@ -14,7 +14,7 @@
               variant="outline-info"
               class="fa-button-outline float-right"
             >
-              <font-awesome-icon icon="arrow-right" flip="horizontal"/>
+              <font-awesome-icon icon="arrow-right" flip="horizontal" />
               &nbsp;
               {{$t('back_to_section_choice')}}
             </b-button>
@@ -66,20 +66,20 @@
                 </span>
                 <span class="mb-2 mt-auto ml-auto">
                   <b-button variant="outline-success" @click="addDifficultQuestionNumberField()">
-                    <font-awesome-icon icon="plus"/>
+                    <font-awesome-icon icon="plus" />
                   </b-button>
                   <b-button
                     variant="outline-danger"
                     @click="removeDifficultQuestionNumberField()"
                     class="ml-2"
                   >
-                    <font-awesome-icon icon="minus"/>
+                    <font-awesome-icon icon="minus" />
                   </b-button>
                 </span>
               </b-form>
 
               <!-- buttons -->
-              <hr class="mt-5">
+              <hr class="mt-5" />
               <b-button
                 type="reset"
                 variant="outline-danger"
@@ -95,8 +95,8 @@
         </div>
       </b-card>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
   </div>
 </template>
 <script>
@@ -131,7 +131,7 @@ export default {
     };
   },
   created: function() {
-    if (this.type !== "physician") {
+    if (this.user.type !== "physician") {
       this.$store.dispatch(ADD_ERROR, "unauthorized");
       this.$router.push({ name: "home" });
     }
@@ -219,8 +219,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.auth.user,
-      isAuthenticated: state => state.auth.isAuthenticated,
-      type: state => state.auth.type
+      isAuthenticated: state => state.auth.isAuthenticated
     })
   }
 };

@@ -1,0 +1,10 @@
+{
+    "B3.smoking.howOften": "B.III > Smoking > How often? (B.III.15)",
+    "B3.ageWhenStartedSmoking": "B.III > Smoking > Age when you started smoking (B.III.15.a)",
+    "B3.howLongHaveYouBeenSmoking": "B.III > Smoking > How long have you been smoking (years) (B.III.15.b)",
+    "B3.howMuchTipicallySmoke": "B.III > Smoking > How much did/do you typically smoke (B.III.15.c)",
+    "B3.intakeOfVitaminesDuringLastYears": "B.III > Have you received vitamin pills during the last year? (B.III.16)",
+    "B3.vitamins.name": "B.III > Vitamins > Name (B.III.17/18)",
+    "B3.vitamins.howOften": "B.III > Vitamins > How often? (B.III.17/18)",
+    "B3.vitamins.howLong": "B.III > Vitamins > How long? (B.III.17/18)"
+}

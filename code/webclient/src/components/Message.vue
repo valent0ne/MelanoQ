@@ -1,10 +1,17 @@
 <template>
   <div>
-    <b-alert :show="error" variant="danger" dismissible @dismissed="dismissError()">{{$t(error)}}</b-alert>
+    <b-alert
+      :show="error"
+      variant="danger"
+      fade
+      dismissible
+      @dismissed="dismissError()"
+    >{{$t(error)}}</b-alert>
     <b-alert
       :show="message"
       variant="success"
       dismissible
+      fade
       @dismissed="dismissMessage()"
     >{{$t(message)}}</b-alert>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home container my-4">
-      <Message/>
+      <Message />
       <b-card>
         <div class="card-body d-flex flex-column">
           <b-card-title>
@@ -16,7 +16,7 @@
             >
               {{$t('proceed')}}
               &nbsp;
-              <font-awesome-icon icon="arrow-right"/>&nbsp;
+              <font-awesome-icon icon="arrow-right" />&nbsp;
             </b-button>
             <b-button
               type="button"
@@ -24,7 +24,7 @@
               variant="outline-info"
               class="fa-button-outline mr-2 float-right"
             >
-              <font-awesome-icon icon="arrow-right" flip="horizontal"/>
+              <font-awesome-icon icon="arrow-right" flip="horizontal" />
               &nbsp;
               {{$t('back_to_section_choice')}}
             </b-button>
@@ -53,7 +53,7 @@
                 :options="skinType2Options"
               ></b-form-select>
               <b-img src="@/assets/images/jdv15208-sup-0001-figs1.png" fluid-grow class="mt-2"></b-img>
-              <hr>
+              <hr />
 
               <!-- eyeColor -->
               <label for="eyeColor" class="mt-4">
@@ -67,7 +67,7 @@
               ></b-form-select>
               <b-img src="@/assets/images/jdv15208-sup-0002-figs2.png" fluid-grow class="mt-2"></b-img>
               <b-form-text>{{$t('eyeColor_desc')}}</b-form-text>
-              <hr>
+              <hr />
 
               <!-- hairColor -->
               <label for="hairColor" class="mt-4">
@@ -81,7 +81,7 @@
               ></b-form-select>
               <b-img src="@/assets/images/jdv15208-sup-0003-figs3.png" fluid-grow class="mt-2"></b-img>
               <b-form-text>{{$t('hairColor_desc')}}</b-form-text>
-              <hr>
+              <hr />
 
               <!-- freckles -->
               <label for="freckles" class="mt-4">
@@ -97,7 +97,7 @@
               ></b-form-select>
               <b-img src="@/assets/images/jdv15208-sup-0004-figs4.png" fluid-grow class="mt-2"></b-img>
               <b-form-text>{{$t('freckles_desc')}}</b-form-text>
-              <hr>
+              <hr />
 
               <!-- neviInChildhoodAdolescence -->
               <label for="neviInChildhoodAdolescence" class="mt-4">
@@ -115,7 +115,7 @@
               <b-form-text>{{$t('neviInChildhoodAdolescence_desc')}}</b-form-text>
 
               <!-- buttons -->
-              <hr class="mt-5">
+              <hr class="mt-5" />
               <b-button
                 type="reset"
                 variant="outline-danger"
@@ -131,8 +131,8 @@
         </div>
       </b-card>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
   </div>
 </template>
 <script>
@@ -273,7 +273,7 @@ export default {
     };
   },
   created: function() {
-    if (this.type !== "physician") {
+    if (this.user.type !== "physician") {
       this.$store.dispatch(ADD_ERROR, "unauthorized");
       this.$router.push({ name: "home" });
     }
@@ -348,8 +348,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.auth.user,
-      isAuthenticated: state => state.auth.isAuthenticated,
-      type: state => state.auth.type
+      isAuthenticated: state => state.auth.isAuthenticated
     })
   }
 };

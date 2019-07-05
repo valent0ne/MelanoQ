@@ -1,6 +1,6 @@
 <template>
   <div class="home container my-5">
-    <Message/>
+    <Message />
 
     <b-card v-if="!isAuthenticated">
       <div class="card-body d-flex flex-column">
@@ -8,9 +8,9 @@
         <b-card-text>{{$t('welcome_message_body')}}</b-card-text>
 
         <div>
-          <LogIn type="case" variant="info"/>
-          <LogIn type="control" variant="primary"/>
-          <LogIn type="physician" variant="dark"/>
+          <LogIn type="case" variant="info" />
+          <LogIn type="control" variant="primary" />
+          <LogIn type="physician" variant="dark" />
         </div>
       </div>
     </b-card>
@@ -19,7 +19,7 @@
       <div class="card-body d-flex flex-column">
         <b-card-title>
           {{$t('logged_welcome_message_title')}}
-          <strong>{{$t(type).toUpperCase()}}</strong>
+          <strong>{{$t(user.type).toUpperCase()}}</strong>
         </b-card-title>
         <b-card-text>{{$t('logged_welcome_message_body')}}</b-card-text>
         <div>
@@ -56,8 +56,7 @@ export default {
   computed: {
     ...mapState({
       isAuthenticated: state => state.auth.isAuthenticated,
-      user: state => state.auth.user,
-      type: state => state.auth.type
+      user: state => state.auth.user
     })
   }
 };
