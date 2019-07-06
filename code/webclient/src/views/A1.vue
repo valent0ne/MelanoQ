@@ -31,10 +31,16 @@
           </b-card-title>
           <div>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-              <label for="dbCodeNumber" class="mt-4">
-                <h6>{{'1. '+$t('subject_label')+': '+$t(this.user.type)}}</h6>
+              <label for="subject" class="mt-4">
+                <h6>{{'1. '+$t('subject_label')}}</h6>
               </label>
-              <br />
+
+              <b-form-select
+                id="subject"
+                v-model="$v.form.subject.$model"
+                :state="$v.form.subject.$dirty ? !$v.form.subject.$error : null"
+                :options="subjectOptions"
+              ></b-form-select>
 
               <!-- dbCodeNumber -->
               <label for="dbCodeNumber" class="mt-4">
@@ -110,12 +116,18 @@ export default {
   data() {
     return {
       form: {
+        subject: null,
         dbCodeNumber: "",
         dateOfQuestionnaireAdministration: this.$moment().format("DD/MMM/YYYY"),
         typeOfMelanoma: null
       },
       show: true,
       canProceed: false,
+      subjectOptions: [
+        { value: null, text: this.$t("please_select_option") },
+        { value: "Case", text: this.$t("case") },
+        { value: "Control", text: this.$t("control") }
+      ],
       typeOfMelanomaOptions: [
         { value: null, text: this.$t("please_select_option") },
         { value: "Sporadic", text: this.$t("sporadic") },
@@ -196,6 +208,7 @@ export default {
   },
   validations: {
     form: {
+      subject: { required },
       dbCodeNumber: {
         required,
         minLength: minLength(9),

@@ -61,6 +61,10 @@ body {
   width: 15% !important;
 }
 
+.no-underline{
+  text-decoration: none!important;
+}
+
 .w-80 {
   width: 80% !important;
 }

@@ -51,12 +51,20 @@
         </a>
         <router-link
           class="nav-link active my-nav-link-wrapper"
-          to="/insert/user/"
+          to="insert/user"
           v-if="isAuthenticated && user && user.role && user.role == 'admin'"
         >
           <font-awesome-icon icon="user-plus" :style="{ color: 'black' }" />&nbsp;
           <span class="my-nav-link">{{$t('add_new_user')}}</span>
         </router-link>
+        <span class="nav-link active my-nav-link-wrapper nav-item-right" v-if="isAuthenticated">
+          {{$t('username')+': '}}
+          <strong>{{user.username}}</strong>
+          &nbsp;-&nbsp;
+          {{' '+$t('profile')+': '}}
+          <strong>{{$t(user.type).toLowerCase()}}</strong>
+        </span>
+
         <!--
         <div>
           <b-nav-dropdown>
@@ -131,5 +139,8 @@ export default {
 }
 .my-nav-link-wrapper:hover {
   color: #343a40 !important;
+}
+.nav-item-right {
+  margin-left: auto !important;
 }
 </style>

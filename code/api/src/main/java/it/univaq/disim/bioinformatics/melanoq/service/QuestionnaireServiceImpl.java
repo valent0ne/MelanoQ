@@ -30,7 +30,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
     }
 
     public Questionnaire update(Questionnaire q){
-        // update does not exists in couchbase, execute additonl logic prior to save (update) e.g., change timestamp etc...
+        // update does not exists in couchbase, execute additonal logic prior to save (update) e.g., change timestamp etc...
         return questionnaireRepository.save(q);
     }
 

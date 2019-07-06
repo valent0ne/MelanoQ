@@ -17,11 +17,9 @@ public class A1ServiceImpl implements A1Service{
     QuestionnaireService questionnaireService;
 
     public A1 insert(String documentId, A1 a1) throws BusinessException{
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
-
-        if(q.getA1() != null){
-            throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.SECTION_ALREADY_PRESENT);
-        }
+        // Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = new Questionnaire();
+        q.setDocumentId(documentId);
         q.setA1(a1);
         return questionnaireService.insert(q).getA1();
     }

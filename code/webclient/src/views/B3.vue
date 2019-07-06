@@ -257,10 +257,12 @@ export default {
     };
   },
   created: function() {
+    /*
     if (this.user.type !== "physician") {
       this.$store.dispatch(ADD_ERROR, "unauthorized");
       this.$router.push({ name: "home" });
     }
+    */
     if (!this.isAuthenticated) {
       this.$store.dispatch(ADD_ERROR, "not_authenticated");
       this.$router.push({ name: "home" });

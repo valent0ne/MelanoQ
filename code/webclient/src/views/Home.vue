@@ -18,6 +18,8 @@
     <b-card v-if="isAuthenticated">
       <div class="card-body d-flex flex-column">
         <b-card-title>
+          {{$t("hi") + ' '}}
+          <strong>{{user.username+','}}</strong>
           {{$t('logged_welcome_message_title')}}
           <strong>{{$t(user.type).toUpperCase()}}</strong>
         </b-card-title>
@@ -32,7 +34,14 @@
             variant="outline-primary"
             class="mr-2 mb-1 mt-3"
             to="report"
+            :disabled="user.type !== 'physician'"
           >{{$t('update_an_existing_questionnaire')}}</b-button>
+          <b-button
+            variant="outline-dark"
+            class="mr-2 mb-1 mt-3"
+            to="query"
+            :disabled="user.type !== 'physician'"
+          >{{$t('query_the_database')}}</b-button>
         </div>
       </div>
     </b-card>

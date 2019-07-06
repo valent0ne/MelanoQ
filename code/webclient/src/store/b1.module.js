@@ -1,6 +1,6 @@
 import ApiService from "@/common/api.service";
-import AuthService from "@/common/auth.service";
 import {
+  ADD_ERROR,
   ADD_REST_ERROR,
   INSERT_B1,
   UPDATE_B1,
@@ -17,9 +17,17 @@ const getters = {
 
 const actions = {
   [INSERT_B1](context, payload) {
-    return new Promise(resolve => {
-      ApiService.setHeader(AuthService.getUser().token)
-      ApiService.post("questionnaire/" + context.getters.documentId + "/b1", { payload })
+    return new Promise((resolve, reject) => {
+      if (!context.getters.documentId) {
+        context.dispatch(ADD_ERROR, "no_doc_id")
+        return;
+      }
+      if (!context.getters.currentUser.token) {
+        context.dispatch(ADD_ERROR, "no_token")
+        return;
+      }
+      ApiService.setHeader(context.getters.currentUser.token)
+      ApiService.post("questionnaire/" + context.getters.documentId + "/b1", payload)
         .then(({ data }) => {
           if (data.error || data.data == null) {
             throw data
@@ -28,13 +36,23 @@ const actions = {
         })
         .catch((response) => {
           context.dispatch(ADD_REST_ERROR, response);
+          reject(response);
+
         });
     });
   },
   [UPDATE_B1](context, payload) {
-    return new Promise(resolve => {
-      ApiService.setHeader(AuthService.getUser().token)
-      ApiService.patch("questionnaire/" + context.getters.documentId + "/b1", { payload })
+    return new Promise((resolve, reject) => {
+      if (!context.getters.documentId) {
+        context.dispatch(ADD_ERROR, "no_doc_id")
+        return;
+      }
+      if (!context.getters.currentUser.token) {
+        context.dispatch(ADD_ERROR, "no_token")
+        return;
+      }
+      ApiService.setHeader(context.getters.currentUser.token)
+      ApiService.patch("questionnaire/" + context.getters.documentId + "/b1", payload)
         .then(({ data }) => {
           if (data.error || data.data == null) {
             throw data
@@ -43,12 +61,23 @@ const actions = {
         })
         .catch((response) => {
           context.dispatch(ADD_REST_ERROR, response);
+          reject(response);
+
+
         });
     });
   },
   [DELETE_B1](context) {
-    return new Promise(resolve => {
-      ApiService.setHeader(AuthService.getUser().token)
+    return new Promise((resolve, reject) => {
+      if (!context.getters.documentId) {
+        context.dispatch(ADD_ERROR, "no_doc_id")
+        return;
+      }
+      if (!context.getters.currentUser.token) {
+        context.dispatch(ADD_ERROR, "no_token")
+        return;
+      }
+      ApiService.setHeader(context.getters.currentUser.token)
       ApiService.delete("questionnaire/" + context.getters.documentId + "/b1", {})
         .then(({ data }) => {
           if (data.error || data.data == null) {
@@ -58,6 +87,9 @@ const actions = {
         })
         .catch((response) => {
           context.dispatch(ADD_REST_ERROR, response);
+          reject(response);
+
+
         });
     });
   }

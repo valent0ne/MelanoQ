@@ -28,8 +28,10 @@ const mutations = {
   [SET_REST_ERROR](state, response) {
     // eslint-disable-next-line
     console.log("analysing error: " + response)
-
-
+    // eslint-disable-next-line
+    console.log("error: " + response.error)
+    // eslint-disable-next-line
+    console.log("status: " + response.status)
     if (!response) {
       state.error = "connection_error"
     }

@@ -2,16 +2,14 @@ package it.univaq.disim.bioinformatics.melanoq.controller;
 
 import it.univaq.disim.bioinformatics.melanoq.model.*;
 import it.univaq.disim.bioinformatics.melanoq.model.nested.Smoking;
-import it.univaq.disim.bioinformatics.melanoq.model.section.A1;
-import it.univaq.disim.bioinformatics.melanoq.model.section.A2;
-import it.univaq.disim.bioinformatics.melanoq.model.section.B1;
-import it.univaq.disim.bioinformatics.melanoq.model.section.B3;
+import it.univaq.disim.bioinformatics.melanoq.model.section.*;
 import it.univaq.disim.bioinformatics.melanoq.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @RestController
@@ -23,7 +21,7 @@ public class QuestionnaireController{
 
     @Autowired
     private A1Service a1Service;
-/*
+
     @Autowired
     private A2Service a2Service;
 
@@ -51,7 +49,7 @@ public class QuestionnaireController{
     @Autowired
     private EvaluationService evaluationService;
 
-*/
+
 
     @GetMapping("/test")
     public Response testAuth(HttpServletRequest request){
@@ -96,7 +94,7 @@ public class QuestionnaireController{
             response.setData(a1Obj);
             return response;
     }
- /*
+
     @GetMapping("/{documentId}/a1")
     public Response getA1(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
         A1 a1Obj = a1Service.get(documentId);
@@ -116,7 +114,7 @@ public class QuestionnaireController{
     @DeleteMapping("/{documentId}/a1")
     public Response deleteA1(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
         a1Service.delete(documentId);
-        return = new Response<>(HttpStatus.OK, request);
+        return new Response<>(HttpStatus.OK, request);
     }
 
 
@@ -407,7 +405,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @GetMapping("/{documentId}/b/evaluation")
+    @GetMapping("/{documentId}/c/evaluation")
     public Response getCEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
         Evaluation eObj = evaluationService.get(documentId, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
@@ -415,7 +413,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @PatchMapping("/{documentId}/b/evaluation")
+    @PatchMapping("/{documentId}/c/evaluation")
     public Response updateCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
         Evaluation eObj = evaluationService.update(documentId, e, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
@@ -423,7 +421,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @DeleteMapping("/{documentId}/b/evaluation")
+    @DeleteMapping("/{documentId}/c/evaluation")
     public Response deleteCEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
         evaluationService.delete(documentId, "c");
         return new Response<>(HttpStatus.OK, request);
@@ -443,8 +441,8 @@ public class QuestionnaireController{
 
     @GetMapping("/{documentId}/d")
     public Response getD(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        D dObj = dService.get(documentId);
-        Response<D> response = new Response<>(HttpStatus.OK, request);
+        List<D> dObj = dService.get(documentId);
+        Response<List<D>> response = new Response<>(HttpStatus.OK, request);
         response.setData(dObj);
         return response;
     }
@@ -460,8 +458,8 @@ public class QuestionnaireController{
     @DeleteMapping("/{documentId}/d")
     public Response deleteD(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
         dService.delete(documentId);
-        return = new Response<>(HttpStatus.OK, request);
+        return new Response<>(HttpStatus.OK, request);
     }
 
-*/
+
 }
