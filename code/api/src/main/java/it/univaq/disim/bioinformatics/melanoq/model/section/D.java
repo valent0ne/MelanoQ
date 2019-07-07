@@ -30,7 +30,7 @@ public class D {
     @Field
     private String skinExamByPhysician;
 
-    //if 0 than no, if >0 then yes
+    //if 0 then no, if >0 then yes
     @Field
     private String numberOfMPM;
 

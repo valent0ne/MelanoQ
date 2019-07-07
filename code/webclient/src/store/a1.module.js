@@ -1,11 +1,10 @@
 import ApiService from "@/common/api.service";
 import {
   ADD_ERROR,
-  ADD_REST_ERROR,
   INSERT_A1,
   UPDATE_A1,
   DELETE_A1,
-  INSERT_DOC_ID
+  INSERT_DB_CODE_NUMBER
 } from "./actions.type";
 
 const state = {
@@ -18,9 +17,9 @@ const getters = {
 
 const actions = {
   [INSERT_A1](context, payload) {
-    context.dispatch(INSERT_DOC_ID, payload.dbCodeNumber);
-    if (!context.getters.documentId) {
-      context.dispatch(ADD_ERROR, "no_doc_id")
+    context.dispatch(INSERT_DB_CODE_NUMBER, payload.dbCodeNumber);
+    if (!context.getters.dbCodeNumber) {
+      context.dispatch(ADD_ERROR, "no_db_code_number")
       return;
     }
     if (!context.getters.currentUser.token) {
@@ -29,7 +28,7 @@ const actions = {
     }
     return new Promise((resolve, reject) => {
       ApiService.setHeader(context.getters.currentUser.token)
-      ApiService.post("questionnaire/" + context.getters.documentId + "/a1", payload)
+      ApiService.post("questionnaire/" + context.getters.dbCodeNumber + "/a1", payload)
         .then(({ data }) => {
           if (data.error || data.data == null) {
             throw data
@@ -37,14 +36,13 @@ const actions = {
           resolve(data);
         })
         .catch((response) => {
-          context.dispatch(ADD_REST_ERROR, response);
           reject(response);
         });
     });
   },
   [UPDATE_A1](context, payload) {
-    if (!context.getters.documentId) {
-      context.dispatch(ADD_ERROR, "no_doc_id")
+    if (!context.getters.dbCodeNumber) {
+      context.dispatch(ADD_ERROR, "no_db_code_number")
       return;
     }
     if (!context.getters.currentUser.token) {
@@ -53,7 +51,7 @@ const actions = {
     }
     return new Promise((resolve, reject) => {
       ApiService.setHeader(context.getters.currentUser.token)
-      ApiService.patch("questionnaire/" + context.getters.documentId + "/a1", payload)
+      ApiService.patch("questionnaire/" + context.getters.dbCodeNumber + "/a1", payload)
         .then(({ data }) => {
           if (data.error || data.data == null) {
             throw data
@@ -61,7 +59,7 @@ const actions = {
           resolve(data);
         })
         .catch((response) => {
-          context.dispatch(ADD_REST_ERROR, response);
+
           reject(response);
 
 
@@ -69,8 +67,8 @@ const actions = {
     });
   },
   [DELETE_A1](context) {
-    if (!context.getters.documentId) {
-      context.dispatch(ADD_ERROR, "no_doc_id")
+    if (!context.getters.dbCodeNumber) {
+      context.dispatch(ADD_ERROR, "no_db_code_number")
       return;
     }
     if (!context.getters.currentUser.token) {
@@ -79,7 +77,7 @@ const actions = {
     }
     return new Promise((resolve, reject) => {
       ApiService.setHeader(context.getters.currentUser.token)
-      ApiService.delete("questionnaire/" + context.getters.documentId + "/a1", {})
+      ApiService.delete("questionnaire/" + context.getters.dbCodeNumber + "/a1", {})
         .then(({ data }) => {
           if (data.error || data.data == null) {
             throw data
@@ -87,7 +85,7 @@ const actions = {
           resolve(data);
         })
         .catch((response) => {
-          context.dispatch(ADD_REST_ERROR, response);
+
           reject(response);
 
 

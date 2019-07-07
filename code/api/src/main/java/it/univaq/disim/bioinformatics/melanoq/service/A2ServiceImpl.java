@@ -17,9 +17,9 @@ public class A2ServiceImpl implements A2Service{
     @Autowired
     private QuestionnaireService questionnaireService;
 
-    public A2 insert(String documentId, A2 a2) throws BusinessException{
+    public A2 insert(String dbCodeNumber, A2 a2) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getA2() != null){
             throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.SECTION_ALREADY_PRESENT);
@@ -31,9 +31,9 @@ public class A2ServiceImpl implements A2Service{
     }
 
 
-    public A2 get(String documentId) throws BusinessException{
+    public A2 get(String dbCodeNumber) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getA2() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
@@ -43,9 +43,9 @@ public class A2ServiceImpl implements A2Service{
 
     }
 
-    public A2 update(String documentId, A2 a2) throws BusinessException{
+    public A2 update(String dbCodeNumber, A2 a2) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getA2() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
@@ -56,9 +56,9 @@ public class A2ServiceImpl implements A2Service{
 
     }
 
-    public void delete(String documentId) throws BusinessException{
+    public void delete(String dbCodeNumber) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getA2() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);

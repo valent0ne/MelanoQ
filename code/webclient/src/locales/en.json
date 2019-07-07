@@ -13,6 +13,8 @@
   "sign_out": "Sign out",
   "add_new_user": "Add a new user",
   "rest_error_404": "Cannot communicate with the server",
+  "rest_error_500": "Generic server error",
+  "rest_error_401": "Unauthorized",
   "connection_error": "Cannot communicate with the server",
   "logged_welcome_message_title": "you are now logged in with the following profile: ",
   "hi": "Hi",
@@ -442,6 +444,7 @@
   "nurse": "Nurse",
   "researcher": "Researcher",
   "admin": "Admin",
-  "no_doc_id": "Document ID not available, please be sure to have filled the A1 section before proceeding with the other sections",
-  "no_token": "No token available, try log out and log in again"
+  "no_db_code_number": "DB code number not available, please be sure to have filled the A1 section before proceeding with the other sections",
+  "no_token": "No token available, try log out and log in again",
+  "complete_an_existing_questionnaire": "Complete an axisting questionnaire"
 }

@@ -1,16 +1,16 @@
-const ID_DOCUMENT_ID_KEY = "id_document_id";
+const ID_DB_CODE_NUMBER_KEY = "id_db_code_number";
 
-export const getDocumentId = () => {
-  var documentId = window.localStorage.getItem(ID_DOCUMENT_ID_KEY);
+export const getDbCodeNumber = () => {
+  var documentId = window.localStorage.getItem(ID_DB_CODE_NUMBER_KEY);
   return documentId
 };
 
-export const saveDocumentId = documentId => {
-  window.localStorage.setItem(ID_DOCUMENT_ID_KEY, documentId);
+export const saveDbCodeNumber = documentId => {
+  window.localStorage.setItem(ID_DB_CODE_NUMBER_KEY, documentId);
 };
 
-export const destroyDocumentId = () => {
-  window.localStorage.removeItem(ID_DOCUMENT_ID_KEY);
+export const destroyDbCodeNumber = () => {
+  window.localStorage.removeItem(ID_DB_CODE_NUMBER_KEY);
 };
 
-export default { getDocumentId, saveDocumentId, destroyDocumentId };
+export default { getDbCodeNumber, saveDbCodeNumber, destroyDbCodeNumber };

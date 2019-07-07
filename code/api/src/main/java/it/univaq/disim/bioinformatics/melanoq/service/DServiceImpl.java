@@ -18,21 +18,19 @@ public class DServiceImpl implements DService{
     private QuestionnaireService questionnaireService;
 
 
-    public D insert(String documentId, D d) throws BusinessException {
+    public D insert(String dbCodeNumber, D d) throws BusinessException {
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
-        List<D> dList = q.getDList();
-        dList.add(d);
+        q.getDList().add(d);
 
-        q.setDList(dList);
         questionnaireService.insert(q);
         return d;
     }
 
-    public List<D> get(String documentId) throws BusinessException{
+    public List<D> get(String dbCodeNumber) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getDList().size() == 0 || q.getDList() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
@@ -41,12 +39,12 @@ public class DServiceImpl implements DService{
         return q.getDList();
     }
 
-    public D update(String documentId, D d) throws BusinessException{
+    public D update(String dbCodeNumber, D d) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         List<D> dList = q.getDList();
-        // If the element with the same identifier of d is not already in the list than there is an error
+        // If the element with the same identifier of d is not already in the list then there is an error
         if(!dList.contains(d.getIdentifier())){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
         }
@@ -60,9 +58,9 @@ public class DServiceImpl implements DService{
         return d;
     }
 
-    public void delete(String documentId) throws BusinessException{
+    public void delete(String dbCodeNumber) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getDList().size() == 0 || q.getDList() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
@@ -72,8 +70,8 @@ public class DServiceImpl implements DService{
         questionnaireService.update(q);
     }
 
-    public void delete(String documentId, D d) throws BusinessException{
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+    public void delete(String dbCodeNumber, D d) throws BusinessException{
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         List<D> dList = q.getDList();
         // If the element with the same identifier of d is not already in the list than there is an error

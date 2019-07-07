@@ -35,7 +35,7 @@
             class="mr-2 mb-1 mt-3"
             to="report"
             :disabled="user.type !== 'physician'"
-          >{{$t('update_an_existing_questionnaire')}}</b-button>
+          >{{$t('complete_an_existing_questionnaire')}}</b-button>
           <b-button
             variant="outline-dark"
             class="mr-2 mb-1 mt-3"

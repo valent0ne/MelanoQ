@@ -13,6 +13,7 @@
   "sign_out": "Esci",
   "add_new_user": "Aggiungi un nuovo utente",
   "rest_error_404": "Impossibile contattare il server",
+  "rest_error_500": "Errore del server generico",
   "connection_error": "Impossibile contattare il server",
   "logged_welcome_message_title": "hai effettuato l'accesso con il seguente profilo: ",
   "logged_welcome_message_body": "Scegli un'azione tra quelle proposte di seguito: ",
@@ -442,6 +443,7 @@
   "nurse": "to_translate",
   "researcher": "to_translate",
   "admin": "to_translate",
-  "no_doc_id": "to_translate",
-  "no_token": "to_translate"
+  "no_db_code_number": "to_translate",
+  "no_token": "to_translate",
+  "complete_an_existing_questionnaire": "to_translate"
 }

@@ -4,6 +4,8 @@ import it.univaq.disim.bioinformatics.melanoq.model.*;
 import it.univaq.disim.bioinformatics.melanoq.model.nested.Smoking;
 import it.univaq.disim.bioinformatics.melanoq.model.section.*;
 import it.univaq.disim.bioinformatics.melanoq.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/questionnaire")
 public class QuestionnaireController{
+    private static Logger LOGGER = LoggerFactory.getLogger(QuestionnaireController.class);
+
+
 
     @Autowired
     private QuestionnaireService questionnaireService;
@@ -50,7 +55,7 @@ public class QuestionnaireController{
     private EvaluationService evaluationService;
 
 
-
+/*
     @GetMapping("/test")
     public Response testAuth(HttpServletRequest request){
         return new Response(HttpStatus.OK, request);
@@ -74,46 +79,46 @@ public class QuestionnaireController{
         return ":)";
     }
 
-    @GetMapping("/qtest/{documentId}")
-    public Response testQGet(@PathVariable(value="documentId") String documentId, HttpServletRequest request){
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+    @GetMapping("/qtest/{dbCodeNumber}")
+    public Response testQGet(@PathVariable(value="dbCodeNumber") String dbCodeNumber, HttpServletRequest request){
+        Questionnaire q = questionnaireService.findOneByDocumentId(dbCodeNumber);
         Response<Questionnaire> response = new Response<>(HttpStatus.OK, request);
         response.setData(q);
         return response;
     }
 
-
+*/
 
 
     //////////////////////////// A1 ////////////////////////////////
 
-    @PostMapping("/{documentId}/a1")
-    public Response insertA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="documentId") String documentId){
-            A1 a1Obj = a1Service.insert(documentId, a1);
+    @PostMapping("/{dbCodeNumber}/a1")
+    public Response insertA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+            A1 a1Obj = a1Service.insert(dbCodeNumber, a1);
             Response<A1> response = new Response<>(HttpStatus.CREATED, request);
             response.setData(a1Obj);
             return response;
     }
 
-    @GetMapping("/{documentId}/a1")
-    public Response getA1(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        A1 a1Obj = a1Service.get(documentId);
+    @GetMapping("/{dbCodeNumber}/a1")
+    public Response getA1(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        A1 a1Obj = a1Service.get(dbCodeNumber);
         Response<A1> response = new Response<>(HttpStatus.OK, request);
         response.setData(a1Obj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/a1")
-    public Response updateA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="documentId") String documentId){
-        A1 a1Obj = a1Service.update(documentId, a1);
+    @PatchMapping("/{dbCodeNumber}/a1")
+    public Response updateA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        A1 a1Obj = a1Service.update(dbCodeNumber, a1);
         Response<A1> response = new Response<>(HttpStatus.OK, request);
         response.setData(a1Obj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/a1")
-    public Response deleteA1(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        a1Service.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/a1")
+    public Response deleteA1(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        a1Service.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
     }
 
@@ -122,33 +127,33 @@ public class QuestionnaireController{
 
     //////////////////////////// A2 ////////////////////////////////
 
-    @PostMapping("/{documentId}/a2")
-    public Response insertA2(HttpServletRequest request, @RequestBody A2 a2, @PathVariable(value="documentId") String documentId){
-        A2 a2Obj = a2Service.insert(documentId, a2);
+    @PostMapping("/{dbCodeNumber}/a2")
+    public Response insertA2(HttpServletRequest request, @RequestBody A2 a2, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        A2 a2Obj = a2Service.insert(dbCodeNumber, a2);
         Response<A2> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(a2Obj);
         return response;
     }
 
-    @GetMapping("/{documentId}/a2")
-    public Response getA2(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        A2 a2Obj = a2Service.get(documentId);
+    @GetMapping("/{dbCodeNumber}/a2")
+    public Response getA2(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        A2 a2Obj = a2Service.get(dbCodeNumber);
         Response<A2> response = new Response<>(HttpStatus.OK, request);
         response.setData(a2Obj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/a2")
-    public Response updateA2(HttpServletRequest request, @RequestBody A2 a2, @PathVariable(value="documentId") String documentId){
-        A2 a2Obj = a2Service.update(documentId, a2);
+    @PatchMapping("/{dbCodeNumber}/a2")
+    public Response updateA2(HttpServletRequest request, @RequestBody A2 a2, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        A2 a2Obj = a2Service.update(dbCodeNumber, a2);
         Response<A2> response = new Response<>(HttpStatus.OK, request);
         response.setData(a2Obj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/a2")
-    public Response deleteA2(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        a2Service.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/a2")
+    public Response deleteA2(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        a2Service.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
     }
 
@@ -156,33 +161,33 @@ public class QuestionnaireController{
 
     //////////////////////////// B1 ////////////////////////////////
 
-    @PostMapping("/{documentId}/b1")
-    public Response insertB1(HttpServletRequest request, @RequestBody B1 b1, @PathVariable(value="documentId") String documentId){
-        B1 b1Obj = b1Service.insert(documentId, b1);
+    @PostMapping("/{dbCodeNumber}/b1")
+    public Response insertB1(HttpServletRequest request, @RequestBody B1 b1, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B1 b1Obj = b1Service.insert(dbCodeNumber, b1);
         Response<B1> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(b1Obj);
         return response;
     }
 
-    @GetMapping("/{documentId}/b1")
-    public Response getB1(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        B1 b1Obj = b1Service.get(documentId);
+    @GetMapping("/{dbCodeNumber}/b1")
+    public Response getB1(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B1 b1Obj = b1Service.get(dbCodeNumber);
         Response<B1> response = new Response<>(HttpStatus.OK, request);
         response.setData(b1Obj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/b1")
-    public Response updateB1(HttpServletRequest request, @RequestBody B1 b1, @PathVariable(value="documentId") String documentId){
-        B1 b1Obj = b1Service.update(documentId, b1);
+    @PatchMapping("/{dbCodeNumber}/b1")
+    public Response updateB1(HttpServletRequest request, @RequestBody B1 b1, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B1 b1Obj = b1Service.update(dbCodeNumber, b1);
         Response<B1> response = new Response<>(HttpStatus.OK, request);
         response.setData(b1Obj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/b1")
-    public Response deleteB1(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        b1Service.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/b1")
+    public Response deleteB1(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        b1Service.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
     }
 
@@ -190,33 +195,33 @@ public class QuestionnaireController{
 
     //////////////////////////// B2 ////////////////////////////////
 
-    @PostMapping("/{documentId}/b2")
-    public Response insertB2(HttpServletRequest request, @RequestBody B2 b2, @PathVariable(value="documentId") String documentId){
-        B2 b2Obj = b2Service.insert(documentId, b2);
+    @PostMapping("/{dbCodeNumber}/b2")
+    public Response insertB2(HttpServletRequest request, @RequestBody B2 b2, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B2 b2Obj = b2Service.insert(dbCodeNumber, b2);
         Response<B2> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(b2Obj);
         return response;
     }
 
-    @GetMapping("/{documentId}/b2")
-    public Response getB2(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        B2 b2Obj = b2Service.get(documentId);
+    @GetMapping("/{dbCodeNumber}/b2")
+    public Response getB2(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B2 b2Obj = b2Service.get(dbCodeNumber);
         Response<B2> response = new Response<>(HttpStatus.OK, request);
         response.setData(b2Obj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/b2")
-    public Response updateB2(HttpServletRequest request, @RequestBody B2 b2, @PathVariable(value="documentId") String documentId){
-        B2 b2Obj = b2Service.update(documentId, b2);
+    @PatchMapping("/{dbCodeNumber}/b2")
+    public Response updateB2(HttpServletRequest request, @RequestBody B2 b2, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B2 b2Obj = b2Service.update(dbCodeNumber, b2);
         Response<B2> response = new Response<>(HttpStatus.OK, request);
         response.setData(b2Obj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/b2")
-    public Response deleteB2(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        b2Service.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/b2")
+    public Response deleteB2(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        b2Service.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
     }
 
@@ -224,33 +229,33 @@ public class QuestionnaireController{
 
     //////////////////////////// B3 ////////////////////////////////
 
-    @PostMapping("/{documentId}/b3")
-    public Response insertB3(HttpServletRequest request, @RequestBody B3 b3, @PathVariable(value="documentId") String documentId){
-        B3 b3Obj = b3Service.insert(documentId, b3);
+    @PostMapping("/{dbCodeNumber}/b3")
+    public Response insertB3(HttpServletRequest request, @RequestBody B3 b3, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B3 b3Obj = b3Service.insert(dbCodeNumber, b3);
         Response<B3> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(b3Obj);
         return response;
     }
 
-    @GetMapping("/{documentId}/b3")
-    public Response getB3(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        B3 b3Obj = b3Service.get(documentId);
+    @GetMapping("/{dbCodeNumber}/b3")
+    public Response getB3(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B3 b3Obj = b3Service.get(dbCodeNumber);
         Response<B3> response = new Response<>(HttpStatus.OK, request);
         response.setData(b3Obj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/b3")
-    public Response updateB3(HttpServletRequest request, @RequestBody B3 b3, @PathVariable(value="documentId") String documentId){
-        B3 b3Obj = b3Service.update(documentId, b3);
+    @PatchMapping("/{dbCodeNumber}/b3")
+    public Response updateB3(HttpServletRequest request, @RequestBody B3 b3, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        B3 b3Obj = b3Service.update(dbCodeNumber, b3);
         Response<B3> response = new Response<>(HttpStatus.OK, request);
         response.setData(b3Obj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/b3")
-    public Response deleteB3(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        b3Service.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/b3")
+    public Response deleteB3(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        b3Service.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
     }
 
@@ -258,33 +263,33 @@ public class QuestionnaireController{
 
     //////////////////////////// BEvaluation ////////////////////////////////
 
-    @PostMapping("/{documentId}/b/evaluation")
-    public Response insertBEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.insert(documentId, e, "b");
+    @PostMapping("/{dbCodeNumber}/b/evaluation")
+    public Response insertBEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        Evaluation eObj = evaluationService.insert(dbCodeNumber, e, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(eObj);
         return response;
     }
 
-    @GetMapping("/{documentId}/b/evaluation")
-    public Response getBEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.get(documentId, "b");
+    @GetMapping("/{dbCodeNumber}/b/evaluation")
+    public Response getBEvaluation(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        Evaluation eObj = evaluationService.get(dbCodeNumber, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
         response.setData(eObj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/b/evaluation")
-    public Response updateBEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.update(documentId, e, "b");
+    @PatchMapping("/{dbCodeNumber}/b/evaluation")
+    public Response updateBEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        Evaluation eObj = evaluationService.update(dbCodeNumber, e, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
         response.setData(eObj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/b/evaluation")
-    public Response deleteBEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        evaluationService.delete(documentId, "b");
+    @DeleteMapping("/{dbCodeNumber}/b/evaluation")
+    public Response deleteBEvaluation(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        evaluationService.delete(dbCodeNumber, "b");
         return new Response<>(HttpStatus.OK, request);
     }
 
@@ -292,33 +297,33 @@ public class QuestionnaireController{
 
     //////////////////////////// C1 ////////////////////////////////
 
-    @PostMapping("/{documentId}/c1")
-    public Response insertC1(HttpServletRequest request, @RequestBody C1 c1, @PathVariable(value="documentId") String documentId){
-        C1 c1Obj = c1Service.insert(documentId, c1);
+    @PostMapping("/{dbCodeNumber}/c1")
+    public Response insertC1(HttpServletRequest request, @RequestBody C1 c1, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C1 c1Obj = c1Service.insert(dbCodeNumber, c1);
         Response<C1> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(c1Obj);
         return response;
     }
 
-    @GetMapping("/{documentId}/c1")
-    public Response getC1(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        C1 c1Obj = c1Service.get(documentId);
+    @GetMapping("/{dbCodeNumber}/c1")
+    public Response getC1(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C1 c1Obj = c1Service.get(dbCodeNumber);
         Response<C1> response = new Response<>(HttpStatus.OK, request);
         response.setData(c1Obj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/c1")
-    public Response updateC1(HttpServletRequest request, @RequestBody C1 c1, @PathVariable(value="documentId") String documentId){
-        C1 c1Obj = c1Service.update(documentId, c1);
+    @PatchMapping("/{dbCodeNumber}/c1")
+    public Response updateC1(HttpServletRequest request, @RequestBody C1 c1, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C1 c1Obj = c1Service.update(dbCodeNumber, c1);
         Response<C1> response = new Response<>(HttpStatus.OK, request);
         response.setData(c1Obj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/c1")
-    public Response deleteC1(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        c1Service.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/c1")
+    public Response deleteC1(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        c1Service.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
 
     }
@@ -327,33 +332,33 @@ public class QuestionnaireController{
 
     //////////////////////////// C2 ////////////////////////////////
 
-    @PostMapping("/{documentId}/c2")
-    public Response insertC2(HttpServletRequest request, @RequestBody C2 c2, @PathVariable(value="documentId") String documentId){
-        C2 c2Obj = c2Service.insert(documentId, c2);
+    @PostMapping("/{dbCodeNumber}/c2")
+    public Response insertC2(HttpServletRequest request, @RequestBody C2 c2, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C2 c2Obj = c2Service.insert(dbCodeNumber, c2);
         Response<C2> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(c2Obj);
         return response;
     }
 
-    @GetMapping("/{documentId}/c2")
-    public Response getC2(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        C2 c2Obj = c2Service.get(documentId);
+    @GetMapping("/{dbCodeNumber}/c2")
+    public Response getC2(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C2 c2Obj = c2Service.get(dbCodeNumber);
         Response<C2> response = new Response<>(HttpStatus.OK, request);
         response.setData(c2Obj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/c2")
-    public Response updateC2(HttpServletRequest request, @RequestBody C2 c2, @PathVariable(value="documentId") String documentId){
-        C2 c2Obj = c2Service.update(documentId, c2);
+    @PatchMapping("/{dbCodeNumber}/c2")
+    public Response updateC2(HttpServletRequest request, @RequestBody C2 c2, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C2 c2Obj = c2Service.update(dbCodeNumber, c2);
         Response<C2> response = new Response<>(HttpStatus.OK, request);
         response.setData(c2Obj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/c2")
-    public Response deleteC2(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        c2Service.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/c2")
+    public Response deleteC2(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        c2Service.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
 
     }
@@ -362,33 +367,33 @@ public class QuestionnaireController{
 
     //////////////////////////// C3 ////////////////////////////////
 
-    @PostMapping("/{documentId}/c3")
-    public Response insertC3(HttpServletRequest request, @RequestBody C3 c3, @PathVariable(value="documentId") String documentId){
-        C3 c3Obj = c3Service.insert(documentId, c3);
+    @PostMapping("/{dbCodeNumber}/c3")
+    public Response insertC3(HttpServletRequest request, @RequestBody C3 c3, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C3 c3Obj = c3Service.insert(dbCodeNumber, c3);
         Response<C3> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(c3Obj);
         return response;
     }
 
-    @GetMapping("/{documentId}/c3")
-    public Response getC3(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        C3 c3Obj = c3Service.get(documentId);
+    @GetMapping("/{dbCodeNumber}/c3")
+    public Response getC3(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C3 c3Obj = c3Service.get(dbCodeNumber);
         Response<C3> response = new Response<>(HttpStatus.OK, request);
         response.setData(c3Obj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/c3")
-    public Response updateC3(HttpServletRequest request, @RequestBody C3 c3, @PathVariable(value="documentId") String documentId){
-        C3 c3Obj = c3Service.update(documentId, c3);
+    @PatchMapping("/{dbCodeNumber}/c3")
+    public Response updateC3(HttpServletRequest request, @RequestBody C3 c3, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        C3 c3Obj = c3Service.update(dbCodeNumber, c3);
         Response<C3> response = new Response<>(HttpStatus.OK, request);
         response.setData(c3Obj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/c3")
-    public Response deleteC3(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        c3Service.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/c3")
+    public Response deleteC3(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        c3Service.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
 
     }
@@ -397,33 +402,33 @@ public class QuestionnaireController{
 
     //////////////////////////// CEvaluation ////////////////////////////////
 
-    @PostMapping("/{documentId}/c/evaluation")
-    public Response insertCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.insert(documentId, e, "c");
+    @PostMapping("/{dbCodeNumber}/c/evaluation")
+    public Response insertCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        Evaluation eObj = evaluationService.insert(dbCodeNumber, e, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(eObj);
         return response;
     }
 
-    @GetMapping("/{documentId}/c/evaluation")
-    public Response getCEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.get(documentId, "c");
+    @GetMapping("/{dbCodeNumber}/c/evaluation")
+    public Response getCEvaluation(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        Evaluation eObj = evaluationService.get(dbCodeNumber, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
         response.setData(eObj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/c/evaluation")
-    public Response updateCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="documentId") String documentId){
-        Evaluation eObj = evaluationService.update(documentId, e, "c");
+    @PatchMapping("/{dbCodeNumber}/c/evaluation")
+    public Response updateCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        Evaluation eObj = evaluationService.update(dbCodeNumber, e, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
         response.setData(eObj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/c/evaluation")
-    public Response deleteCEvaluation(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        evaluationService.delete(documentId, "c");
+    @DeleteMapping("/{dbCodeNumber}/c/evaluation")
+    public Response deleteCEvaluation(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        evaluationService.delete(dbCodeNumber, "c");
         return new Response<>(HttpStatus.OK, request);
     }
 
@@ -431,33 +436,33 @@ public class QuestionnaireController{
 
     //////////////////////////// D ////////////////////////////////
 
-    @PostMapping("/{documentId}/d")
-    public Response insertD(HttpServletRequest request, @RequestBody D d, @PathVariable(value="documentId") String documentId){
-        D dObj = dService.insert(documentId, d);
+    @PostMapping("/{dbCodeNumber}/d")
+    public Response insertD(HttpServletRequest request, @RequestBody D d, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        D dObj = dService.insert(dbCodeNumber, d);
         Response<D> response = new Response<>(HttpStatus.CREATED, request);
         response.setData(dObj);
         return response;
     }
 
-    @GetMapping("/{documentId}/d")
-    public Response getD(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        List<D> dObj = dService.get(documentId);
+    @GetMapping("/{dbCodeNumber}/d")
+    public Response getD(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        List<D> dObj = dService.get(dbCodeNumber);
         Response<List<D>> response = new Response<>(HttpStatus.OK, request);
         response.setData(dObj);
         return response;
     }
 
-    @PatchMapping("/{documentId}/d")
-    public Response updateD(HttpServletRequest request, @RequestBody D d, @PathVariable(value="documentId") String documentId){
-        D dObj = dService.update(documentId, d);
+    @PatchMapping("/{dbCodeNumber}/d")
+    public Response updateD(HttpServletRequest request, @RequestBody D d, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        D dObj = dService.update(dbCodeNumber, d);
         Response<D> response = new Response<>(HttpStatus.OK, request);
         response.setData(dObj);
         return response;
     }
 
-    @DeleteMapping("/{documentId}/d")
-    public Response deleteD(HttpServletRequest request, @PathVariable(value="documentId") String documentId){
-        dService.delete(documentId);
+    @DeleteMapping("/{dbCodeNumber}/d")
+    public Response deleteD(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        dService.delete(dbCodeNumber);
         return new Response<>(HttpStatus.OK, request);
     }
 

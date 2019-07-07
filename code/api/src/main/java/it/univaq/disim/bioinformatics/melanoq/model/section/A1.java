@@ -16,9 +16,8 @@ public class A1 {
     @Field
     private String dateOfQuestionnaireAdministration;
 
-    //TODO: DD-MMM-YYYY it's why we put the date as a string
     @Field
-    private List<Date> datesOfUpdateQuestionnaire;
+    private List<String> datesOfUpdateQuestionnaire;
 
     @Field
     private String typeOfMelanoma;
@@ -51,11 +50,11 @@ public class A1 {
         this.dateOfQuestionnaireAdministration = dateOfQuestionnaireAdministration;
     }
 
-    public List<Date> getDatesOfUpdateQuestionnaire() {
+    public List<String> getDatesOfUpdateQuestionnaire() {
         return datesOfUpdateQuestionnaire;
     }
 
-    public void setDatesOfUpdateQuestionnaire(List<Date> datesOfUpdateQuestionnaire) {
+    public void setDatesOfUpdateQuestionnaire(List<String> datesOfUpdateQuestionnaire) {
         this.datesOfUpdateQuestionnaire = datesOfUpdateQuestionnaire;
     }
 

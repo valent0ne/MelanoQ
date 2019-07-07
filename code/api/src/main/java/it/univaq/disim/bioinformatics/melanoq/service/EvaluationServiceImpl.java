@@ -16,8 +16,8 @@ public class EvaluationServiceImpl implements EvaluationService {
     private QuestionnaireService questionnaireService;
 
 
-    public Evaluation insert(String documentId, Evaluation e, String section) throws BusinessException {
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+    public Evaluation insert(String dbCodeNumber, Evaluation e, String section) throws BusinessException {
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         switch(section){
 
@@ -43,9 +43,9 @@ public class EvaluationServiceImpl implements EvaluationService {
         return e;
     }
 
-    public Evaluation get(String documentId, String section) throws BusinessException{
+    public Evaluation get(String dbCodeNumber, String section) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         Evaluation eSection;
 
@@ -73,8 +73,8 @@ public class EvaluationServiceImpl implements EvaluationService {
         return eSection;
     }
 
-    public Evaluation update(String documentId, Evaluation e, String section) throws BusinessException{
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+    public Evaluation update(String dbCodeNumber, Evaluation e, String section) throws BusinessException{
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         switch(section) {
 
@@ -101,8 +101,8 @@ public class EvaluationServiceImpl implements EvaluationService {
         return e;
     }
 
-    public void delete(String documentId, String section) throws BusinessException{
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+    public void delete(String dbCodeNumber, String section) throws BusinessException{
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         switch(section) {
 

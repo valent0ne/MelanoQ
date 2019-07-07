@@ -16,8 +16,8 @@ public class C2ServiceImpl implements C2Service{
     private QuestionnaireService questionnaireService;
 
 
-    public C2 insert(String documentId, C2 c2) throws BusinessException {
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+    public C2 insert(String dbCodeNumber, C2 c2) throws BusinessException {
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getC2() != null){
             throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.SECTION_ALREADY_PRESENT);
@@ -27,9 +27,9 @@ public class C2ServiceImpl implements C2Service{
         return questionnaireService.insert(q).getC2();
     }
 
-    public C2 get(String documentId) throws BusinessException{
+    public C2 get(String dbCodeNumber) throws BusinessException{
 
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getC2() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
@@ -38,8 +38,8 @@ public class C2ServiceImpl implements C2Service{
         return q.getC2();
     }
 
-    public C2 update(String documentId, C2 c2) throws BusinessException{
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+    public C2 update(String dbCodeNumber, C2 c2) throws BusinessException{
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getC2() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
@@ -49,8 +49,8 @@ public class C2ServiceImpl implements C2Service{
         return questionnaireService.update(q).getC2();
     }
 
-    public void delete(String documentId) throws BusinessException{
-        Questionnaire q = questionnaireService.findOneByDocumentId(documentId);
+    public void delete(String dbCodeNumber) throws BusinessException{
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
         if(q.getC2() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { LOGIN } from "@/store/actions.type";
+import { LOGIN, ADD_REST_ERROR, ADD_MESSAGE } from "@/store/actions.type";
 
 export default {
   name: "LogIn",
@@ -58,7 +58,14 @@ export default {
   methods: {
     onSubmit(type) {
       this.form.type = type;
-      this.$store.dispatch(LOGIN, this.form);
+      this.$store
+        .dispatch(LOGIN, this.form)
+        .then(() => {
+          this.$store.dispatch(ADD_MESSAGE, "form_success");
+        })
+        .catch(response => {
+          this.$store.dispatch(ADD_REST_ERROR, response);
+        });
     }
   }
 };

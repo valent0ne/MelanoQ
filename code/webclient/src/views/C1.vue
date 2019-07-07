@@ -412,7 +412,12 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import { ADD_MESSAGE, ADD_ERROR, INSERT_C1 } from "@/store/actions.type";
+import {
+  ADD_REST_ERROR,
+  ADD_MESSAGE,
+  ADD_ERROR,
+  INSERT_C1
+} from "@/store/actions.type";
 import { required, numeric, requiredIf } from "vuelidate/lib/validators";
 
 import Message from "@/components/Message.vue";
@@ -598,10 +603,15 @@ export default {
         this.$store.dispatch(ADD_ERROR, "form_dirty");
       } else {
         var that = this;
-        this.$store.dispatch(INSERT_C1, this.form).then(() => {
-          this.$store.dispatch(ADD_MESSAGE, "form_success");
-          that.canProceed = true;
-        });
+        this.$store
+          .dispatch(INSERT_C1, this.form)
+          .then(() => {
+            this.$store.dispatch(ADD_MESSAGE, "form_success");
+            that.canProceed = true;
+          })
+          .catch(response => {
+            this.$store.dispatch(ADD_REST_ERROR, response);
+          });
       }
     },
     onReset(evt) {

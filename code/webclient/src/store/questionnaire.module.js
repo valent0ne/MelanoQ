@@ -1,37 +1,37 @@
 
-import { INSERT_DOC_ID, DELETE_DOC_ID } from "./actions.type";
-import { SET_DOC_ID, PURGE_DOC_ID } from "./mutations.type";
+import { INSERT_DB_CODE_NUMBER, DELETE_DB_CODE_NUMBER } from "./actions.type";
+import { SET_DB_CODE_NUMBER, PURGE_DB_CODE_NUMBER } from "./mutations.type";
 import QuestionnaireService from "@/common/questionnaire.service";
 
 
 const state = {
-  documentId: QuestionnaireService.getDocumentId()
+  dbCodeNumber: QuestionnaireService.getDbCodeNumber()
 };
 
 const getters = {
-  documentId(state) {
-    return state.documentId;
+  dbCodeNumber(state) {
+    return state.dbCodeNumber;
   },
 
 };
 
 const actions = {
-  [INSERT_DOC_ID](context, documentId) {
-    context.commit(SET_DOC_ID, documentId);
+  [INSERT_DB_CODE_NUMBER](context, dbCodeNumber) {
+    context.commit(SET_DB_CODE_NUMBER, dbCodeNumber);
   },
-  [DELETE_DOC_ID](context) {
-    context.commit(DELETE_DOC_ID);
+  [DELETE_DB_CODE_NUMBER](context) {
+    context.commit(DELETE_DB_CODE_NUMBER);
   }
 };
 
 const mutations = {
-  [SET_DOC_ID](state, data) {
-    state.documentId = data;
-    QuestionnaireService.saveDocumentId(data)
+  [SET_DB_CODE_NUMBER](state, data) {
+    state.dbCodeNumber = data;
+    QuestionnaireService.saveDbCodeNumber(data)
   },
-  [PURGE_DOC_ID](state) {
-    state.documentId = null;
-    QuestionnaireService.destroyDocumentId()
+  [PURGE_DB_CODE_NUMBER](state) {
+    state.dbCodeNumber = null;
+    QuestionnaireService.destroyDbCodeNumber()
   }
 };
 

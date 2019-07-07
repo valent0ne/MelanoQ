@@ -1,14 +1,15 @@
 package it.univaq.disim.bioinformatics.melanoq.service;
 
+import it.univaq.disim.bioinformatics.melanoq.BusinessException;
 import it.univaq.disim.bioinformatics.melanoq.model.Questionnaire;
 
 public interface QuestionnaireService {
 
-    Questionnaire findOneByDocumentId(String documentId);
+    Questionnaire findOneByDbCodeNumber(String dbCodeNumber);
 
-    Questionnaire insert(Questionnaire q);
+    Questionnaire insert(Questionnaire q) throws BusinessException;
 
-    Questionnaire update(Questionnaire q);
+    Questionnaire update(Questionnaire q) throws BusinessException;
 
 
 }

@@ -1,7 +1,6 @@
 import ApiService from "@/common/api.service";
 import {
   ADD_ERROR,
-  ADD_REST_ERROR,
   INSERT_USER
 } from "./actions.type";
 
@@ -15,11 +14,12 @@ const getters = {
 
 const actions = {
   [INSERT_USER](context, payload) {
+    if (!context.getters.currentUser.token) {
+      context.dispatch(ADD_ERROR, "no_token")
+      return;
+    }
     return new Promise((resolve, reject) => {
-      if (!context.getters.currentUser.token) {
-        context.dispatch(ADD_ERROR, "no_token")
-        return;
-      }
+
       ApiService.setHeader(context.getters.currentUser.token)
       ApiService.post("user", payload)
         .then(({ data }) => {
@@ -29,7 +29,7 @@ const actions = {
           resolve(data);
         })
         .catch((response) => {
-          context.dispatch(ADD_REST_ERROR, response);
+
           reject(response)
 
         });

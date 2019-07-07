@@ -16,16 +16,6 @@ public class Questionnaire {
     @Id
     private String metaId = UUID.randomUUID().toString();
 
-    // actual id field inside the json document
-    @Field
-    //@NotNull
-    private String documentId;
-
-    // "current" or "story"
-    @Field
-    //@NotNull
-    private String type;
-
     @Field
     private A1 a1;
 
@@ -73,22 +63,6 @@ public class Questionnaire {
         this.metaId = metaId;
     }
 
-    public String getDocumentId() {
-        return documentId;
-    }
-
-
-    public void setDocumentId(String documentId) {
-        this.documentId = documentId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public A1 getA1() {
         return a1;

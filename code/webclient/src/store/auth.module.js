@@ -3,7 +3,6 @@ import AuthService from "@/common/auth.service";
 import {
   LOGIN,
   LOGOUT,
-  ADD_REST_ERROR,
   ADD_MESSAGE
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH } from "./mutations.type";
@@ -30,7 +29,7 @@ const getters = {
 
 const actions = {
   [LOGIN](context, credentials) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       ApiService.post("authentication", credentials)
         .then(({ data }) => {
           if (data.error || data.data == null) {
@@ -41,7 +40,8 @@ const actions = {
           resolve(data);
         })
         .catch((response) => {
-          context.dispatch(ADD_REST_ERROR, response);
+
+          reject(response);
         });
     });
   },

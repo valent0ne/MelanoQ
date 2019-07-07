@@ -39,9 +39,7 @@ const mutations = {
       state.error = response.error;
     }
     else if (response.status) {
-      if (response.status < 200 || response.status >= 300) {
-        state.error = "rest_error_404"
-      }
+      state.error = "rest_error_".concat(response.status)
     }
     else {
       state.error = "connection_error"
