@@ -445,5 +445,14 @@
   "admin": "to_translate",
   "no_db_code_number": "to_translate",
   "no_token": "to_translate",
-  "complete_an_existing_questionnaire": "to_translate"
+  "complete_an_existing_questionnaire": "to_translate",
+  "username": "username",
+  "profile": "profilo",
+  "current_db_code_number": "to_translate",
+  "not_available": "to_translate",
+  "please_log_in": "to_translate",
+  "proceed_report": "to_translate",
+  "complete_an_existing_questionnaire_text": "to_translate",
+  "insert_db_code_number_manually": "to_translate",
+  "select_from_available_questionnaires": "to_translate"
 }

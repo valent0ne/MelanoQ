@@ -444,7 +444,17 @@
   "nurse": "Nurse",
   "researcher": "Researcher",
   "admin": "Admin",
-  "no_db_code_number": "DB code number not available, please be sure to have filled the A1 section before proceeding with the other sections",
+  "no_db_code_number": "Database code number not available, please be sure to have filled the A1 section before proceeding with the other sections; or to have retieved it from the \"Complete an existing questionnaire\" section",
   "no_token": "No token available, try log out and log in again",
-  "complete_an_existing_questionnaire": "Complete an axisting questionnaire"
+  "complete_an_existing_questionnaire": "Complete an axisting questionnaire",
+  "username": "username",
+  "profile": "profile",
+  "current_db_code_number": "current db code number",
+  "not_available": "not available",
+  "please_log_in": "Please, log in to access the system's functions",
+  "proceed_report": "Proceed to section selection",
+  "complete_an_existing_questionnaire_text": "If the database code number is not available, insert it manually in the box below or retrieve it from the list of the questionnaires.\n Also remember to validate the code by using the dedicated button(s).",
+  "insert_db_code_number_manually": "Insert the database code number in the box; if you do not remember it, try to retrieve it from the list of questionnaires below.",
+  "select_from_available_questionnaires": "Retrieve the database code number from one of the questionnaires below.",
+  "validate": "Validate"
 }

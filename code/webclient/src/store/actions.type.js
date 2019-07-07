@@ -41,3 +41,5 @@ export const DELETE_D = "deleteD";
 export const INSERT_DB_CODE_NUMBER = "insertDbCodeNumber";
 export const DELETE_DB_CODE_NUMBER = "deleteDbCodeNumber";
 export const INSERT_USER = "insertUser";
+export const GET_ALL_QUESTIONNAIRES = "getAllQuestionnaires";
+export const DELETE_QUESTIONNAIRES = "deleteQuestionnaires";

@@ -487,6 +487,10 @@ export default {
       this.$store.dispatch(ADD_ERROR, "not_authenticated");
       this.$router.push({ name: "home" });
     }
+    if (!this.dbCodeNumber) {
+      this.$store.dispatch(ADD_ERROR, "no_db_code_number");
+      this.$router.push({ name: "home" });
+    }
   },
   methods: {
     addNonCutaneousNeoplasiasField() {
@@ -738,7 +742,8 @@ export default {
   computed: {
     ...mapState({
       user: state => state.auth.user,
-      isAuthenticated: state => state.auth.isAuthenticated
+      isAuthenticated: state => state.auth.isAuthenticated,
+      dbCodeNumber: state => state.questionnaire.dbCodeNumber
     })
   }
 };

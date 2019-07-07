@@ -89,6 +89,24 @@ public class QuestionnaireController{
 
 */
 
+    /////////////////////// QUESTIONNAIRE //////////////////////////
+    @GetMapping("/{dbCodeNumber}")
+    public Response getQuestionnaire(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
+        Response<Questionnaire> response = new Response<>(HttpStatus.OK, request);
+        response.setData(q);
+        return response;
+    }
+
+    @GetMapping("/query")
+    public Response getQuestionnaires(HttpServletRequest request/*, @RequestBody List<Filters> filters*/){
+        //TODO add filters
+        List<Questionnaire> q = questionnaireService.findAll();
+        Response<List<Questionnaire>> response = new Response<>(HttpStatus.OK, request);
+        response.setData(q);
+        return response;
+    }
+
 
     //////////////////////////// A1 ////////////////////////////////
 

@@ -8,6 +8,15 @@ const ApiService = {
   init() {
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = API_URL;
+    Vue.axios.interceptors.response.use((response) => {
+      /* eslint-disable */
+      // console.log(JSON.stringify(response))
+      return response;
+    }, (error) => {
+      console.log("rest error:")
+      console.log(JSON.stringify(error))
+      return Promise.reject(error)
+    });
   },
 
   setHeader() {
@@ -16,15 +25,10 @@ const ApiService = {
 
   query(resource, params) {
     return Vue.axios.get(resource, params)
-      .catch(error => {
-        throw error;
-      });
   },
 
   get(resource, slug = "") {
-    return Vue.axios.get(`${resource}/${slug}`).catch(error => {
-      throw error;
-    });
+    return Vue.axios.get(`${resource}/${slug}`)
   },
 
   post(resource, params) {
@@ -40,9 +44,7 @@ const ApiService = {
   },
 
   delete(resource) {
-    return Vue.axios.delete(resource).catch(error => {
-      throw error;
-    });
+    return Vue.axios.delete(resource)
   }
 };
 

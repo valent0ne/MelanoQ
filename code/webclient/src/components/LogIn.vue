@@ -61,7 +61,7 @@ export default {
       this.$store
         .dispatch(LOGIN, this.form)
         .then(() => {
-          this.$store.dispatch(ADD_MESSAGE, "form_success");
+          this.$store.dispatch(ADD_MESSAGE, "success");
         })
         .catch(response => {
           this.$store.dispatch(ADD_REST_ERROR, response);

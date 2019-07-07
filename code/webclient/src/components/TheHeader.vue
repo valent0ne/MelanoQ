@@ -3,6 +3,9 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark my-nav-top">
       <img src="../assets/logo.png" class="navbar-brand-img" />
       <router-link class="navbar-brand my-navbar-brand" to="/">MelanoQ</router-link>
+      <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
       <div class="navbar-collapse offcanvas-collapse">
         <ul class="navbar-nav mr-auto">
@@ -12,36 +15,33 @@
           <li class="nav-item">
             <router-link to="/about" class="nav-link">{{$t('about')}}</router-link>
           </li>
-
-          <!-- dropdown
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="https://example.com"
-              id="dropdown01"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >Settings</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>-->
         </ul>
-        <!-- locale changer -->
-        <div id="form-inline my-2 my-lg-0">
-          <b-form-select v-model="$i18n.locale" v-on:input="storeLocale()" size="sm">
-            <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
-          </b-form-select>
-        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item db-code-number-container mr-3" v-if="isAuthenticated">
+            <span class="nav-link db-code-number">
+              {{$t('current_db_code_number')+': '}}
+              <strong>{{((dbCodeNumber != null) ? dbCodeNumber : $t('not_available'))}}</strong>
+            </span>
+          </li>
+          <!-- locale changer -->
+          <li class="nav-item locale-container mt-1">
+            <b-form-select v-model="$i18n.locale" v-on:input="storeLocale()" size="sm">
+              <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+            </b-form-select>
+          </li>
+        </ul>
       </div>
     </nav>
     <div class="nav-scroller bg-white shadow-sm">
       <nav class="nav nav-underline">
+        <span
+          class="nav-link active my-nav-link-wrapper no-underline"
+          href="#"
+          v-if="!isAuthenticated"
+        >{{$t('please_log_in')}}</span>
+
         <a
-          class="nav-link active my-nav-link-wrapper"
+          class="nav-link active my-nav-link-wrapper sign-out-link-wrapper"
           href="#"
           @click="signOut()"
           v-if="isAuthenticated"
@@ -57,6 +57,7 @@
           <font-awesome-icon icon="user-plus" :style="{ color: 'black' }" />&nbsp;
           <span class="my-nav-link">{{$t('add_new_user')}}</span>
         </router-link>
+
         <span class="nav-link active my-nav-link-wrapper nav-item-right" v-if="isAuthenticated">
           {{$t('username')+': '}}
           <strong>{{user.username}}</strong>
@@ -64,36 +65,6 @@
           {{' '+$t('profile')+': '}}
           <strong>{{$t(user.type).toLowerCase()}}</strong>
         </span>
-
-        <!--
-        <div>
-          <b-nav-dropdown>
-            <template slot="button-content">{{$t('section_a')}}</template>
-            <b-dropdown-item class="my-dropdown-item" href="#">A.I</b-dropdown-item>
-            <b-dropdown-item class="my-dropdown-item" href="#">A.II</b-dropdown-item>
-          </b-nav-dropdown>
-        </div>
-        <div>
-          <b-nav-dropdown>
-            <template slot="button-content">{{$t('section_b')}}</template>
-            <b-dropdown-item class="my-dropdown-item" href="#">B.I</b-dropdown-item>
-            <b-dropdown-item class="my-dropdown-item" href="#">B.II</b-dropdown-item>
-          </b-nav-dropdown>
-        </div>
-        <div>
-          <b-nav-dropdown>
-            <template slot="button-content">{{$t('section_c')}}</template>
-            <b-dropdown-item class="my-dropdown-item" href="#">C.I</b-dropdown-item>
-            <b-dropdown-item class="my-dropdown-item" href="#">C.II</b-dropdown-item>
-          </b-nav-dropdown>
-        </div>
-        <div>
-          <b-nav-dropdown>
-            <template slot="button-content">{{$t('section_d')}}</template>
-            <b-dropdown-item class="my-dropdown-item" href="#">D.I</b-dropdown-item>
-          </b-nav-dropdown>
-        </div>
-        -->
       </nav>
     </div>
   </div>
@@ -103,6 +74,8 @@
 import { mapState } from "vuex";
 import { LOGOUT } from "@/store/actions.type";
 import { saveLocale } from "@/common/locale.service";
+import JQuery from "jquery";
+let $ = JQuery;
 
 export default {
   name: "TheHeader",
@@ -124,10 +97,19 @@ export default {
   computed: {
     ...mapState({
       isAuthenticated: state => state.auth.isAuthenticated,
-      user: state => state.auth.user
+      user: state => state.auth.user,
+      dbCodeNumber: state => state.questionnaire.dbCodeNumber
     })
   }
 };
+
+$(function() {
+  "use strict";
+
+  $('[data-toggle="offcanvas"]').on("click", function() {
+    $(".offcanvas-collapse").toggleClass("open");
+  });
+});
 </script>
 
 <style>
@@ -137,10 +119,22 @@ export default {
 .my-nav-link:hover {
   text-decoration: underline !important;
 }
+.sign-out-link-wrapper {
+  padding-right: 0.5px !important;
+}
 .my-nav-link-wrapper:hover {
   color: #343a40 !important;
 }
 .nav-item-right {
   margin-left: auto !important;
+}
+.db-code-number,
+.db-code-number:hover {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.db-code-number-container,
+.locale-container {
+  margin-right: 0px !important;
 }
 </style>

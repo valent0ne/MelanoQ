@@ -40,6 +40,13 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
         return q;
     }
 
+    public List<Questionnaire> findAll(){
+
+        List<Questionnaire> q = questionnaireRepository.findAll();
+
+        return q;
+    }
+
     public Questionnaire insert(Questionnaire q) throws BusinessException{
         //if there is no section A1, then there is something wrong
         if(q.getA1() == null){

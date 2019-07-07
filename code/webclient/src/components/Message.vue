@@ -1,19 +1,21 @@
 <template>
   <div>
-    <b-alert
-      :show="error"
-      variant="danger"
-      fade
-      dismissible
-      @dismissed="dismissError()"
-    >{{$t(error)}}</b-alert>
-    <b-alert
-      :show="message"
-      variant="success"
-      dismissible
-      fade
-      @dismissed="dismissMessage()"
-    >{{$t(message)}}</b-alert>
+    <div v-for="error in errors" :key="error.key">
+      <b-alert show variant="danger" fade dismissible @dismissed="dismissError(error.key)">
+        <strong v-if="error.code">{{error.code}}</strong>
+        {{$t(error.error)}}
+      </b-alert>
+    </div>
+
+    <div v-for="message in messages" :key="message.key">
+      <b-alert
+        show
+        variant="success"
+        dismissible
+        fade
+        @dismissed="dismissMessage(message.key)"
+      >{{$t(message.message)}}</b-alert>
+    </div>
   </div>
 </template>
 
@@ -27,17 +29,17 @@ export default {
     return {};
   },
   methods: {
-    dismissError() {
-      this.$store.dispatch(DISMISS_ERROR, {});
+    dismissError(key) {
+      this.$store.dispatch(DISMISS_ERROR, key);
     },
-    dismissMessage() {
-      this.$store.dispatch(DISMISS_MESSAGE, {});
+    dismissMessage(key) {
+      this.$store.dispatch(DISMISS_MESSAGE, key);
     }
   },
   computed: {
     ...mapState({
-      error: state => state.error.error,
-      message: state => state.message.message,
+      errors: state => state.error.errors,
+      messages: state => state.message.messages,
       isAuthenticated: state => state.auth.isAuthenticated,
       user: state => state.auth.user
     })

@@ -8,3 +8,5 @@ export const SET_MESSAGE = "setMessage";
 export const PURGE_MESSAGE = "purgeMessage";
 export const SET_DB_CODE_NUMBER = "setDbCodeNumber";
 export const PURGE_DB_CODE_NUMBER = "purgeDbCodeNumber";
+export const SET_QUESTIONNAIRES = "setQuestionnaires";
+export const PURGE_QUESTIONNAIRES = "purgeQuestionnaires";
