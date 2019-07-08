@@ -83,8 +83,13 @@ body {
   width: 20% !important;
 }
 
+
 .w-15 {
   width: 15% !important;
+}
+
+.no-padding{
+  padding:0px!important;
 }
 
 .no-underline{

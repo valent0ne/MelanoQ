@@ -158,6 +158,10 @@ export default {
       this.$store.dispatch(ADD_ERROR, "not_authenticated");
       this.$router.push({ name: "home" });
     }
+    if (this.dbCodeNumber) {
+      this.$store.dispatch(ADD_ERROR, "clean_db_code_number");
+      this.$router.push({ name: "home" });
+    }
   },
   methods: {
     onSubmit(evt) {

@@ -32,10 +32,10 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
     private static final TimeZone tz = TimeZone.getTimeZone("GMT");
 
     public Questionnaire findOneByDbCodeNumber(String dbCodeNumber){
-
-        Questionnaire q = questionnaireRepository.findOneByDbCodeNumber(dbCodeNumber);
+        LOGGER.info("findOneByDbCodeNumber: dbCodeNUmber = {}", dbCodeNumber);
+        Questionnaire q = questionnaireRepository.findOneByDbCodeNumberIgnoreCase(dbCodeNumber);
         if(q == null){
-            throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.DB_CODE_NUMBER_ALREADY_IN_USE);
+            throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.DB_CODE_NUMBER_NOT_VALID);
         }
         return q;
     }

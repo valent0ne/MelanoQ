@@ -17,12 +17,27 @@
           </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item db-code-number-container mr-3" v-if="isAuthenticated">
+          <li class="nav-item db-code-number-container mr-2" v-if="isAuthenticated">
             <span class="nav-link db-code-number">
               {{$t('current_db_code_number')+': '}}
               <strong>{{((dbCodeNumber != null) ? dbCodeNumber : $t('not_available'))}}</strong>
+              <a id="deleteDbCodeNumberButton">
+                <font-awesome-icon
+                  icon="trash-alt"
+                  v-if="isAuthenticated && dbCodeNumber"
+                  class="trash-icon"
+                  @click="deleteDbCodeNumber()"
+                />
+              </a>
+              <b-tooltip
+                target="deleteDbCodeNumberButton"
+                :title="$t('click_to_forget_db_code_number')"
+                placement="bottom"
+                :delay="{show: 1000, hide:0}"
+              ></b-tooltip>
             </span>
           </li>
+
           <!-- locale changer -->
           <li class="nav-item locale-container mt-1">
             <b-form-select v-model="$i18n.locale" v-on:input="storeLocale()" size="sm">
@@ -72,7 +87,11 @@
 
 <script>
 import { mapState } from "vuex";
-import { LOGOUT } from "@/store/actions.type";
+import {
+  LOGOUT,
+  DELETE_DB_CODE_NUMBER,
+  ADD_MESSAGE
+} from "@/store/actions.type";
 import { saveLocale } from "@/common/locale.service";
 import JQuery from "jquery";
 let $ = JQuery;
@@ -91,6 +110,11 @@ export default {
     signOut() {
       this.$store.dispatch(LOGOUT).then(() => {
         this.$router.push({ name: "home" });
+      });
+    },
+    deleteDbCodeNumber() {
+      this.$store.dispatch(DELETE_DB_CODE_NUMBER).then(() => {
+        this.$store.dispatch(ADD_MESSAGE, "db_code_number_removed");
       });
     }
   },
@@ -136,5 +160,15 @@ $(function() {
 .db-code-number-container,
 .locale-container {
   margin-right: 0px !important;
+}
+
+.trash-icon:hover {
+  cursor: pointer !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.trash-icon {
+  margin-left: 10px !important;
+  color: rgba(255, 255, 255, 0.5) !important;
 }
 </style>

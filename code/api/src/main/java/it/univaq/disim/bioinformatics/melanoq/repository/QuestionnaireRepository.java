@@ -12,8 +12,9 @@ public interface QuestionnaireRepository extends CrudRepository<Questionnaire, S
 
     // do not need to re-declare update, save, delete
 
-    @Query("#{#n1ql.selectEntity} where #{#n1ql.filter} and a1.dbCodeNumber = $1")
-    Questionnaire findOneByDbCodeNumber(String dbCodeNumber);
+    @Query("#{#n1ql.selectEntity} where #{#n1ql.filter} and upper(a1.dbCodeNumber) = upper($1)")
+    Questionnaire findOneByDbCodeNumberIgnoreCase(String dbCodeNumber);
 
+    @Query("#{#n1ql.selectEntity} where #{#n1ql.filter}")
     List<Questionnaire> findAll();
 }

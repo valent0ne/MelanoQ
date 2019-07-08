@@ -1,5 +1,5 @@
 
-import { INSERT_DB_CODE_NUMBER, DELETE_DB_CODE_NUMBER, GET_ALL_QUESTIONNAIRES, DELETE_QUESTIONNAIRES, ADD_ERROR } from "./actions.type";
+import { INSERT_DB_CODE_NUMBER, DELETE_DB_CODE_NUMBER, GET_ALL_QUESTIONNAIRES, DELETE_QUESTIONNAIRES, ADD_ERROR, VALIDATE_DB_CODE_NUMBER } from "./actions.type";
 import { SET_DB_CODE_NUMBER, PURGE_DB_CODE_NUMBER, SET_QUESTIONNAIRES, PURGE_QUESTIONNAIRES } from "./mutations.type";
 import QuestionnaireService from "@/common/questionnaire.service";
 import ApiService from '@/common/api.service';
@@ -21,6 +21,25 @@ const getters = {
 };
 
 const actions = {
+  [VALIDATE_DB_CODE_NUMBER](context, dbCodeNumber) {
+    if (!context.getters.currentUser.token) {
+      context.dispatch(ADD_ERROR, "no_token")
+      return;
+    }
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader(context.getters.currentUser.token)
+      ApiService.get("/questionnaire/validate/" + dbCodeNumber)
+        .then(({ data }) => {
+          if (data.error || data.data == null) {
+            throw data
+          }
+          resolve(data);
+        })
+        .catch((response) => {
+          reject(response);
+        });
+    });
+  },
   [INSERT_DB_CODE_NUMBER](context, dbCodeNumber) {
     context.commit(SET_DB_CODE_NUMBER, dbCodeNumber);
   },
@@ -34,12 +53,12 @@ const actions = {
     }
     return new Promise((resolve, reject) => {
       ApiService.setHeader(context.getters.currentUser.token)
-      ApiService.get("query")
+      ApiService.get("/questionnaire/query")
         .then(({ data }) => {
           if (data.error || data.data == null) {
             throw data
           }
-          context.commit(SET_QUESTIONNAIRES, data)
+          context.commit(SET_QUESTIONNAIRES, data.data)
           resolve(data);
         })
         .catch((response) => {
@@ -60,8 +79,8 @@ const mutations = {
     state.questionnaires = []
   },
   [SET_DB_CODE_NUMBER](state, data) {
-    state.dbCodeNumber = data;
-    QuestionnaireService.saveDbCodeNumber(data)
+    state.dbCodeNumber = data.toUpperCase();
+    QuestionnaireService.saveDbCodeNumber(data.toUpperCase())
   },
   [PURGE_DB_CODE_NUMBER](state) {
     state.dbCodeNumber = null;

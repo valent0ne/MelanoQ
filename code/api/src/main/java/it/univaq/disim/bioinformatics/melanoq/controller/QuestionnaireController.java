@@ -107,6 +107,13 @@ public class QuestionnaireController{
         return response;
     }
 
+    @GetMapping("/validate/{dbCodeNumber}")
+    public Response getQuestionnaires(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
+        Boolean outcome = questionnaireService.findOneByDbCodeNumber(dbCodeNumber) != null;
+        Response<Boolean> response = new Response<>(HttpStatus.OK, request);
+        response.setData(outcome);
+        return response;
+    }
 
     //////////////////////////// A1 ////////////////////////////////
 

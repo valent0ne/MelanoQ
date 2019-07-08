@@ -32,13 +32,10 @@ const mutations = {
       state.errors.push({ "key": Date.now(), "error": "connection_error" })
     }
     else if (response.status) {
-      state.errors.push({ "key": Date.now(), "error": "rest_error_".concat(response.status), "code": response.status })
-    }
-    else if (response.error) {
-      state.errors.push({ "key": Date.now(), "error": response.error });
+      state.errors.push({ "key": Date.now(), "error": (response.error) ? response.error.toLowerCase().replace(/ /g, '_') : "rest_error_" + response.status, "code": response.status })
     }
     else {
-      state.errors.push({ "key": Date.now(), "error": "connection_error" })
+      state.errors.push({ "key": Date.now(), "error": "generic_error" })
     }
 
   },
