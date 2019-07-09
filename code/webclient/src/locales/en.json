@@ -472,10 +472,12 @@
   "type_to_search": "type to search...",
   "per_page": "Per page",
   "actions": "Actions",
-  "click_to_pick_db_code_number": "Pick this database code number",
+  "click_to_pick_db_code_number": "click this type of button to pick this database code number;",
   "click_to_refresh": "Refresh the list below",
   "click_to_forget_db_code_number": "Forget this database code number",
-  "click_to_show_details": "Open the questionnaire here",
-  "click_to_show_details_new_page": "Open the questionnaire in a new page",
-  "clean_db_code_number": "You cannot fill the A1 section again (delete the database code number before proceeding with the insertion of a new questionnaire."
+  "click_to_show_details": "click this type of button to open/close the questionnaire here;",
+  "click_to_show_details_new_page": "click this type of button to open the questionnaire in a new page.",
+  "clean_db_code_number": "You cannot fill the A1 section again (delete the database code number before proceeding with the insertion of a new questionnaire.",
+  "cannot_retrieve_questionnaire": "Cannot retrieve the desired questionnaire",
+  "questionnaire": "Questionnaire"
 }

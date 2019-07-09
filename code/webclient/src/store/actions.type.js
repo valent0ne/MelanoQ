@@ -44,3 +44,4 @@ export const INSERT_USER = "insertUser";
 export const GET_ALL_QUESTIONNAIRES = "getAllQuestionnaires";
 export const DELETE_QUESTIONNAIRES = "deleteQuestionnaires";
 export const VALIDATE_DB_CODE_NUMBER = "validateDbCodeNUmber";
+export const GET_QUESTIONNAIRE = "getQuestionnaire"

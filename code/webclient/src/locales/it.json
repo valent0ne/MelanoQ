@@ -475,5 +475,6 @@
   "click_to_forget_db_code_number": "to_translate",
   "click_to_show_details": "to_translate",
   "click_to_show_details_new_page": "to_translate",
-  "clean_db_code_number": "to_translate"
+  "clean_db_code_number": "to_translate",
+  "cannot_retrieve_questionnaire": "to_translate"
 }

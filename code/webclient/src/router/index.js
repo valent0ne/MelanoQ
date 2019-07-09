@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Choice from '@/views/Choice.vue'
-import Report from '@/views/Report.vue'
+import Lookup from '@/views/Lookup.vue'
 import A1 from "@/views/A1.vue"
 import A2 from "@/views/A2.vue"
 import B1 from "@/views/B1.vue"
@@ -16,6 +16,7 @@ import C3 from "@/views/C3.vue"
 import CE from "@/views/CE.vue"
 import D from "@/views/D.vue"
 import User from "@/views/User.vue"
+import Questionnaire from '@/views/Questionnaire.vue';
 
 
 Vue.use(Router)
@@ -39,9 +40,9 @@ export default new Router({
       component: Choice
     },
     {
-      path: '/report',
-      name: 'report',
-      component: Report
+      path: '/lookup',
+      name: 'lookup',
+      component: Lookup
     },
     {
       path: '/:action/a1',
@@ -113,6 +114,12 @@ export default new Router({
       path: '/:action/user',
       name: 'user',
       component: User,
+      props: true
+    },
+    {
+      path: '/questionnaire/:localDbCodeNumber',
+      name: 'questionnaire',
+      component: Questionnaire,
       props: true
     }
   ]

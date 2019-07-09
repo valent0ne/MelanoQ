@@ -8,6 +8,7 @@ import vuelidate from './plugins/vuelidate'
 import datepicker from './plugins/datepicker'
 import moment from './plugins/moment'
 import fontawesome from './plugins/fontawesome'
+import jsontreeview from './plugins/jsontreeview'
 
 import ApiService from "./common/api.service"
 
@@ -25,5 +26,6 @@ new Vue({
   datepicker,
   moment,
   fontawesome,
+  jsontreeview,
   render: h => h(App)
 }).$mount('#app')

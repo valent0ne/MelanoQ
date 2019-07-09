@@ -4,8 +4,14 @@
       <Message />
       <b-card v-if="isAuthenticated" class="mb-4">
         <div class="card-body d-flex flex-column">
-          <b-card-title>title</b-card-title>
+          <b-card-title>{{$t('questionnaire')}} {{localDbCodeNumber}}</b-card-title>
           <b-card-text class="line-break mt-2">text</b-card-text>
+          <b-card bg-variant="light">
+            <tree-view
+              :data="questionnaire"
+              :options="{maxDepth: 100, rootObjectKey: 'questionnaire'}"
+            ></tree-view>
+          </b-card>
         </div>
       </b-card>
     </div>
@@ -13,14 +19,18 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import {} from "@/store/actions.type";
+import { ADD_ERROR, GET_QUESTIONNAIRE } from "@/store/actions.type";
 
 import Message from "@/components/Message.vue";
 
 export default {
-  name: "report",
+  name: "questionnaire",
+
   data() {
-    return {};
+    return {
+      questionnaire: null,
+      localDbCodeNumber: this.$route.params.localDbCodeNumber
+    };
   },
 
   created: function() {
@@ -32,6 +42,14 @@ export default {
       this.$store.dispatch(ADD_ERROR, "not_authenticated");
       this.$router.push({ name: "home" });
     }
+    this.$store
+      .dispatch(GET_QUESTIONNAIRE, this.localDbCodeNumber)
+      .then(data => {
+        this.questionnaire = data.data;
+      })
+      .catch(() => {
+        this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaire");
+      });
   },
   methods: {},
   components: {
@@ -40,9 +58,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.auth.user,
-      isAuthenticated: state => state.auth.isAuthenticated,
-      dbCodeNumber: state => state.questionnaire.dbCodeNumber,
-      questionnaires: state => state.questionnaire.questionnaires
+      isAuthenticated: state => state.auth.isAuthenticated
     })
   }
 };

@@ -1,6 +1,19 @@
 
-import { INSERT_DB_CODE_NUMBER, DELETE_DB_CODE_NUMBER, GET_ALL_QUESTIONNAIRES, DELETE_QUESTIONNAIRES, ADD_ERROR, VALIDATE_DB_CODE_NUMBER } from "./actions.type";
-import { SET_DB_CODE_NUMBER, PURGE_DB_CODE_NUMBER, SET_QUESTIONNAIRES, PURGE_QUESTIONNAIRES } from "./mutations.type";
+import {
+  INSERT_DB_CODE_NUMBER,
+  DELETE_DB_CODE_NUMBER,
+  GET_ALL_QUESTIONNAIRES,
+  DELETE_QUESTIONNAIRES,
+  ADD_ERROR,
+  VALIDATE_DB_CODE_NUMBER,
+  GET_QUESTIONNAIRE
+} from "./actions.type";
+import {
+  SET_DB_CODE_NUMBER,
+  PURGE_DB_CODE_NUMBER,
+  SET_QUESTIONNAIRES,
+  PURGE_QUESTIONNAIRES
+} from "./mutations.type";
 import QuestionnaireService from "@/common/questionnaire.service";
 import ApiService from '@/common/api.service';
 
@@ -45,6 +58,26 @@ const actions = {
   },
   [DELETE_DB_CODE_NUMBER](context) {
     context.commit(PURGE_DB_CODE_NUMBER);
+  },
+  [GET_QUESTIONNAIRE](context, dbCodeNumber) {
+    if (!context.getters.currentUser.token) {
+      context.dispatch(ADD_ERROR, "no_token")
+      return;
+    }
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader(context.getters.currentUser.token)
+      ApiService.get("/questionnaire/" + dbCodeNumber)
+        .then(({ data }) => {
+          if (data.error || data.data == null) {
+            throw data
+          }
+          context.commit(SET_QUESTIONNAIRES, data.data)
+          resolve(data);
+        })
+        .catch((response) => {
+          reject(response);
+        });
+    });
   },
   [GET_ALL_QUESTIONNAIRES](context) {
     if (!context.getters.currentUser.token) {

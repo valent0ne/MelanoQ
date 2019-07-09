@@ -44,7 +44,32 @@
       </b-card>
       <b-card v-if="isAuthenticated" class="mb-4">
         <div class="card-body d-flex flex-column">
-          <b-card-text>{{$t('select_from_available_questionnaires')}}</b-card-text>
+          <b-card-text>
+            {{$t('select_from_available_questionnaires')}}
+            <ul class="mt-2">
+              <li class="button-list">
+                <b-button variant="outline-success" size="sm" class="fix-btn-size">
+                  <font-awesome-icon icon="check" />
+                </b-button>
+                {{$t('click_to_pick_db_code_number')}}
+              </li>
+              <li class="button-list">
+                <b-button variant="outline-info" size="sm">
+                  <font-awesome-icon icon="eye" />
+                </b-button>
+                {{$t('click_to_show_details')}}
+              </li>
+              <li>
+                <b-button variant="outline-secondary" size="sm">
+                  <font-awesome-icon icon="external-link-alt" />
+                </b-button>
+                {{$t('click_to_show_details_new_page')}}
+              </li>
+            </ul>
+
+            <hr />
+          </b-card-text>
+
           <!-- table begin -->
           <b-container fluid class="no-padding">
             <!-- User Interface controls -->
@@ -116,51 +141,62 @@
 
               <template slot="actions" slot-scope="row">
                 <b-button
-                  :id="row.item.a1.dbCodeNumber"
+                  class="fix-btn-size"
+                  :id="row.item.a1.dbCodeNumber+'check'"
                   variant="outline-success"
                   size="sm"
                   @click="setDbCodeNumber(row.item.a1.dbCodeNumber)"
                 >
                   <font-awesome-icon icon="check" />
                 </b-button>
+                <!--
                 <b-tooltip
                   :target="row.item.a1.dbCodeNumber"
                   :title="$t('click_to_pick_db_code_number')"
                   placement="top"
                   :delay="{show: 1000, hide:0}"
-                ></b-tooltip>
+                ></b-tooltip>-->
                 <b-button
-                  :id="row.item.a1.dbCodeNumber+'1'"
+                  :id="row.item.a1.dbCodeNumber+'eye'"
                   variant="outline-info ml-2"
                   size="sm"
                   @click="row.toggleDetails"
                 >
                   <font-awesome-icon icon="eye" />
                 </b-button>
+                <!--
                 <b-tooltip
                   :target="row.item.a1.dbCodeNumber+'1'"
                   :title="$t('click_to_show_details')"
                   placement="top"
                   :delay="{show: 1000, hide:0}"
-                ></b-tooltip>
-                <b-button
-                  :id="row.item.a1.dbCodeNumber+'2'"
-                  variant="outline-secondary ml-2"
-                  size="sm"
-                  @click="row.toggleDetails"
-                >
-                  <font-awesome-icon icon="external-link-alt" />
-                </b-button>
+                ></b-tooltip>-->
+                <router-link :to="'/questionnaire/'+row.item.a1.dbCodeNumber" target="_blank">
+                  <b-button
+                    :id="row.item.a1.dbCodeNumber+'external-link-alt'"
+                    variant="outline-secondary ml-2"
+                    size="sm"
+                  >
+                    <font-awesome-icon icon="external-link-alt" />
+                  </b-button>
+                </router-link>
+
+                <!--
                 <b-tooltip
                   :target="row.item.a1.dbCodeNumber+'2'"
                   :title="$t('click_to_show_details_new_page')"
                   placement="top"
                   :delay="{show: 1000, hide:0}"
-                ></b-tooltip>
+                ></b-tooltip>-->
               </template>
 
               <template slot="row-details" slot-scope="row">
-                <b-card>{{JSON.stringify(row.item)}}</b-card>
+                <b-card bg-variant="light">
+                  <tree-view
+                    :data="row.item"
+                    :options="{maxDepth: 1, rootObjectKey: 'questionnaire'}"
+                  ></tree-view>
+                </b-card>
               </template>
             </b-table>
 
@@ -197,7 +233,7 @@ import { required, minLength, maxLength } from "vuelidate/lib/validators";
 import Message from "@/components/Message.vue";
 
 export default {
-  name: "report",
+  name: "lookup",
   data() {
     return {
       currentPage: 1,

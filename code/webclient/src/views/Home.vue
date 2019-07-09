@@ -33,7 +33,7 @@
           <b-button
             variant="outline-primary"
             class="mr-2 mb-1 mt-3"
-            to="report"
+            to="lookup"
             :disabled="user.type !== 'physician'"
           >{{$t('complete_an_existing_questionnaire')}}</b-button>
           <b-button
