@@ -22,17 +22,17 @@ public class EvaluationServiceImpl implements EvaluationService {
         switch(section){
 
             case "b":
-                if(q.getBEvaluation() != null){
+                if(q.getBe() != null){
                     throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.SECTION_ALREADY_PRESENT);
                 }
-                q.setBEvaluation(e);
+                q.setBe(e);
                 break;
 
             case "c":
-                if(q.getCEvaluation() != null){
+                if(q.getCe() != null){
                     throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.SECTION_ALREADY_PRESENT);
                 }
-                q.setCEvaluation(e);
+                q.setCe(e);
                 break;
 
             default:
@@ -52,17 +52,17 @@ public class EvaluationServiceImpl implements EvaluationService {
         switch(section) {
 
             case "b":
-                if (q.getBEvaluation() == null) {
+                if (q.getBe() == null) {
                     throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
                 }
-                eSection = q.getBEvaluation();
+                eSection = q.getBe();
                 break;
 
             case "c":
-                if (q.getCEvaluation() == null) {
+                if (q.getCe() == null) {
                     throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
                 }
-                eSection = q.getCEvaluation();
+                eSection = q.getCe();
                 break;
 
             default:
@@ -79,17 +79,17 @@ public class EvaluationServiceImpl implements EvaluationService {
         switch(section) {
 
             case "b":
-                if (q.getBEvaluation() == null) {
+                if (q.getBe() == null) {
                     throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
                 }
-                q.setBEvaluation(e);
+                q.setBe(e);
                 break;
 
             case "c":
-                if (q.getCEvaluation() == null) {
+                if (q.getCe() == null) {
                     throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
                 }
-                q.setCEvaluation(e);
+                q.setCe(e);
                 break;
 
             default:
@@ -107,17 +107,17 @@ public class EvaluationServiceImpl implements EvaluationService {
         switch(section) {
 
             case "b":
-                if (q.getBEvaluation() == null) {
+                if (q.getBe() == null) {
                     throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
                 }
-                q.setBEvaluation(null);
+                q.setBe(null);
                 break;
 
             case "c":
-                if (q.getCEvaluation() == null) {
+                if (q.getCe() == null) {
                     throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
                 }
-                q.setCEvaluation(null);
+                q.setCe(null);
                 break;
 
             default:

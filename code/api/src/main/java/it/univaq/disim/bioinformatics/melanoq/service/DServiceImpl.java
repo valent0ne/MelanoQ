@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("Duplicates")
@@ -22,7 +23,10 @@ public class DServiceImpl implements DService{
 
         Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
-        q.getDList().add(d);
+        if(q.getD() == null){
+            q.setD(new ArrayList<>());
+        }
+        q.getD().add(d);
 
         questionnaireService.insert(q);
         return d;
@@ -32,18 +36,18 @@ public class DServiceImpl implements DService{
 
         Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
-        if(q.getDList().size() == 0 || q.getDList() == null){
+        if(q.getD().size() == 0 || q.getD() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
         }
 
-        return q.getDList();
+        return q.getD();
     }
 
     public D update(String dbCodeNumber, D d) throws BusinessException{
 
         Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
-        List<D> dList = q.getDList();
+        List<D> dList = q.getD();
         // If the element with the same identifier of d is not already in the list then there is an error
         if(!dList.contains(d.getIdentifier())){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
@@ -53,7 +57,7 @@ public class DServiceImpl implements DService{
         // next add the new element d in the list
         dList.add(d);
 
-        q.setDList(dList);
+        q.setD(dList);
         questionnaireService.update(q);
         return d;
     }
@@ -62,18 +66,18 @@ public class DServiceImpl implements DService{
 
         Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
-        if(q.getDList().size() == 0 || q.getDList() == null){
+        if(q.getD().size() == 0 || q.getD() == null){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
         }
 
-        q.setDList(null);
+        q.setD(null);
         questionnaireService.update(q);
     }
 
     public void delete(String dbCodeNumber, D d) throws BusinessException{
         Questionnaire q = questionnaireService.findOneByDbCodeNumber(dbCodeNumber);
 
-        List<D> dList = q.getDList();
+        List<D> dList = q.getD();
         // If the element with the same identifier of d is not already in the list than there is an error
         if(!dList.contains(d)){
             throw new BusinessException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
@@ -81,7 +85,7 @@ public class DServiceImpl implements DService{
         // Otherwise, i.e. the element with the same identifier is already in the list, remove it
         dList.remove(d);
 
-        q.setDList(dList);
+        q.setD(dList);
         questionnaireService.update(q);
     }
 

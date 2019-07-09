@@ -48,7 +48,7 @@
                   <b-button
                     variant="outline-danger"
                     :pressed="!difficultQuestionsToggle"
-                    @click="difficultQuestionsToggle = false; $v.form.difficultQuestions.$model=[{number:''}];"
+                    @click="difficultQuestionsToggle = false; $v.form.difficultQuestions.$model=[''];"
                   >{{$t('no')}}</b-button>
                 </b-button-group>
               </span>
@@ -56,10 +56,12 @@
               <b-form inline class="mt-2" v-if="difficultQuestionsToggle">
                 <span v-for="(dq, index) in $v.form.difficultQuestions.$each.$iter" :key="index">
                   <b-form-input
-                    class="mr-2 mb-2"
-                    v-model="dq.number.$model"
-                    :state="dq.number.$dirty ? !dq.number.$error : null"
-                    type="text"
+                    class="mr-2 mb-2 width-30"
+                    v-model="dq.$model"
+                    :state="dq.$dirty ? !dq.$error : null"
+                    type="number"
+                    min="1"
+                    max="18"
                     required
                     :placeholder="$t('difficultQuestionsNumber_desc')"
                   ></b-form-input>
@@ -103,11 +105,12 @@
 import { mapState } from "vuex";
 import {
   ADD_REST_ERROR,
+  GET_QUESTIONNAIRE,
   ADD_MESSAGE,
   ADD_ERROR,
   INSERT_BE
 } from "@/store/actions.type";
-import { required, between, requiredIf } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 import Message from "@/components/Message.vue";
 
@@ -117,7 +120,7 @@ export default {
     return {
       form: {
         complexityOfTheQuestionnaire: null,
-        difficultQuestions: [{ number: "" }]
+        difficultQuestions: [""]
       },
       complexityOfTheQuestionnaireOptions: [
         { value: null, text: this.$t("please_select_option") },
@@ -148,12 +151,21 @@ export default {
       this.$store.dispatch(ADD_ERROR, "no_db_code_number");
       this.$router.push({ name: "home" });
     }
+    this.$store
+      .dispatch(GET_QUESTIONNAIRE, this.dbCodeNumber)
+      .then(data => {
+        if (data.data.be) {
+          this.$store.dispatch(ADD_ERROR, "section_already_inserted");
+          this.$router.push({ name: "choice" });
+        }
+      })
+      .catch(() => {
+        this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaire");
+      });
   },
   methods: {
     addDifficultQuestionNumberField() {
-      this.form.difficultQuestions.push({
-        number: ""
-      });
+      this.form.difficultQuestions.push("");
     },
     removeDifficultQuestionNumberField() {
       if (this.form.difficultQuestions.length > 1) {
@@ -195,7 +207,7 @@ export default {
       });
       //TODO reset
       this.form.complexityOfTheQuestionnaire = null;
-      this.form.difficultQuestions = [{ number: "" }];
+      this.form.difficultQuestions = [];
       this.difficultQuestionsToggle = false;
 
       this.$v.$reset();
@@ -221,14 +233,7 @@ export default {
     form: {
       complexityOfTheQuestionnaire: { required },
       difficultQuestions: {
-        $each: {
-          number: {
-            required: requiredIf(function() {
-              return this.difficultQuestionsToggle;
-            }),
-            between: between(1, 18)
-          }
-        }
+        $each: {}
       }
     }
   },

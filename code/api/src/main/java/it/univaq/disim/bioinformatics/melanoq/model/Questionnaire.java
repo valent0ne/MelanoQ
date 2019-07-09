@@ -32,7 +32,7 @@ public class Questionnaire {
     private B3 b3;
 
     @Field
-    private Evaluation bEvaluation;
+    private Evaluation be;
 
     @Field
     private C1 c1;
@@ -44,10 +44,10 @@ public class Questionnaire {
     private C3 c3;
 
     @Field
-    private Evaluation cEvaluation;
+    private Evaluation ce;
 
     @Field
-    private List<D> dList;
+    private List<D> d;
 
 
     public Questionnaire(){
@@ -104,12 +104,12 @@ public class Questionnaire {
         this.b3 = b3;
     }
 
-    public Evaluation getBEvaluation() {
-        return bEvaluation;
+    public Evaluation getBe() {
+        return be;
     }
 
-    public void setBEvaluation(Evaluation bEvaluation) {
-        this.bEvaluation = bEvaluation;
+    public void setBe(Evaluation be) {
+        this.be = be;
     }
 
     public C1 getC1() {
@@ -136,19 +136,19 @@ public class Questionnaire {
         this.c3 = c3;
     }
 
-    public Evaluation getCEvaluation() {
-        return cEvaluation;
+    public Evaluation getCe() {
+        return ce;
     }
 
-    public void setCEvaluation(Evaluation cEvaluation) {
-        this.cEvaluation = cEvaluation;
+    public void setCe(Evaluation ce) {
+        this.ce = ce;
     }
 
-    public List<D> getDList() {
-        return dList;
+    public List<D> getD() {
+        return d;
     }
 
-    public void setDList(List<D> dList) {
-        this.dList = dList;
+    public void setD(List<D> d) {
+        this.d = d;
     }
 }

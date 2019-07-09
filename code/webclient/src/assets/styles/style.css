@@ -327,12 +327,16 @@ a.nav-link{
   padding-left: 14px;
 }
 
+.message-box{
+  overflow-wrap: break-word;
+}
 
 .tree-view-item-key-with-chevron.opened::before {
     top:4px;
     transform: rotate(90deg);  
     -webkit-transform: rotate(90deg);
 }
+
 
 .tree-view-item-key-with-chevron::before {
     color: #444;

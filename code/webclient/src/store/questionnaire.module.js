@@ -91,6 +91,13 @@ const actions = {
           if (data.error || data.data == null) {
             throw data
           }
+          // convert dates field to Date (to have correct sorting)
+          for (var item in data.data) {
+            for (var d in data.data[item].a1.datesOfUpdateQuestionnaire) {
+              data.data[item].a1.datesOfUpdateQuestionnaire[d] = new Date(data.data[item].a1.datesOfUpdateQuestionnaire[d])
+            }
+          }
+
           context.commit(SET_QUESTIONNAIRES, data.data)
           resolve(data);
         })

@@ -6,6 +6,7 @@
       <div class="card-body d-flex flex-column">
         <b-card-title>{{$t('section_selection')}}</b-card-title>
         <b-card-text>{{$t('choose_section')}}</b-card-text>
+
         <div>
           <SectionButton type="A" variant="outline-info" v-bind:subsections="{1:'I', 2:'II'}" />
           <SectionButton
@@ -25,6 +26,7 @@
             :disabled="user.type != 'physician'"
           >{{$t('section_d')}}</b-button>
         </div>
+        <b-form-text>{{$t('choose_section_info')}}</b-form-text>
       </div>
     </b-card>
   </div>

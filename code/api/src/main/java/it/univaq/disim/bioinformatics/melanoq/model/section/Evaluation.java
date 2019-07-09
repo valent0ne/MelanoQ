@@ -11,7 +11,7 @@ public class Evaluation {
     private String complexityOfTheQuestionnaire;
 
     @Field
-    private List<Integer> difficultQuestions;
+    private List<String> difficultQuestions;
 
     public Evaluation(){ }
 
@@ -23,11 +23,11 @@ public class Evaluation {
         this.complexityOfTheQuestionnaire = complexityOfTheQuestionnaire;
     }
 
-    public List<Integer> getDifficultQuestions() {
+    public List<String> getDifficultQuestions() {
         return difficultQuestions;
     }
 
-    public void setDifficultQuestions(List<Integer> difficultQuestions) {
+    public void setDifficultQuestions(List<String> difficultQuestions) {
         this.difficultQuestions = difficultQuestions;
     }
 }

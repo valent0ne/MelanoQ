@@ -414,6 +414,7 @@
 import { mapState } from "vuex";
 import {
   ADD_REST_ERROR,
+  GET_QUESTIONNAIRE,
   ADD_MESSAGE,
   ADD_ERROR,
   INSERT_C1
@@ -434,48 +435,48 @@ export default {
         neviCountGreatherThan2mm: [
           {
             site: "Scalp",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           },
           {
             site: "Face (including ears)",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           },
           {
             site: "Neck",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           },
           {
             site: "Anterior thorax + abdomen",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           },
           {
             site: "Back",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           },
           {
             site: "Upper extremities including deltoid",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           },
           {
             site: "Lower extremities including gluteus",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           },
           {
             site: "Palms",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           },
           {
             site: "Soles",
-            leftZoneNumber: "",
-            rightZoneNumber: ""
+            leftZoneNumber: 0,
+            rightZoneNumber: 0
           }
         ],
         neviCountLessThan2mm: null,
@@ -488,7 +489,7 @@ export default {
           siteOfMediumSizedNevi: "",
           numberOfLargeSizedNevi: "",
           siteOfLargeSizedNevi: "",
-          numberOfGiantNevi: "",
+          numberOfGiantSizedNevi: "",
           siteOfGiantSizedNevi: ""
         },
         blueNevi: "",
@@ -532,8 +533,8 @@ export default {
       ],
       solarLentiginesAtSiteOfMelanomaOptions: [
         { value: null, text: this.$t("solarLentiginesAtSiteOfMelanoma_desc") },
-        { value: "Yes", text: this.$t("yes") },
-        { value: "No", text: this.$t("no") }
+        { value: true, text: this.$t("yes") },
+        { value: false, text: this.$t("no") }
       ],
       neviCountLessThan2mmOptions: [
         { value: null, text: this.$t("please_select_option") },
@@ -548,8 +549,8 @@ export default {
           value: null,
           text: this.$t("clinicallyAtypicalNeviAtSiteOfMelanoma_desc")
         },
-        { value: "Yes", text: this.$t("yes") },
-        { value: "No", text: this.$t("no") }
+        { value: true, text: this.$t("yes") },
+        { value: false, text: this.$t("no") }
       ],
       actinicKeratosesSiteOptions: [
         {
@@ -589,6 +590,17 @@ export default {
       this.$store.dispatch(ADD_ERROR, "no_db_code_number");
       this.$router.push({ name: "home" });
     }
+    this.$store
+      .dispatch(GET_QUESTIONNAIRE, this.dbCodeNumber)
+      .then(data => {
+        if (data.data.c1) {
+          this.$store.dispatch(ADD_ERROR, "section_already_inserted");
+          this.$router.push({ name: "choice" });
+        }
+      })
+      .catch(() => {
+        this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaire");
+      });
   },
   methods: {
     onSubmit(evt) {
@@ -634,48 +646,48 @@ export default {
       this.form.neviCountGreatherThan2mm = [
         {
           site: "Scalp",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         },
         {
           site: "Face (including ears)",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         },
         {
           site: "Neck",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         },
         {
           site: "Anterior thorax + abdomen",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         },
         {
           site: "Back",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         },
         {
           site: "Upper extremities including deltoid",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         },
         {
           site: "Lower extremities including gluteus",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         },
         {
           site: "Palms",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         },
         {
           site: "Soles",
-          leftZoneNumber: "",
-          rightZoneNumber: ""
+          leftZoneNumber: 0,
+          rightZoneNumber: 0
         }
       ];
 

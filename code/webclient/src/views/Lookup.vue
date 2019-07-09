@@ -123,7 +123,6 @@
               :per-page="perPage"
               :filter="filter"
               :sort-by.sync="sortBy"
-              :sort-desc.sync="sortDesc"
               :sort-direction="sortDirection"
               @filtered="onFiltered"
             >
@@ -132,7 +131,7 @@
               <template
                 slot="a1.datesOfUpdateQuestionnaire"
                 slot-scope="row"
-              >{{ row.item.a1.datesOfUpdateQuestionnaire[row.item.a1.datesOfUpdateQuestionnaire.length-1]? row.item.a1.datesOfUpdateQuestionnaire[row.item.a1.datesOfUpdateQuestionnaire.length-1] : '-'}}</template>
+              >{{ $moment(row.item.a1.datesOfUpdateQuestionnaire[row.item.a1.datesOfUpdateQuestionnaire.length-1]).format("DD-MMM-YYYY HH:mm:ss")}}</template>
 
               <template
                 slot="a1.dateOfQuestionnaireAdministration"
@@ -240,7 +239,6 @@ export default {
       perPage: 5,
       pageOptions: [5, 10, 15],
       sortBy: "a1.datesOfUpdateQuestionnaire",
-      sortDesc: true,
       sortDirection: "asc",
       filter: null,
       fields: [
@@ -252,8 +250,7 @@ export default {
         {
           key: "a1.subject",
           label: this.$t("subject_table"),
-          sortable: true,
-          sortDirection: "desc"
+          sortable: true
         },
         {
           key: "a1.datesOfUpdateQuestionnaire",
@@ -263,8 +260,7 @@ export default {
         {
           key: "actions",
           label: this.$t("actions"),
-          sortable: false,
-          sortDirection: null
+          sortable: false
         }
       ],
       form: {
@@ -376,15 +372,7 @@ export default {
       isAuthenticated: state => state.auth.isAuthenticated,
       dbCodeNumber: state => state.questionnaire.dbCodeNumber,
       questionnaires: state => state.questionnaire.questionnaires
-    }),
-    sortOptions() {
-      // Create an options list from our fields
-      return this.fields
-        .filter(f => f.sortable)
-        .map(f => {
-          return { text: f.label, value: f.key };
-        });
-    }
+    })
   }
 };
 </script>

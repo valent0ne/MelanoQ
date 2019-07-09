@@ -37,6 +37,7 @@
                 <h6>{{'0. '+$t('identifier_label')}}</h6>
               </label>
               <b-form-input
+                disabled
                 v-model="$v.form.identifier.$model"
                 :state="$v.form.identifier.$dirty ? !$v.form.identifier.$error : null"
                 type="text"
@@ -143,8 +144,8 @@
                   :state="$v.form.numberOfMPM.$dirty ? !$v.form.numberOfMPM.$error : null"
                   type="text"
                 ></b-form-input>
+                <b-form-text>{{$t('numberOfMPM_desc')}}</b-form-text>
               </span>
-              <b-form-text>{{$t('numberOfMPM_desc')}}</b-form-text>
 
               <!-- dateOfDiagnosis -->
               <label for="dateOfDiagnosis" class="mt-4">
@@ -281,9 +282,8 @@
                 </label>
                 <b-form-input
                   v-model="$v.form.otherMainHistopatologicFeatures.associatedNevus.$model"
-                  :state="$v.form.otherMainHistopatologicFeatures.associatedNevus.$dirty ? !$v.form.associatedNevus.otherMainHistopatologicFeatures.$error : null"
+                  :state="$v.form.otherMainHistopatologicFeatures.associatedNevus.$dirty ? !$v.form.otherMainHistopatologicFeatures.$error : null"
                   type="text"
-                  required
                 ></b-form-input>
                 <b-form-text>{{$t('associatedNevus_desc')}}</b-form-text>
 
@@ -442,6 +442,7 @@
               >{{$t('reset')}}</b-button>
               <b-button
                 type="submit"
+                :disabled="!canSubmit"
                 variant="outline-success"
                 class="float-right mr-2 mb-1"
               >{{$t('submit')}}</b-button>
@@ -460,7 +461,8 @@ import {
   ADD_REST_ERROR,
   ADD_MESSAGE,
   ADD_ERROR,
-  INSERT_D
+  INSERT_D,
+  GET_QUESTIONNAIRE
 } from "@/store/actions.type";
 import { required, requiredIf, numeric } from "vuelidate/lib/validators";
 
@@ -745,7 +747,8 @@ export default {
       numberOfMPMToggle: false,
 
       show: true,
-      canProceed: false
+      canProceed: false,
+      canSubmit: true
     };
   },
   created: function() {
@@ -761,6 +764,19 @@ export default {
       this.$store.dispatch(ADD_ERROR, "no_db_code_number");
       this.$router.push({ name: "home" });
     }
+    this.$store
+      .dispatch(GET_QUESTIONNAIRE, this.dbCodeNumber)
+      .then(data => {
+        if (data.data.d) {
+          this.form.identifier =
+            this.dbCodeNumber + "D" + (data.data.d.length + 1);
+        } else {
+          this.form.identifier = this.dbCodeNumber + "D1";
+        }
+      })
+      .catch(() => {
+        this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaire");
+      });
   },
   methods: {
     // resets fields 8-13
@@ -793,7 +809,9 @@ export default {
     },
     addNewD() {
       if (this.canProceed) {
-        this.$router.push({ name: "d" });
+        window.location.reload();
+
+        //this.$router.push({ name: "d" });
       }
     },
     onSubmit(evt) {
@@ -815,6 +833,7 @@ export default {
           .then(() => {
             this.$store.dispatch(ADD_MESSAGE, "form_success");
             that.canProceed = true;
+            that.canSubmit = false;
           })
           .catch(response => {
             this.$store.dispatch(ADD_REST_ERROR, response);
@@ -829,7 +848,6 @@ export default {
         behavior: "smooth"
       });
 
-      this.form.identifier = "";
       this.form.preExistingPigmentedLesionAtTheSameSiteOfMelanoma = "";
       this.preExistingPigmentedLesionAtTheSameSiteOfMelanomaToggle = "no";
       this.form.detectionOfMelanoma = null;
@@ -885,16 +903,19 @@ export default {
       identifier: { required },
       preExistingPigmentedLesionAtTheSameSiteOfMelanoma: {
         required: requiredIf(function() {
-          return this.preExistingPigmentedLesionAtTheSameSiteOfMelanomaToggle;
+          return (
+            this.preExistingPigmentedLesionAtTheSameSiteOfMelanomaToggle ==
+            "yes"
+          );
         })
       },
-      detectionOfMelanoma: {},
-      selfSkinExam: {},
-      skinExamByPhysician: {},
+      detectionOfMelanoma: { required },
+      selfSkinExam: { required },
+      skinExamByPhysician: { required },
       numberOfMPM: {
         numeric,
         required: requiredIf(function() {
-          return this.form.numberOfMPMToggle;
+          return this.numberOfMPMToggle;
         })
       },
       dateOfDiagnosis: { required },

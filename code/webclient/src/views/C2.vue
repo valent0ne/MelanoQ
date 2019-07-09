@@ -406,6 +406,7 @@
 import { mapState } from "vuex";
 import {
   ADD_REST_ERROR,
+  GET_QUESTIONNAIRE,
   ADD_MESSAGE,
   ADD_ERROR,
   INSERT_C2
@@ -491,6 +492,17 @@ export default {
       this.$store.dispatch(ADD_ERROR, "no_db_code_number");
       this.$router.push({ name: "home" });
     }
+    this.$store
+      .dispatch(GET_QUESTIONNAIRE, this.dbCodeNumber)
+      .then(data => {
+        if (data.data.c2) {
+          this.$store.dispatch(ADD_ERROR, "section_already_inserted");
+          this.$router.push({ name: "choice" });
+        }
+      })
+      .catch(() => {
+        this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaire");
+      });
   },
   methods: {
     addNonCutaneousNeoplasiasField() {

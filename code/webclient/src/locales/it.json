@@ -476,5 +476,9 @@
   "click_to_show_details": "to_translate",
   "click_to_show_details_new_page": "to_translate",
   "clean_db_code_number": "to_translate",
-  "cannot_retrieve_questionnaire": "to_translate"
+  "cannot_retrieve_questionnaire": "to_translate",
+  "questionnaire": "to_translate",
+  "section_already_inserted": "to_translate",
+  "choose_section_info": "to_translate",
+  "the_section_you_are_trying_to_insert_is_already_present": "This section has already been inserted"
 }

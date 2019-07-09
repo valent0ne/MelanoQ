@@ -288,7 +288,7 @@ public class QuestionnaireController{
 
     //////////////////////////// BEvaluation ////////////////////////////////
 
-    @PostMapping("/{dbCodeNumber}/b/evaluation")
+    @PostMapping("/{dbCodeNumber}/be")
     public Response insertBEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
         Evaluation eObj = evaluationService.insert(dbCodeNumber, e, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.CREATED, request);
@@ -296,7 +296,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @GetMapping("/{dbCodeNumber}/b/evaluation")
+    @GetMapping("/{dbCodeNumber}/be")
     public Response getBEvaluation(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
         Evaluation eObj = evaluationService.get(dbCodeNumber, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
@@ -304,7 +304,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @PatchMapping("/{dbCodeNumber}/b/evaluation")
+    @PatchMapping("/{dbCodeNumber}/be")
     public Response updateBEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
         Evaluation eObj = evaluationService.update(dbCodeNumber, e, "b");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
@@ -312,7 +312,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @DeleteMapping("/{dbCodeNumber}/b/evaluation")
+    @DeleteMapping("/{dbCodeNumber}/be")
     public Response deleteBEvaluation(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
         evaluationService.delete(dbCodeNumber, "b");
         return new Response<>(HttpStatus.OK, request);
@@ -427,7 +427,7 @@ public class QuestionnaireController{
 
     //////////////////////////// CEvaluation ////////////////////////////////
 
-    @PostMapping("/{dbCodeNumber}/c/evaluation")
+    @PostMapping("/{dbCodeNumber}/ce")
     public Response insertCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
         Evaluation eObj = evaluationService.insert(dbCodeNumber, e, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.CREATED, request);
@@ -435,7 +435,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @GetMapping("/{dbCodeNumber}/c/evaluation")
+    @GetMapping("/{dbCodeNumber}/ce")
     public Response getCEvaluation(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
         Evaluation eObj = evaluationService.get(dbCodeNumber, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
@@ -443,7 +443,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @PatchMapping("/{dbCodeNumber}/c/evaluation")
+    @PatchMapping("/{dbCodeNumber}/ce")
     public Response updateCEvaluation(HttpServletRequest request, @RequestBody Evaluation e, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
         Evaluation eObj = evaluationService.update(dbCodeNumber, e, "c");
         Response<Evaluation> response = new Response<>(HttpStatus.OK, request);
@@ -451,7 +451,7 @@ public class QuestionnaireController{
         return response;
     }
 
-    @DeleteMapping("/{dbCodeNumber}/c/evaluation")
+    @DeleteMapping("/{dbCodeNumber}/ce")
     public Response deleteCEvaluation(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
         evaluationService.delete(dbCodeNumber, "c");
         return new Response<>(HttpStatus.OK, request);
