@@ -100,7 +100,7 @@ public class QuestionnaireController{
 
     @GetMapping("/query")
     public Response getQuestionnaires(HttpServletRequest request/*, @RequestBody List<Filters> filters*/){
-        //TODO add filters
+        //TODO add filters, if filter is empty then return all questionnaires
         List<Questionnaire> q = questionnaireService.findAll();
         Response<List<Questionnaire>> response = new Response<>(HttpStatus.OK, request);
         response.setData(q);

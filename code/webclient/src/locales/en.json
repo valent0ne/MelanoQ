@@ -482,5 +482,11 @@
   "questionnaire": "Questionnaire",
   "section_already_inserted": "This section has already been inserted",
   "choose_section_info": "If a subsection is not clickable, then it means that either you do not have the permission to access it or it has already been inserted in this questionnaire.",
-  "the_section_you_are_trying_to_insert_is_already_present": "This section has already been inserted"
+  "the_section_you_are_trying_to_insert_is_already_present": "This section has already been inserted",
+  "click_to_debug": "Show the query object you are building",
+  "generated_query_object": "Generated query object",
+  "query_builder_title": "Build your query",
+  "query_builder_text": "Use the following module to build the query that will be executed on the database.",
+  "query_builder_result_text": "The following questionnaires are the result of the execution of your query.",
+  "success_query": "Query executed successfully"
 }

@@ -2,50 +2,72 @@
   <div>
     <div class="home container my-4">
       <Message />
+
       <b-card v-if="isAuthenticated" class="mb-4">
         <div class="card-body d-flex flex-column">
           <b-card-title>
-            {{$t('complete_an_existing_questionnaire')}}
+            {{$t('query_builder_title')}}
             <!-- buttons -->
+
             <b-button
               type="button"
-              @click="proceed()"
-              :disabled="!dbCodeNumber"
+              @click="back()"
               variant="outline-info"
               class="fa-button-outline float-right"
             >
-              {{$t('proceed_report')}}
+              <font-awesome-icon icon="arrow-right" flip="horizontal" />
               &nbsp;
-              <font-awesome-icon icon="arrow-right" />&nbsp;
+              {{$t('back')}}
             </b-button>
+            <b-button
+              id="debugButton"
+              type="button"
+              @click="debug = !debug"
+              variant="light"
+              class="fa-button-outline mr-2 float-right"
+            >
+              <font-awesome-icon icon="bug" />
+            </b-button>
+            <b-tooltip
+              target="debugButton"
+              :title="$t('click_to_debug')"
+              placement="bottom"
+              :delay="{show: 1000, hide:0}"
+            ></b-tooltip>
           </b-card-title>
-          <b-card-text class="line-break mt-2">{{$t('complete_an_existing_questionnaire_text')}}</b-card-text>
-        </div>
-      </b-card>
-      <b-card class="mb-4">
-        <div class="card-body d-flex flex-column">
-          <b-card-text>{{$t('insert_db_code_number_manually')}}</b-card-text>
-          <b-form @submit="onSubmit">
-            <b-input-group>
-              <b-form-input
-                id="dbCodeNumber"
-                v-model="$v.form.dbCodeNumber.$model"
-                :state="$v.form.dbCodeNumber.$dirty ? !$v.form.dbCodeNumber.$error : null"
-                type="text"
-                required
-              ></b-form-input>
-              <b-input-group-append>
-                <b-button type="submit" variant="outline-success">{{$t('validate')}}</b-button>
-              </b-input-group-append>
-            </b-input-group>
-            <b-form-text>{{$t('dbCodeNumber_desc')}}</b-form-text>
+          <b-card-text class="line-break mt-2">{{$t('query_builder_text')}}</b-card-text>
+
+          <div class="mt-2 mb-2">
+            <vue-query-builder :rules="rules" :styled="true" v-model="query"></vue-query-builder>
+          </div>
+
+          <div class="panel-default" v-if="debug">
+            <p>{{$t('generated_query_object')}}:</p>
+
+            <div class="panel-heading">
+              <pre>{{ JSON.stringify(this.query, null, 2) }}</pre>
+            </div>
+          </div>
+          <b-form @submit="submitQuery" @reset="resetQuery">
+            <!-- buttons -->
+            <b-button
+              type="reset"
+              variant="outline-danger"
+              class="float-right mb-1 mt-4"
+            >{{$t('reset')}}</b-button>
+            <b-button
+              type="submit"
+              variant="outline-success"
+              class="float-right mr-2 mb-1 mt-4"
+            >{{$t('submit')}}</b-button>
           </b-form>
         </div>
       </b-card>
+
       <b-card class="mb-4">
         <div class="card-body d-flex flex-column">
           <b-card-text>
-            {{$t('select_from_available_questionnaires')}}
+            {{$t('query_builder_result_text')}}
             <ul class="mt-2">
               <li class="button-list">
                 <b-button variant="outline-success" size="sm" class="fix-btn-size">
@@ -74,7 +96,7 @@
           <b-container fluid class="no-padding">
             <!-- User Interface controls -->
             <b-row>
-              <b-col md="5" class="my-1 mb-3">
+              <b-col md="6" class="my-1 mb-3">
                 <b-form-group label-cols-sm="3" :label="$t('filter')" class="mb-0">
                   <b-input-group>
                     <b-form-input v-model="filter" :placeholder="$t('type_to_search')"></b-form-input>
@@ -89,27 +111,10 @@
                 </b-form-group>
               </b-col>
 
-              <b-col md="5" class="my-1 mb-3">
+              <b-col md="6" class="my-1 mb-3">
                 <b-form-group label-cols-sm="3" :label="$t('per_page')" class="mb-0">
-                  <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
+                  <b-form-select v-model="perPage" :styled="true" :options="pageOptions"></b-form-select>
                 </b-form-group>
-              </b-col>
-
-              <b-col md="2" class="my-1 mb-3">
-                <b-button
-                  id="refreshListButton"
-                  variant="light"
-                  class="float-right"
-                  @click="refreshList()"
-                >
-                  <font-awesome-icon icon="sync" />
-                </b-button>
-                <b-tooltip
-                  target="refreshListButton"
-                  :title="$t('click_to_refresh')"
-                  placement="top"
-                  :delay="{show: 1000, hide:0}"
-                ></b-tooltip>
               </b-col>
             </b-row>
             <!-- content -->
@@ -149,13 +154,7 @@
                 >
                   <font-awesome-icon icon="check" />
                 </b-button>
-                <!--
-                <b-tooltip
-                  :target="row.item.a1.dbCodeNumber"
-                  :title="$t('click_to_pick_db_code_number')"
-                  placement="top"
-                  :delay="{show: 1000, hide:0}"
-                ></b-tooltip>-->
+
                 <b-button
                   :id="row.item.a1.dbCodeNumber+'eye'"
                   variant="outline-info ml-2"
@@ -164,13 +163,7 @@
                 >
                   <font-awesome-icon icon="eye" />
                 </b-button>
-                <!--
-                <b-tooltip
-                  :target="row.item.a1.dbCodeNumber+'1'"
-                  :title="$t('click_to_show_details')"
-                  placement="top"
-                  :delay="{show: 1000, hide:0}"
-                ></b-tooltip>-->
+
                 <router-link :to="'/questionnaire/'+row.item.a1.dbCodeNumber" target="_blank">
                   <b-button
                     :id="row.item.a1.dbCodeNumber+'external-link-alt'"
@@ -180,14 +173,6 @@
                     <font-awesome-icon icon="external-link-alt" />
                   </b-button>
                 </router-link>
-
-                <!--
-                <b-tooltip
-                  :target="row.item.a1.dbCodeNumber+'2'"
-                  :title="$t('click_to_show_details_new_page')"
-                  placement="top"
-                  :delay="{show: 1000, hide:0}"
-                ></b-tooltip>-->
               </template>
 
               <template slot="row-details" slot-scope="row">
@@ -219,23 +204,33 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import VueQueryBuilder from "vue-query-builder";
+
 import {
   ADD_MESSAGE,
   ADD_ERROR,
   ADD_REST_ERROR,
-  GET_ALL_QUESTIONNAIRES,
   VALIDATE_DB_CODE_NUMBER,
-  INSERT_DB_CODE_NUMBER
+  INSERT_DB_CODE_NUMBER,
+  QUERY
 } from "@/store/actions.type";
 
-import { required, minLength, maxLength } from "vuelidate/lib/validators";
-
 import Message from "@/components/Message.vue";
+import model from "@/assets/model.json";
+import Utils from "@/common/utils";
 
 export default {
-  name: "lookup",
+  name: "query",
+  components: { VueQueryBuilder, Message },
+
   data() {
     return {
+      model: model,
+      debug: false,
+      query: {
+        logicalOperator: "all",
+        children: []
+      },
       currentPage: 1,
       isBusy: false,
       perPage: 5,
@@ -265,9 +260,7 @@ export default {
           sortable: false
         }
       ],
-      form: {
-        dbCodeNumber: ""
-      }
+      rules: []
     };
   },
 
@@ -280,44 +273,25 @@ export default {
       this.$store.dispatch(ADD_ERROR, "not_authenticated");
       this.$router.push({ name: "home" });
     }
-    this.$store
-      .dispatch(GET_ALL_QUESTIONNAIRES)
-      .then(() => {})
-      .catch(() => {
-        this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaires");
-      });
+    //compute rules
+    this.rules = Utils.buildRuleList(this.model, new Array());
   },
   methods: {
-    onSubmit(evt) {
+    submitQuery(evt) {
       evt.preventDefault();
-      document.body.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-      });
-      this.$v.$touch();
-      // eslint-disable-next-line
-      console.log(JSON.stringify(this.form));
-      if (this.$v.$invalid) {
-        this.$store.dispatch(ADD_ERROR, "form_dirty");
-      } else {
-        var that = this;
+      this.$store
+        .dispatch(QUERY, this.query)
+        .then(() => {
+          this.$store.dispatch(ADD_MESSAGE, "success_query");
+        })
+        .catch(response => {
+          this.$store.dispatch(ADD_REST_ERROR, response);
+        });
+    },
+    resetQuery(evt) {
+      evt.preventDefault();
 
-        this.$store
-          .dispatch(VALIDATE_DB_CODE_NUMBER, this.form.dbCodeNumber)
-          .then(() => {
-            this.$store
-              .dispatch(INSERT_DB_CODE_NUMBER, that.form.dbCodeNumber)
-              .then(() => {})
-              .catch(response => {
-                this.$store.dispatch(ADD_REST_ERROR, response);
-              });
-            this.$store.dispatch(ADD_MESSAGE, "db_code_number_saved");
-          })
-          .catch(response => {
-            this.$store.dispatch(ADD_REST_ERROR, response);
-          });
-      }
+      this.query.children = [];
     },
     setDbCodeNumber(dbCodeNumber) {
       this.$store
@@ -333,42 +307,8 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    refreshList() {
-      this.isBusy = true;
-
-      document.body.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-      });
-
-      this.$store
-        .dispatch(GET_ALL_QUESTIONNAIRES)
-        .then(() => {
-          this.$store.dispatch(ADD_MESSAGE, "success");
-        })
-        .catch(() => {
-          this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaires");
-        });
-      this.isBusy = false;
-    },
-    proceed() {
-      this.$router.push("choice");
-    }
-  },
-  components: {
-    Message
-  },
-  props: {
-    action: String
-  },
-  validations: {
-    form: {
-      dbCodeNumber: {
-        required,
-        minLength: minLength(9),
-        maxLength: maxLength(9)
-      }
+    back() {
+      this.$router.back();
     }
   },
   computed: {
@@ -381,4 +321,8 @@ export default {
   }
 };
 </script>
+<style>
+@import "../assets/styles/querybuilder.css";
+</style>
+
 

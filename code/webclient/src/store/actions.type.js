@@ -4,15 +4,12 @@ export const ADD_ERROR = "addError";
 export const DISMISS_ERROR = "dismissError";
 export const DISMISS_ERRORS = "dismissErrors";
 export const UPDATE_ERROR_COUNT_DOWN = "updateErrorCountDown";
-
-
 export const ADD_REST_ERROR = "addRestError";
 export const ADD_MESSAGE = "addMessage";
 export const DISMISS_MESSAGE = "dismissMessage";
 export const DISMISS_MESSAGES = "dismissMessages";
 export const UPDATE_MESSAGE_COUNT_DOWN = "updateMessageCountDown";
-
-
+export const QUERY = "query";
 export const INSERT_A1 = "insertA1";
 export const UPDATE_A1 = "updateA1";
 export const DELETE_A1 = "deleteA1";

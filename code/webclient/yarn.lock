@@ -8052,6 +8052,13 @@ vue-moment@^4.0.0:
   dependencies:
     moment "^2.11.1"
 
+vue-query-builder@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/vue-query-builder/-/vue-query-builder-0.7.1.tgz#af7f73b763f8cdec7b3776203a7b5d117dd3d1d0"
+  integrity sha512-YZ75jbuzx4Yb8HbIbaJY1CdDGJLxqJtWuT+Q4JrMA5BPCQyO5VS720gy4IlC2msi7HFA9Ro0m7iLiVyjd0bd9w==
+  dependencies:
+    vue "^2.5.16"
+
 vue-router@^3.0.3:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.6.tgz#2e4f0f9cbb0b96d0205ab2690cfe588935136ac3"

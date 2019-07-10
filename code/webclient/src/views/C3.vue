@@ -416,7 +416,7 @@ export default {
     },
     proceed() {
       if (this.canProceed) {
-        this.$router.push({ name: "c3" });
+        this.$router.push({ name: "ce" });
       }
     }
   },

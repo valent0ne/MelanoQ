@@ -1,0 +1,106 @@
+.panel-default {
+  border-color: #ddd;
+}
+
+.panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.panel-default>.panel-heading, .my-panel {
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd!important;
+}
+
+.panel-heading {
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+label {
+  display: inline-block!important;
+  margin-right: 10px!important;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.panel-body {
+  padding: 15px;
+}
+
+.vue-query-builder-styled .vqb-group .rule-actions {
+  margin-bottom: 15px;
+}
+
+.vue-query-builder-styled .vqb-rule {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  padding: 10px
+}
+
+.vue-query-builder-styled .vqb-rule label {
+  margin-right: 10px;
+}
+
+.vue-query-builder-styled .vqb-group.depth-1 .vqb-rule, .vue-query-builder-styled .vqb-group.depth-2 {
+  border-left: 2px solid #8bc34a;
+}
+
+.vue-query-builder-styled .vqb-group.depth-2 .vqb-rule, .vue-query-builder-styled .vqb-group.depth-3 {
+  border-left: 2px solid #00bcd4;
+}
+
+.vue-query-builder-styled .vqb-group.depth-3 .vqb-rule, .vue-query-builder-styled .vqb-group.depth-4 {
+  border-left: 2px solid #ff5722;
+}
+
+.vue-query-builder-styled .close {
+  opacity: 1;
+  color: #969696;
+}
+
+.vqb-rule .form-group label {
+  vertical-align: middle!important;
+}
+
+.vqb-rule .form-group select {
+  margin-right: 10px;
+}
+
+.match-type-container button {
+  margin-left: 5px;
+}
+
+.vqb-rule .form-group button {
+  margin-left: 5px;
+}
+
+.rule-actions .form-group button {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  margin-left: 5px;
+}
+
+.rule-actions .form-group button:hover {
+  color: #212529;
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+
+.vqb-rule .form-group .radio label {
+  font-weight: 400!important;
+}
+
+pre {
+  margin-bottom: 0px!important;
+}

@@ -26,6 +26,5 @@ new Vue({
   datepicker,
   moment,
   fontawesome,
-  jsontreeview,
-  render: h => h(App)
+  jsontreeview, render: h => h(App)
 }).$mount('#app')

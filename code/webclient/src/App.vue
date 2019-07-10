@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <TheHeader/>
+    <TheHeader />
     <router-view></router-view>
-    <TheFooter/>
+    <TheFooter />
   </div>
 </template>
 

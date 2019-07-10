@@ -17,6 +17,7 @@ import CE from "@/views/CE.vue"
 import D from "@/views/D.vue"
 import User from "@/views/User.vue"
 import Questionnaire from '@/views/Questionnaire.vue';
+import Query from '@/views/Query.vue';
 
 
 Vue.use(Router)
@@ -121,6 +122,11 @@ export default new Router({
       name: 'questionnaire',
       component: Questionnaire,
       props: true
+    },
+    {
+      path: '/query',
+      name: 'query',
+      component: Query
     }
   ]
 })

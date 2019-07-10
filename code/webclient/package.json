@@ -26,6 +26,7 @@
     "vue-json-tree-view": "^2.1.4",
     "vue-localstorage": "^0.6.2",
     "vue-moment": "^4.0.0",
+    "vue-query-builder": "^0.7.1",
     "vue-router": "^3.0.3",
     "vue-toastr": "^2.0.16",
     "vuelidate": "^0.7.4",

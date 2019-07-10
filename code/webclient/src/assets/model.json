@@ -1,0 +1,207 @@
+{
+    "a1": {
+        "dbCodeNumber": "",
+        "dateOfQuestionnaireAdministration": "",
+        "datesOfUpdateQuestionnaire": [],
+        "subject": "",
+        "typeOfMelanoma": ""
+    },
+    "a2": {
+        "education": "",
+        "ethnicity": "",
+        "currentOccupationalStatus": "",
+        "sex": "",
+        "weight": "",
+        "dateOfBirth": "",
+        "historyOfOccupations": {
+            "occupationStartingTime": "",
+            "occupationEndingTime": ""
+        },
+        "cityOfBirth": "",
+        "provinceOfBirth": "",
+        "countryOfBirth": "",
+        "residencies": {
+            "residencyEndingTime": "",
+            "residencyStartingTime": "",
+            "residencyCountry": "",
+            "residencyCity": ""
+        },
+        "height": ""
+    },
+    "b1": {
+        "eyeColor": "",
+        "freckles": "",
+        "hairColor": "",
+        "neviInChildhoodAdolescence": "",
+        "skinType2": "",
+        "skinType1": ""
+    },
+    "b2": {
+        "severeSunBurns": {
+            "number": "",
+            "period": "",
+            "presence": ""
+        },
+        "sunProtectionOtherThanSunscreenUseClothing": "",
+        "sunscreenUses": {
+            "howOften": "",
+            "agePeriod": "",
+            "type": ""
+        },
+        "sunProtectionOtherThanSunscreenUseHat": "",
+        "recreationalSunExposure": {
+            "monthsPerYear": "",
+            "activity": "",
+            "years": "",
+            "daysPerMonth": "",
+            "hoursPerDay": ""
+        },
+        "sunlampsSunbeds": {
+            "lifetimeNumberOfSession": "",
+            "ageAtFirstExposure": "",
+            "ageAtLastExposure": ""
+        },
+        "occupationalSunExposure": {
+            "monthsPerYear": "",
+            "occupation": "",
+            "years": "",
+            "daysPerMonth": "",
+            "hoursPerDay": ""
+        },
+        "intermittentSunExposure": {
+            "weeksOfVacation": "",
+            "hoursSpentBetween11AMAnd4PM": "",
+            "agePeriod": ""
+        },
+        "seekTheShadeDuringUVRHours": "",
+        "phototherapyUVBPUVA": "",
+        "mostRecentIntermittentSunExposure": ""
+    },
+    "b3": {
+        "intakeOfVitaminesDuringLastYears": "",
+        "vitamins": {
+            "name": "",
+            "howOften": "",
+            "howLong": ""
+        },
+        "smoking": {
+            "ageWhenStartedSmoking": "",
+            "howOften": "",
+            "howLongHaveYouBeenSmoking": "",
+            "howMuchTipicallySmoke": ""
+        }
+    },
+    "be": {
+        "complexityOfTheQuestionnaire": "",
+        "difficultQuestions": []
+    },
+    "c1": {
+        "neviCountGreatherThan2mm": {
+            "leftZoneNumber": "",
+            "site": "",
+            "rightZoneNumber": ""
+        },
+        "currentNonMelanomaSkinCancers": {
+            "number": "",
+            "site": "",
+            "type": ""
+        },
+        "congenitalNevi": {
+            "numberOfGiantNevi": "",
+            "numberOfMediumSizedNevi": "",
+            "siteOfMediumSizedNevi": "",
+            "numberOfLargeSizedNevi": "",
+            "siteOfLargeSizedNevi": ""
+        },
+        "solarLentigines": {
+            "howMany": "",
+            "atSiteOfMelanoma": true
+        },
+        "neviCountLessThan2mm": "",
+        "actinicKeratoses": {},
+        "blueNevi": "",
+        "clinicallyAtypicalNevi": {
+            "howMany": "",
+            "atSiteOfMelanoma": true
+        }
+    },
+    "c2": {
+        "pregnancyHistory": {
+            "numberOfMiscarriages": "",
+            "numberOfFullTermPregnancies": "",
+            "howManyYearsAfterPregnancy": "",
+            "melanomaOccurDuringPregnancy": true,
+            "melanomaOccurBeforePregnancy": true,
+            "dateOfBirthOfChildren": [],
+            "howManyYearsBeforePregnancy": "",
+            "melanomaOccurAfterPregnancy": true
+        },
+        "nonCutaneousNeoplasias": {
+            "ageOfDiagnosis": "",
+            "type": "",
+            "yearOfDiagnoses": ""
+        },
+        "previousAndConcomitantTreatments": {
+            "treatmentEndingTime": "",
+            "treatmentStartingTime": "",
+            "treatmentName": ""
+        },
+        "medicalDiagnoses": {
+            "diagnosisName": ""
+        }
+    },
+    "c3": {
+        "familyHistoryOfOtherCancer": {
+            "sideOfAffectedRelative": "",
+            "degreeOfRelative": "",
+            "presence": "",
+            "type": "",
+            "ageAtDiagnosis": ""
+        },
+        "familyHistoryOfMelanomaList": {
+            "sideOfAffectedRelative": "",
+            "degreeOfRelative": "",
+            "presence": "",
+            "type": "",
+            "ageAtDiagnosis": ""
+        },
+        "germlineStatus": ""
+    },
+    "ce": {
+        "complexityOfTheQuestionnaire": "",
+        "difficultQuestions": []
+    },
+    "d": {
+        "identifier": "",
+        "ajccStageAtDiagnosis": "",
+        "breslowThinkness": "",
+        "preExistingPigmentedLesionAtTheSameSiteOfMelanoma": "",
+        "otherMainHistopatologicFeatures": {
+            "deepMarginStatus": "",
+            "microsatellitosis": "",
+            "solarElastosis": "",
+            "mitoticRate": "",
+            "pigmentation": "",
+            "ulceration": "",
+            "tumorInfiltratingLymphocytes": "",
+            "associatedNevus": "",
+            "subtype": "",
+            "regression": "",
+            "lateralMarginStatus": "",
+            "vascularInvasion": ""
+        },
+        "detectionOfMelanoma": "",
+        "mutationalData": {
+            "gene": "",
+            "sourceOfData": ""
+        },
+        "selfSkinExam": "",
+        "primaryTumorKnown": true,
+        "site": "",
+        "sentinelLymphNodebiopsyDone": "",
+        "numberOfMPM": "",
+        "skinExamByPhysician": "",
+        "dateOfDiagnosis": ""
+    },
+    "_class": "it.univaq.disim.bioinformatics.melanoq.model.Questionnaire"
+}
