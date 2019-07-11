@@ -29,12 +29,12 @@
             variant="outline-info"
             class="mr-2 mb-1 mt-3"
             to="choice"
+            @click="this.$store.dispatch(DELETE_DB_CODE_NUMBER)"
           >{{$t('create_a_new_questionnaire')}}</b-button>
           <b-button
             variant="outline-primary"
             class="mr-2 mb-1 mt-3"
-            to="lookup"
-            :disabled="user.type !== 'physician'"
+            @click="computeCompleteDestination()"
           >{{$t('complete_an_existing_questionnaire')}}</b-button>
           <b-button
             variant="outline-dark"
@@ -62,10 +62,20 @@ export default {
     LogIn,
     Message
   },
+  methods: {
+    computeCompleteDestination() {
+      if (this.dbCodeNumber) {
+        this.$router.push("choice");
+      } else {
+        this.$router.push("lookup");
+      }
+    }
+  },
   computed: {
     ...mapState({
       isAuthenticated: state => state.auth.isAuthenticated,
-      user: state => state.auth.user
+      user: state => state.auth.user,
+      dbCodeNumber: state => state.questionnaire.dbCodeNumber
     })
   }
 };

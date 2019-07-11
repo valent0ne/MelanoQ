@@ -3,6 +3,7 @@ package it.univaq.disim.bioinformatics.melanoq.model;
 
 import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.univaq.disim.bioinformatics.melanoq.model.section.*;
 import org.springframework.data.couchbase.core.mapping.Document;
 
@@ -15,6 +16,9 @@ public class Questionnaire {
     // id used by couchbase as meta fields
     @Id
     private String metaId = UUID.randomUUID().toString();
+
+    @JsonIgnore
+    private String melanoq;
 
     @Field
     private A1 a1;
@@ -48,6 +52,9 @@ public class Questionnaire {
 
     @Field
     private List<D> d;
+
+    @JsonIgnore
+    private String _class;
 
 
     public Questionnaire(){
@@ -150,5 +157,13 @@ public class Questionnaire {
 
     public void setD(List<D> d) {
         this.d = d;
+    }
+
+    public String get_class() {
+        return _class;
+    }
+
+    public void set_class(String _class) {
+        this._class = _class;
     }
 }

@@ -480,5 +480,16 @@
   "questionnaire": "to_translate",
   "section_already_inserted": "to_translate",
   "choose_section_info": "to_translate",
-  "the_section_you_are_trying_to_insert_is_already_present": "This section has already been inserted"
+  "the_section_you_are_trying_to_insert_is_already_present": "to_translate",
+  "click_to_debug": "to_translate",
+  "generated_query_object": "to_translate",
+  "query_builder_title": "to_translate",
+  "query_builder_text": "to_translate",
+  "query_builder_result_text": "to_translate",
+  "success_query": "to_translate",
+  "loading": "to_translate",
+  "no_records_to_show": "to_translate",
+  "no_records_matching_your_request": "to_translate.",
+  "questionnaire_page_text": "to_translate",
+  "bad_credentials": "to_translate"
 }

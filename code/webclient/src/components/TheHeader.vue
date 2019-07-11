@@ -1,4 +1,4 @@
-<template>
+<template :key="componentKey">
   <div id="header">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark my-nav-top">
       <img src="../assets/logo.png" class="navbar-brand-img" />
@@ -66,7 +66,7 @@
         </a>
         <router-link
           class="nav-link active my-nav-link-wrapper"
-          to="insert/user"
+          to="/insert/user"
           v-if="isAuthenticated && user && user.role && user.role == 'admin'"
         >
           <font-awesome-icon icon="user-plus" :style="{ color: 'black' }" />&nbsp;
@@ -99,7 +99,10 @@ let $ = JQuery;
 export default {
   name: "TheHeader",
   data() {
-    return { langs: Object.keys(this.$i18n.messages) };
+    return {
+      langs: Object.keys(this.$i18n.messages),
+      componentKey: 0
+    };
   },
   methods: {
     storeLocale() {
@@ -115,6 +118,7 @@ export default {
     deleteDbCodeNumber() {
       this.$store.dispatch(DELETE_DB_CODE_NUMBER).then(() => {
         this.$store.dispatch(ADD_MESSAGE, "db_code_number_removed");
+        this.$router.push("home");
       });
     }
   },

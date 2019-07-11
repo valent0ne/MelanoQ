@@ -1,17 +1,30 @@
 package it.univaq.disim.bioinformatics.melanoq.service;
 
+import com.couchbase.client.java.Bucket;
+import com.couchbase.client.java.Cluster;
+import com.couchbase.client.java.CouchbaseCluster;
+import com.couchbase.client.java.document.json.JsonObject;
+import com.couchbase.client.java.query.N1qlQuery;
+import com.couchbase.client.java.query.N1qlQueryResult;
+import com.couchbase.client.java.query.N1qlQueryRow;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import it.univaq.disim.bioinformatics.melanoq.BusinessException;
 import it.univaq.disim.bioinformatics.melanoq.model.ErrorMessage;
+import it.univaq.disim.bioinformatics.melanoq.model.Query;
 import it.univaq.disim.bioinformatics.melanoq.model.Questionnaire;
 import it.univaq.disim.bioinformatics.melanoq.model.section.A1;
 import it.univaq.disim.bioinformatics.melanoq.repository.QuestionnaireRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,12 +37,59 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
 
     @Autowired
     QuestionnaireRepository questionnaireRepository;
+
+    @Value("${spring.couchbase.bootstrap-hosts}")
+    private String springCouchbaseBootstrapHosts;
+
+    @Value("${spring.couchbase.bucket.name}")
+    private String springCouchbaseBucketName;
+
+    @Value("${spring.couchbase.bucket.password}")
+    private String springCouchbaseBucketPassword;
+
     private static Logger LOGGER = LoggerFactory.getLogger(QuestionnaireServiceImpl.class);
-
-
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
     private static final TimeZone tz = TimeZone.getTimeZone("GMT");
+    private static final String _class = "'it.univaq.disim.bioinformatics.melanoq.model.Questionnaire'";
+
+
+    public List<Questionnaire> query(Query q) throws BusinessException{
+        // prepare result list
+        List<Questionnaire> qlist = new ArrayList<>();
+
+        // manual connection to the cluster and bucket
+        Cluster cluster = CouchbaseCluster.create(springCouchbaseBootstrapHosts);
+        Bucket bucket = cluster.openBucket(springCouchbaseBucketName, springCouchbaseBucketPassword);
+
+        // build the query
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append(String.format("SELECT * FROM %s WHERE _class = %s", springCouchbaseBucketName, _class));
+
+        // run the query
+        LOGGER.info("query: {}", queryBuilder.toString());
+        N1qlQueryResult result = bucket.query(N1qlQuery.simple(queryBuilder.toString()));
+        ObjectMapper objectMapper = new ObjectMapper();
+        for (N1qlQueryRow row : result) {
+            try{
+                //JsonNode jnode = objectMapper.readValue(row.value().toString(), JsonNode.class);
+                //String cleanedJobj = jnode.get(springCouchbaseBucketName).toString();
+                //LOGGER.info(cleanedJobj);
+
+                qlist.add(objectMapper.readValue(row.toString(), Questionnaire.class));
+            }catch (IOException ex){
+                LOGGER.warn(ex.getMessage());
+            }
+        }
+
+        // close the connection
+        bucket.close();
+        cluster.disconnect();
+
+        // return list of questionnaires
+        LOGGER.info(""+qlist.size());
+        return qlist;
+    }
 
     public Questionnaire findOneByDbCodeNumber(String dbCodeNumber){
         LOGGER.info("findOneByDbCodeNumber: dbCodeNUmber = {}", dbCodeNumber);

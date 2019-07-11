@@ -17,6 +17,8 @@ export const removeByObjectKey = (array, key) => {
 * @param {Array} rules empty array
 */
 export const buildRuleList = (model, rules) => {
+  var textOperators = ['contains', 'does not contain', 'equals', 'does not equal',]
+  var numericOperators = ['=', '<>', '>', '<', '>=', '<=']
   for (var key in model) {
     if (model.hasOwnProperty(key) && key != "_class") {
       var secondLevelObject = model[key];
@@ -28,11 +30,12 @@ export const buildRuleList = (model, rules) => {
           // console.log("   " + secondLevelKey);
           // console.log(typeof secondLevelObject[secondLevelKey]);
           // if the type is string then we are finished, push the entry to the ruleset
-          if (typeof secondLevelObject[secondLevelKey] == "string") {
+          if (secondLevelObject[secondLevelKey] == "text" || secondLevelObject[secondLevelKey] == "numeric") {
             rules.push({
-              type: "text",
+              type: secondLevelObject[secondLevelKey],
               id: key + "." + secondLevelKey,
-              label: key + "." + secondLevelKey
+              label: key + "." + secondLevelKey,
+              operators: (secondLevelObject[secondLevelKey] == "text") ? textOperators : numericOperators
             });
           } // if the type is object then we have to go deeper
           else if (typeof secondLevelObject[secondLevelKey] == "object") {
@@ -42,11 +45,12 @@ export const buildRuleList = (model, rules) => {
               if (thirdLevelObject.hasOwnProperty(thirdLevelKey)) {
                 //console.log("      " + thirdLevelKey);
 
-                if (typeof thirdLevelObject[thirdLevelKey] == "string") {
+                if (thirdLevelObject[thirdLevelKey] == "text" || thirdLevelObject[thirdLevelKey] == "numeric") {
                   rules.push({
-                    type: "text",
+                    type: thirdLevelObject[thirdLevelKey],
                     id: key + "." + secondLevelKey + "." + thirdLevelKey,
-                    label: key + "." + secondLevelKey + "." + thirdLevelKey
+                    label: key + "." + secondLevelKey + "." + thirdLevelKey,
+                    operators: (thirdLevelObject[thirdLevelKey] == "text") ? textOperators : numericOperators
                   });
                 }
               }

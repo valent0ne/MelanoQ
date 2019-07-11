@@ -1,6 +1,7 @@
 <template>
-  <b-dropdown v-if="questionnaire" :id="'dropdown-'+type" class="mr-2 mb-1 mt-3" :variant="variant">
+  <b-dropdown :id="'dropdown-'+type" class="mr-2 mb-1 mt-3" :variant="variant">
     <template slot="button-content">{{$t('section_'+type.toLowerCase())}}&nbsp;</template>
+
     <slot v-for="(s, key) in subsections">
       <b-dropdown-item
         :disabled="checkPermissions(type, key) || disableIfAlreadyFilled(type, key)"
@@ -19,12 +20,16 @@ export default {
   props: {
     type: String,
     subsections: Object,
-    variant: String
+    variant: String,
+    action: String
   },
   data() {
     return { questionnaire: null };
   },
   created: function() {
+    if (!this.dbCodeNumber) {
+      return;
+    }
     this.$store
       .dispatch(GET_QUESTIONNAIRE, this.dbCodeNumber)
       .then(data => {
@@ -34,8 +39,12 @@ export default {
         this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaire");
       });
   },
+
   methods: {
     disableIfAlreadyFilled(type, key) {
+      if (!this.questionnaire) {
+        return false;
+      }
       if (key == "d") {
         return false;
       }

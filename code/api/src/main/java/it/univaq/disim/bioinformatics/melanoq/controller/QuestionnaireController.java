@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -98,9 +99,21 @@ public class QuestionnaireController{
         return response;
     }
 
-    @GetMapping("/query")
-    public Response getQuestionnaires(HttpServletRequest request/*, @RequestBody List<Filters> filters*/){
-        //TODO add filters, if filter is empty then return all questionnaires
+    @PostMapping("/query")
+    public Response getQuestionnaires(HttpServletRequest request, @RequestBody Query query){
+        List<Questionnaire> q;
+        if (query == null || query.getChildren().isEmpty()){
+            q = questionnaireService.findAll();
+        }else{
+            q = questionnaireService.query(query);
+        }
+        Response<List<Questionnaire>> response = new Response<>(HttpStatus.OK, request);
+        response.setData(q);
+        return response;
+    }
+
+    @GetMapping("/")
+    public Response getAllQuestionnaires(HttpServletRequest request){
         List<Questionnaire> q = questionnaireService.findAll();
         Response<List<Questionnaire>> response = new Response<>(HttpStatus.OK, request);
         response.setData(q);

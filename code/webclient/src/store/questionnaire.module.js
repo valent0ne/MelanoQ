@@ -86,7 +86,7 @@ const actions = {
     }
     return new Promise((resolve, reject) => {
       ApiService.setHeader(context.getters.currentUser.token)
-      ApiService.get("/questionnaire/query")
+      ApiService.get("/questionnaire")
         .then(({ data }) => {
           if (data.error || data.data == null) {
             throw data
@@ -107,17 +107,13 @@ const actions = {
     });
   },
   [QUERY](context, payload) {
-    if (!context.getters.dbCodeNumber) {
-      context.dispatch(ADD_ERROR, "no_db_code_number")
-      return;
-    }
     if (!context.getters.currentUser.token) {
       context.dispatch(ADD_ERROR, "no_token")
       return;
     }
     return new Promise((resolve, reject) => {
       ApiService.setHeader(context.getters.currentUser.token)
-      ApiService.post("query/", payload)
+      ApiService.post("questionnaire/query/", payload)
         .then(({ data }) => {
           if (data.error || data.data == null) {
             throw data

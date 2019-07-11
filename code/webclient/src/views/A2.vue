@@ -392,10 +392,12 @@ export default {
     if (!this.isAuthenticated) {
       this.$store.dispatch(ADD_ERROR, "not_authenticated");
       this.$router.push({ name: "home" });
+      return;
     }
     if (!this.dbCodeNumber) {
       this.$store.dispatch(ADD_ERROR, "no_db_code_number");
       this.$router.push({ name: "home" });
+      return;
     }
     this.$store
       .dispatch(GET_QUESTIONNAIRE, this.dbCodeNumber)

@@ -6,17 +6,23 @@
       <div class="card-body d-flex flex-column">
         <b-card-title>{{$t('section_selection')}}</b-card-title>
         <b-card-text>{{$t('choose_section')}}</b-card-text>
-
         <div>
-          <SectionButton type="A" variant="outline-info" v-bind:subsections="{1:'I', 2:'II'}" />
+          <SectionButton
+            type="A"
+            variant="outline-info"
+            v-bind:action="action"
+            v-bind:subsections="{1:'I', 2:'II'}"
+          />
           <SectionButton
             type="B"
             variant="outline-info"
+            v-bind:action="action"
             v-bind:subsections="{1:'I', 2:'II', 3:'III', 'e':'evaluation'}"
           />
           <SectionButton
             type="C"
             variant="outline-info"
+            v-bind:action="action"
             v-bind:subsections="{1:'I', 2:'II', 3:'III', 'e':'evaluation'}"
           />
           <b-button
@@ -47,6 +53,10 @@ export default {
     Message,
     SectionButton
   },
+  props: {
+    action: String
+  },
+  created: function() {},
   computed: {
     ...mapState({
       isAuthenticated: state => state.auth.isAuthenticated,

@@ -5,7 +5,7 @@ import Utils from '@/common/utils'
 
 const state = {
   messages: [],
-  dismissSecs: 5
+  dismissSecs: 7
 };
 
 const getters = {

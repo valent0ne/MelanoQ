@@ -4,12 +4,31 @@
       <Message />
       <b-card v-if="isAuthenticated" class="mb-4">
         <div class="card-body d-flex flex-column">
-          <b-card-title>{{$t('questionnaire')}} {{localDbCodeNumber}}</b-card-title>
-          <b-card-text class="line-break mt-2">text</b-card-text>
+          <b-card-title>
+            {{$t('questionnaire')}} {{localDbCodeNumber}}
+            <b-button
+              type="button"
+              @click="setDepth(1)"
+              variant="outline-danger"
+              class="fa-button-outline float-right"
+            >
+              <font-awesome-icon icon="minus" />
+            </b-button>
+            <b-button
+              type="button"
+              @click="setDepth(100)"
+              variant="outline-success"
+              class="fa-button-outline mr-2 float-right"
+            >
+              <font-awesome-icon icon="plus" />
+            </b-button>
+          </b-card-title>
+          <b-card-text class="line-break mt-2">{{$t('questionnaire_page_text')}}</b-card-text>
           <b-card bg-variant="light">
             <tree-view
+              :key="treeViewComponentKey"
               :data="questionnaire"
-              :options="{maxDepth: 100, rootObjectKey: 'questionnaire'}"
+              :options="{maxDepth: depth, rootObjectKey: 'questionnaire'}"
             ></tree-view>
           </b-card>
         </div>
@@ -28,7 +47,9 @@ export default {
 
   data() {
     return {
+      treeViewComponentKey: 0,
       questionnaire: null,
+      depth: 1,
       localDbCodeNumber: this.$route.params.localDbCodeNumber
     };
   },
@@ -51,7 +72,12 @@ export default {
         this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaire");
       });
   },
-  methods: {},
+  methods: {
+    setDepth(x) {
+      this.depth = x;
+      this.treeViewComponentKey += 1;
+    }
+  },
   components: {
     Message
   },

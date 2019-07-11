@@ -42,11 +42,11 @@ public class A1 {
         this.dbCodeNumber = dbCodeNumber;
     }
 
-    public String getTimeSdateOfQuestionnaireAdministration() {
+    public String getDateOfQuestionnaireAdministration() {
         return dateOfQuestionnaireAdministration;
     }
 
-    public void setTimeSdateOfQuestionnaireAdministration(String dateOfQuestionnaireAdministration) {
+    public void setDateOfQuestionnaireAdministration(String dateOfQuestionnaireAdministration) {
         this.dateOfQuestionnaireAdministration = dateOfQuestionnaireAdministration;
     }
 

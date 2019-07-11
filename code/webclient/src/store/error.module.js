@@ -4,7 +4,7 @@ import Utils from '@/common/utils'
 
 const state = {
   errors: [],
-  dismissSecs: 5
+  dismissSecs: 7
 };
 
 const getters = {

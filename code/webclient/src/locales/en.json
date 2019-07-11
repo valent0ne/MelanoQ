@@ -444,7 +444,7 @@
   "nurse": "Nurse",
   "researcher": "Researcher",
   "admin": "Admin",
-  "no_db_code_number": "Database code number not available, please be sure to have filled the A1 section before proceeding with the other sections; or to have retieved it from the \"Complete an existing questionnaire\" section",
+  "no_db_code_number": "Database code number not available, please be sure to have filled the A1 section before proceeding with the other sections; or to have retieved it from the \"Complete an existing questionnaire\" page",
   "no_token": "No token available, try log out and log in again",
   "complete_an_existing_questionnaire": "Complete an axisting questionnaire",
   "username": "username",
@@ -488,5 +488,10 @@
   "query_builder_title": "Build your query",
   "query_builder_text": "Use the following module to build the query that will be executed on the database.",
   "query_builder_result_text": "The following questionnaires are the result of the execution of your query.",
-  "success_query": "Query executed successfully"
+  "success_query": "Query executed successfully",
+  "loading": "Loading...",
+  "no_records_to_show": "There are no resocrds to show.",
+  "no_records_matching_your_request": "There are no records matching your request.",
+  "questionnaire_page_text": "Below you can read the data inside the selected questionnaire, use the button at the top right corner to explode/collapse the sections.",
+  "bad_credentials": "Bad credentials"
 }

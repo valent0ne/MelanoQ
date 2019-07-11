@@ -1,6 +1,7 @@
 package it.univaq.disim.bioinformatics.melanoq.service;
 
 import it.univaq.disim.bioinformatics.melanoq.BusinessException;
+import it.univaq.disim.bioinformatics.melanoq.model.Query;
 import it.univaq.disim.bioinformatics.melanoq.model.Questionnaire;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface QuestionnaireService {
     Questionnaire update(Questionnaire q) throws BusinessException;
 
     List<Questionnaire> findAll ();
+
+    List<Questionnaire> query(Query query) throws BusinessException;
 
 
 }

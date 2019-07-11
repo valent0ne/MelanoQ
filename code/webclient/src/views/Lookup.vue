@@ -124,9 +124,16 @@
               :filter="filter"
               :sort-by.sync="sortBy"
               :sort-direction="sortDirection"
+              :empty-text="$t('no_records_to_show')"
+              :empty-filtered-text="$t('no_records_matching_your_request')"
               :busy="isBusy"
               @filtered="onFiltered"
             >
+              <div slot="table-busy" class="text-center text-danger my-2">
+                <b-spinner class="align-middle"></b-spinner>
+                <span>&nbsp; {{$t('loading')}}</span>
+              </div>
+
               <template slot="a1.dbCodeNumber" slot-scope="row">{{ row.item.a1.dbCodeNumber }}</template>
               <template slot="a1.subject" slot-scope="row">{{ row.item.a1.subject}}</template>
               <template
@@ -280,11 +287,15 @@ export default {
       this.$store.dispatch(ADD_ERROR, "not_authenticated");
       this.$router.push({ name: "home" });
     }
+    this.isBusy = true;
     this.$store
       .dispatch(GET_ALL_QUESTIONNAIRES)
-      .then(() => {})
+      .then(() => {
+        this.isBusy = false;
+      })
       .catch(() => {
         this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaires");
+        this.isBusy = false;
       });
   },
   methods: {
@@ -346,11 +357,12 @@ export default {
         .dispatch(GET_ALL_QUESTIONNAIRES)
         .then(() => {
           this.$store.dispatch(ADD_MESSAGE, "success");
+          this.isBusy = false;
         })
         .catch(() => {
           this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaires");
+          this.isBusy = false;
         });
-      this.isBusy = false;
     },
     proceed() {
       this.$router.push("choice");

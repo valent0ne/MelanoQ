@@ -3,8 +3,9 @@ import AuthService from "@/common/auth.service";
 import {
   LOGIN,
   LOGOUT,
-  ADD_MESSAGE,
-  DELETE_DB_CODE_NUMBER
+  //DELETE_DB_CODE_NUMBER,
+
+  ADD_MESSAGE
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH } from "./mutations.type";
 
@@ -47,9 +48,8 @@ const actions = {
   },
   [LOGOUT](context) {
     context.commit(PURGE_AUTH);
-    context.dispatch(DELETE_DB_CODE_NUMBER);
+    // context.dispatch(DELETE_DB_CODE_NUMBER);
     context.dispatch(ADD_MESSAGE, "success")
-
   }
 };
 

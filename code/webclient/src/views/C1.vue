@@ -581,14 +581,17 @@ export default {
     if (this.user.type !== "physician") {
       this.$store.dispatch(ADD_ERROR, "unauthorized");
       this.$router.push({ name: "home" });
+      return;
     }
     if (!this.isAuthenticated) {
       this.$store.dispatch(ADD_ERROR, "not_authenticated");
       this.$router.push({ name: "home" });
+      return;
     }
     if (!this.dbCodeNumber) {
       this.$store.dispatch(ADD_ERROR, "no_db_code_number");
       this.$router.push({ name: "home" });
+      return;
     }
     this.$store
       .dispatch(GET_QUESTIONNAIRE, this.dbCodeNumber)

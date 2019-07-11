@@ -38,7 +38,7 @@
           <b-card-text class="line-break mt-2">{{$t('query_builder_text')}}</b-card-text>
 
           <div class="mt-2 mb-2">
-            <vue-query-builder :rules="rules" :styled="true" v-model="query"></vue-query-builder>
+            <vue-query-builder :rules="rules" :maxDepth="1" :styled="true" v-model="query"></vue-query-builder>
           </div>
 
           <div class="panel-default" v-if="debug">
@@ -129,9 +129,15 @@
               :filter="filter"
               :sort-by.sync="sortBy"
               :sort-direction="sortDirection"
+              :empty-text="$t('no_records_to_show')"
+              :empty-filtered-text="$t('no_records_matching_your_request')"
               :busy="isBusy"
               @filtered="onFiltered"
             >
+              <div slot="table-busy" class="text-center text-danger my-2">
+                <b-spinner class="align-middle"></b-spinner>
+                <span>&nbsp; {{$t('loading')}}</span>
+              </div>
               <template slot="a1.dbCodeNumber" slot-scope="row">{{ row.item.a1.dbCodeNumber }}</template>
               <template slot="a1.subject" slot-scope="row">{{ row.item.a1.subject}}</template>
               <template
@@ -210,7 +216,6 @@ import {
   ADD_MESSAGE,
   ADD_ERROR,
   ADD_REST_ERROR,
-  VALIDATE_DB_CODE_NUMBER,
   INSERT_DB_CODE_NUMBER,
   QUERY
 } from "@/store/actions.type";
@@ -279,13 +284,16 @@ export default {
   methods: {
     submitQuery(evt) {
       evt.preventDefault();
+      this.isBusy = true;
       this.$store
         .dispatch(QUERY, this.query)
         .then(() => {
           this.$store.dispatch(ADD_MESSAGE, "success_query");
+          this.isBusy = false;
         })
         .catch(response => {
           this.$store.dispatch(ADD_REST_ERROR, response);
+          this.isBusy = false;
         });
     },
     resetQuery(evt) {
