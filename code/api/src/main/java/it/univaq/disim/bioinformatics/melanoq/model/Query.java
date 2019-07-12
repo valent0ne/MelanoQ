@@ -58,18 +58,22 @@ public class Query {
     }
 
     public String toNumber(String value){
-        return "TONUMBER("+value+")";
+        return "TONUMBER(\""+value+"\")";
     }
 
     public String toNumber(int value){
-        return "TONUMBER("+value+")";
+        return "TONUMBER(\""+value+"\")";
     }
 
     public String toString(String value){
-        return "TOSTRING("+value+")";
+        return "TOSTRING(\""+value+"\")";
     }
 
     public String toString(int value){
-        return "TOSTRING("+value+")";
+        return "TOSTRING(\""+value+"\")";
+    }
+
+    public String likeWrapper(String value){
+        return "%"+value+"%";
     }
 }

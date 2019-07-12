@@ -8,5 +8,6 @@ public class ErrorMessage {
     public static final String INTERNAL_SERVER_ERROR = "Internal server error";
     public static final String MISSING_A1 = "Missing section A1";
     public static final String DB_CODE_NUMBER_ALREADY_IN_USE = "Database code number already in use";
+    public static final String QUERY_NOT_VALID = "The provided query object is not valid";
 
 }

@@ -69,6 +69,13 @@ public class Questionnaire {
         this.metaId = metaId;
     }
 
+    public String getMelanoq() {
+        return melanoq;
+    }
+
+    public void setMelanoq(String melanoq) {
+        this.melanoq = melanoq;
+    }
 
     public A1 getA1() {
         return a1;

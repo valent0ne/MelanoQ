@@ -66,30 +66,43 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
         // build the query
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append(String.format("SELECT * FROM %s WHERE _class = %s", springCouchbaseBucketName, _class));
+        LOGGER.info("Before to add filters to where clause");
 
-        // add eventual filters to the WHERE clause
-        for(Filter filter: q.getChildren() ){
+        try{
 
-            // if numerical values are compared, the value in the filter must be converted to the Number type and the
-            // selected operator must be searched in the map of numerical operators
-            if(Query.numericOperators.containsKey(filter.getRule().getSelectedOperator())){
+            LOGGER.info(""+(q.getChildren().get(0).getQuery() != null));
+            // add eventual filters to the WHERE clause
+            for(Filter filter: q.getChildren() ){
 
-                queryBuilder.append(String.format(" %s %s %s %s", Query.logicalOperators.get(q.getLogicalOperator()),
-                                                                  filter.getRule().getSelectedOperand(),
-                                                                  Query.numericOperators.get(filter.getRule().getSelectedOperator()),
-                                                                  q.toNumber(filter.getRule().getValue())));
+                // if numerical values are compared, the value in the filter must be converted to the Number type and the
+                // selected operator must be searched in the map of numerical operators
+                if(Query.numericOperators.containsKey(filter.getQuery().getSelectedOperator())){
+
+                    queryBuilder.append(String.format(" %s %s %s %s", Query.logicalOperators.get(q.getLogicalOperator()),
+                            filter.getQuery().getSelectedOperand(),
+                            Query.numericOperators.get(filter.getQuery().getSelectedOperator()),
+                            q.toNumber(filter.getQuery().getValue())));
+                }
+                // Otherwise, if text values are compared, the value in the filter must be converted to the String type
+                // and the selected operator must be searched in the map of text operators
+                else{
+                    String finalValue = filter.getQuery().getValue();
+                    if(Query.textOperators.get(filter.getQuery().getSelectedOperator()).contains("LIKE")){
+                        finalValue = q.likeWrapper(filter.getQuery().getValue());
+                    }
+                    queryBuilder.append(String.format(" %s %s %s %s", Query.logicalOperators.get(q.getLogicalOperator()),
+                            filter.getQuery().getSelectedOperand(),
+                            Query.textOperators.get(filter.getQuery().getSelectedOperator()),
+                            q.toString(finalValue)));
+                }
             }
-            // Otherwise, if text values are compared, the value in the filter must be converted to the String type
-            // and the selected operator must be searched in the map of text operators
-            else{
-                queryBuilder.append(String.format(" %s %s %s %s", Query.logicalOperators.get(q.getLogicalOperator()),
-                                                                  filter.getRule().getSelectedOperand(),
-                                                                  Query.textOperators.get(filter.getRule().getSelectedOperator()),
-                                                                  q.toString(filter.getRule().getValue())));
-            }
+        } catch (Exception e){
+            e.printStackTrace();
+            bucket.close();
+            cluster.disconnect();
+            throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.QUERY_NOT_VALID);
+
         }
-
-
 
         // run the query
         LOGGER.info("query: {}", queryBuilder.toString());
@@ -112,7 +125,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
         cluster.disconnect();
 
         // return list of questionnaires
-        LOGGER.info(""+qlist.size());
+        LOGGER.info("# of results: "+qlist.size());
         return qlist;
     }
 
