@@ -14,6 +14,7 @@ import it.univaq.disim.bioinformatics.melanoq.BusinessException;
 import it.univaq.disim.bioinformatics.melanoq.model.ErrorMessage;
 import it.univaq.disim.bioinformatics.melanoq.model.Query;
 import it.univaq.disim.bioinformatics.melanoq.model.Questionnaire;
+import it.univaq.disim.bioinformatics.melanoq.model.nested.Filter;
 import it.univaq.disim.bioinformatics.melanoq.model.section.A1;
 import it.univaq.disim.bioinformatics.melanoq.repository.QuestionnaireRepository;
 import org.slf4j.Logger;
@@ -65,6 +66,30 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
         // build the query
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append(String.format("SELECT * FROM %s WHERE _class = %s", springCouchbaseBucketName, _class));
+
+        // add eventual filters to the WHERE clause
+        for(Filter filter: q.getChildren() ){
+
+            // if numerical values are compared, the value in the filter must be converted to the Number type and the
+            // selected operator must be searched in the map of numerical operators
+            if(Query.numericOperators.containsKey(filter.getRule().getSelectedOperator())){
+
+                queryBuilder.append(String.format(" %s %s %s %s", Query.logicalOperators.get(q.getLogicalOperator()),
+                                                                  filter.getRule().getSelectedOperand(),
+                                                                  Query.numericOperators.get(filter.getRule().getSelectedOperator()),
+                                                                  q.toNumber(filter.getRule().getValue())));
+            }
+            // Otherwise, if text values are compared, the value in the filter must be converted to the String type
+            // and the selected operator must be searched in the map of text operators
+            else{
+                queryBuilder.append(String.format(" %s %s %s %s", Query.logicalOperators.get(q.getLogicalOperator()),
+                                                                  filter.getRule().getSelectedOperand(),
+                                                                  Query.textOperators.get(filter.getRule().getSelectedOperator()),
+                                                                  q.toString(filter.getRule().getValue())));
+            }
+        }
+
+
 
         // run the query
         LOGGER.info("query: {}", queryBuilder.toString());

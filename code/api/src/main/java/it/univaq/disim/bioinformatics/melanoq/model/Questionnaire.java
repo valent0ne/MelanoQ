@@ -56,7 +56,6 @@ public class Questionnaire {
     @JsonIgnore
     private String _class;
 
-
     public Questionnaire(){
 
     }
