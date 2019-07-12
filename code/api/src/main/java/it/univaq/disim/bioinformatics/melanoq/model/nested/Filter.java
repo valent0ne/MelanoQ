@@ -3,14 +3,14 @@ package it.univaq.disim.bioinformatics.melanoq.model.nested;
 public class Filter {
 
     private String type;
-    private Rule rule;
+    private Rule query;
 
     public Filter() {
     }
 
     public Filter(String type, Rule rule) {
         this.type = type;
-        this.rule = rule;
+        this.query = rule;
     }
 
     public String getType() {
@@ -21,11 +21,11 @@ public class Filter {
         this.type = type;
     }
 
-    public Rule getRule() {
-        return rule;
+    public Rule getQuery() {
+        return query;
     }
 
-    public void setRule(Rule rule) {
-        this.rule = rule;
+    public void setQuery(Rule query) {
+        this.query = query;
     }
 }
