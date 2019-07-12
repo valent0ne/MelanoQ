@@ -39,14 +39,11 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
     @Autowired
     QuestionnaireRepository questionnaireRepository;
 
-    @Value("${spring.couchbase.bootstrap-hosts}")
-    private String springCouchbaseBootstrapHosts;
-
     @Value("${spring.couchbase.bucket.name}")
     private String springCouchbaseBucketName;
 
-    @Value("${spring.couchbase.bucket.password}")
-    private String springCouchbaseBucketPassword;
+    @Autowired
+    private Bucket bucket;
 
     private static Logger LOGGER = LoggerFactory.getLogger(QuestionnaireServiceImpl.class);
 
@@ -59,26 +56,25 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
         // prepare result list
         List<Questionnaire> qlist = new ArrayList<>();
 
-        // manual connection to the cluster and bucket
-        Cluster cluster = CouchbaseCluster.create(springCouchbaseBootstrapHosts);
-        Bucket bucket = cluster.openBucket(springCouchbaseBucketName, springCouchbaseBucketPassword);
-
         // build the query
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append(String.format("SELECT * FROM %s WHERE _class = %s", springCouchbaseBucketName, _class));
-        LOGGER.info("Before to add filters to where clause");
+        queryBuilder.append(String.format("SELECT * FROM %s WHERE _class = %s AND (", springCouchbaseBucketName, _class));
 
         try{
 
             LOGGER.info(""+(q.getChildren().get(0).getQuery() != null));
             // add eventual filters to the WHERE clause
+            int i = 0;
             for(Filter filter: q.getChildren() ){
-
+                String actualLogicalOperator = Query.logicalOperators.get(q.getLogicalOperator());
+                if(i == 0){
+                    actualLogicalOperator = "";
+                }
                 // if numerical values are compared, the value in the filter must be converted to the Number type and the
                 // selected operator must be searched in the map of numerical operators
                 if(Query.numericOperators.containsKey(filter.getQuery().getSelectedOperator())){
 
-                    queryBuilder.append(String.format(" %s %s %s %s", Query.logicalOperators.get(q.getLogicalOperator()),
+                    queryBuilder.append(String.format(" %s TONUMBER(%s) %s %s", actualLogicalOperator,
                             filter.getQuery().getSelectedOperand(),
                             Query.numericOperators.get(filter.getQuery().getSelectedOperator()),
                             q.toNumber(filter.getQuery().getValue())));
@@ -90,19 +86,20 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
                     if(Query.textOperators.get(filter.getQuery().getSelectedOperator()).contains("LIKE")){
                         finalValue = q.likeWrapper(filter.getQuery().getValue());
                     }
-                    queryBuilder.append(String.format(" %s %s %s %s", Query.logicalOperators.get(q.getLogicalOperator()),
+                    queryBuilder.append(String.format(" %s UPPER(%s) %s UPPER(%s)", actualLogicalOperator,
                             filter.getQuery().getSelectedOperand(),
                             Query.textOperators.get(filter.getQuery().getSelectedOperator()),
                             q.toString(finalValue)));
                 }
+                i++;
             }
         } catch (Exception e){
-            e.printStackTrace();
-            bucket.close();
-            cluster.disconnect();
+            //e.printStackTrace();
+            LOGGER.error(e.getMessage());
             throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorMessage.QUERY_NOT_VALID);
-
         }
+        // close the generated clause
+        queryBuilder.append(")");
 
         // run the query
         LOGGER.info("query: {}", queryBuilder.toString());
@@ -110,19 +107,16 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
         ObjectMapper objectMapper = new ObjectMapper();
         for (N1qlQueryRow row : result) {
             try{
-                //JsonNode jnode = objectMapper.readValue(row.value().toString(), JsonNode.class);
-                //String cleanedJobj = jnode.get(springCouchbaseBucketName).toString();
-                //LOGGER.info(cleanedJobj);
+                // clean the received object by entering in the first node
+                JsonNode jnode = objectMapper.readValue(row.value().toString(), JsonNode.class);
+                String cleanedJobj = jnode.get(springCouchbaseBucketName).toString();
+                LOGGER.info(cleanedJobj);
 
-                qlist.add(objectMapper.readValue(row.toString(), Questionnaire.class));
+                qlist.add(objectMapper.readValue(cleanedJobj, Questionnaire.class));
             }catch (IOException ex){
                 LOGGER.warn(ex.getMessage());
             }
         }
-
-        // close the connection
-        bucket.close();
-        cluster.disconnect();
 
         // return list of questionnaires
         LOGGER.info("# of results: "+qlist.size());

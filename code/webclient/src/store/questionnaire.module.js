@@ -93,8 +93,10 @@ const actions = {
           }
           // convert dates field to Date (to have correct sorting)
           for (var item in data.data) {
-            for (var d in data.data[item].a1.datesOfUpdateQuestionnaire) {
-              data.data[item].a1.datesOfUpdateQuestionnaire[d] = new Date(data.data[item].a1.datesOfUpdateQuestionnaire[d])
+            if (data.data[item] && data.data[item].a1 && data.data[item].a1.datesOfUpdateQuestionnaire) {
+              for (var d in data.data[item].a1.datesOfUpdateQuestionnaire) {
+                data.data[item].a1.datesOfUpdateQuestionnaire[d] = new Date(data.data[item].a1.datesOfUpdateQuestionnaire[d])
+              }
             }
           }
 
@@ -111,6 +113,8 @@ const actions = {
       context.dispatch(ADD_ERROR, "no_token")
       return;
     }
+    context.commit(PURGE_QUESTIONNAIRES)
+
     return new Promise((resolve, reject) => {
       ApiService.setHeader(context.getters.currentUser.token)
       ApiService.post("questionnaire/query/", payload)
@@ -120,8 +124,10 @@ const actions = {
           }
           // convert dates field to Date (to have correct sorting)
           for (var item in data.data) {
-            for (var d in data.data[item].a1.datesOfUpdateQuestionnaire) {
-              data.data[item].a1.datesOfUpdateQuestionnaire[d] = new Date(data.data[item].a1.datesOfUpdateQuestionnaire[d])
+            if (data.data[item] && data.data[item].a1 && data.data[item].a1.datesOfUpdateQuestionnaire) {
+              for (var d in data.data[item].a1.datesOfUpdateQuestionnaire) {
+                data.data[item].a1.datesOfUpdateQuestionnaire[d] = new Date(data.data[item].a1.datesOfUpdateQuestionnaire[d])
+              }
             }
           }
 

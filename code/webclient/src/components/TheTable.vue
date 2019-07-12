@@ -192,7 +192,8 @@ import {
   ADD_ERROR,
   ADD_REST_ERROR,
   GET_ALL_QUESTIONNAIRES,
-  INSERT_DB_CODE_NUMBER
+  INSERT_DB_CODE_NUMBER,
+  DELETE_QUESTIONNAIRES
 } from "@/store/actions.type";
 
 export default {
@@ -235,16 +236,20 @@ export default {
   },
 
   created: function() {
-    this.isBusy = true;
-    this.$store
-      .dispatch(GET_ALL_QUESTIONNAIRES)
-      .then(() => {
-        this.isBusy = false;
-      })
-      .catch(() => {
-        this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaires");
-        this.isBusy = false;
-      });
+    if (this.$route.path == "/query") {
+      this.$store.dispatch(DELETE_QUESTIONNAIRES);
+    } else {
+      this.isBusy = true;
+      this.$store
+        .dispatch(GET_ALL_QUESTIONNAIRES)
+        .then(() => {
+          this.isBusy = false;
+        })
+        .catch(() => {
+          this.$store.dispatch(ADD_ERROR, "cannot_retrieve_questionnaires");
+          this.isBusy = false;
+        });
+    }
   },
   methods: {
     setDbCodeNumber(dbCodeNumber) {

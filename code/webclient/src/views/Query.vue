@@ -1,8 +1,6 @@
 <template>
   <div>
     <div class="home container my-4">
-      <Message />
-
       <b-card v-if="isAuthenticated" class="mb-4">
         <div class="card-body d-flex flex-column">
           <b-card-title>
@@ -53,19 +51,20 @@
             <b-button
               type="reset"
               variant="outline-danger"
-              class="float-right mb-1 mt-4"
+              class="float-right mb-1 mt-2"
             >{{$t('reset')}}</b-button>
             <b-button
               type="submit"
               variant="outline-success"
-              class="float-right mr-2 mb-1 mt-4"
+              class="float-right mr-2 mb-1 mt-2"
             >{{$t('submit')}}</b-button>
           </b-form>
         </div>
       </b-card>
+      <Message />
 
       <!-- questionnaire's list-->
-      <TheTable :key="theTableComponentKey"/>
+      <TheTable :key="this.theTableComponentKey" />
     </div>
   </div>
 </template>
@@ -125,13 +124,17 @@ export default {
         .then(() => {
           this.$store.dispatch(ADD_MESSAGE, "success_query");
           this.isBusy = false;
-          this.theTableComponentKey += 1;
         })
         .catch(response => {
           this.$store.dispatch(ADD_REST_ERROR, response);
           this.isBusy = false;
-          this.theTableComponentKey += 1;
         });
+      this.theTableComponentKey += 1;
+      document.body.scroll({
+        top: 9999,
+        left: 0,
+        behavior: "smooth"
+      });
     },
     resetQuery(evt) {
       evt.preventDefault();
