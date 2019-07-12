@@ -298,7 +298,6 @@ export default {
     },
     resetQuery(evt) {
       evt.preventDefault();
-
       this.query.children = [];
     },
     setDbCodeNumber(dbCodeNumber) {

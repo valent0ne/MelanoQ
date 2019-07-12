@@ -4,7 +4,6 @@ import {
   LOGIN,
   LOGOUT,
   //DELETE_DB_CODE_NUMBER,
-
   ADD_MESSAGE
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH } from "./mutations.type";
