@@ -65,7 +65,7 @@
       </b-card>
 
       <!-- questionnaire's list-->
-      <TheTable />
+      <TheTable :key="theTableComponentKey"/>
     </div>
   </div>
 </template>
@@ -94,6 +94,7 @@ export default {
     return {
       model: model,
       debug: false,
+      theTableComponentKey: 0,
       query: {
         logicalOperator: "all",
         children: []
@@ -124,10 +125,12 @@ export default {
         .then(() => {
           this.$store.dispatch(ADD_MESSAGE, "success_query");
           this.isBusy = false;
+          this.theTableComponentKey += 1;
         })
         .catch(response => {
           this.$store.dispatch(ADD_REST_ERROR, response);
           this.isBusy = false;
+          this.theTableComponentKey += 1;
         });
     },
     resetQuery(evt) {
