@@ -64,147 +64,8 @@
         </div>
       </b-card>
 
-      <b-card class="mb-4">
-        <div class="card-body d-flex flex-column">
-          <b-card-text>
-            {{$t('query_builder_result_text')}}
-            <ul class="mt-2">
-              <li class="button-list">
-                <b-button variant="outline-success" size="sm" class="fix-btn-size">
-                  <font-awesome-icon icon="check" />
-                </b-button>
-                {{$t('click_to_pick_db_code_number')}}
-              </li>
-              <li class="button-list">
-                <b-button variant="outline-info" size="sm">
-                  <font-awesome-icon icon="eye" />
-                </b-button>
-                {{$t('click_to_show_details')}}
-              </li>
-              <li>
-                <b-button variant="outline-secondary" size="sm">
-                  <font-awesome-icon icon="external-link-alt" />
-                </b-button>
-                {{$t('click_to_show_details_new_page')}}
-              </li>
-            </ul>
-
-            <hr />
-          </b-card-text>
-
-          <!-- table begin -->
-          <b-container fluid class="no-padding">
-            <!-- User Interface controls -->
-            <b-row>
-              <b-col md="6" class="my-1 mb-3">
-                <b-form-group label-cols-sm="3" :label="$t('filter')" class="mb-0">
-                  <b-input-group>
-                    <b-form-input v-model="filter" :placeholder="$t('type_to_search')"></b-form-input>
-                    <b-input-group-append>
-                      <b-button
-                        variant="outline-danger"
-                        :disabled="!filter"
-                        @click="filter = ''"
-                      >{{$t('clear')}}</b-button>
-                    </b-input-group-append>
-                  </b-input-group>
-                </b-form-group>
-              </b-col>
-
-              <b-col md="6" class="my-1 mb-3">
-                <b-form-group label-cols-sm="3" :label="$t('per_page')" class="mb-0">
-                  <b-form-select v-model="perPage" :styled="true" :options="pageOptions"></b-form-select>
-                </b-form-group>
-              </b-col>
-            </b-row>
-            <!-- content -->
-            <b-table
-              id="table-transition"
-              show-empty
-              stacked="md"
-              :items="questionnaires"
-              :fields="fields"
-              :current-page="currentPage"
-              :per-page="perPage"
-              :filter="filter"
-              :sort-by.sync="sortBy"
-              :sort-direction="sortDirection"
-              :empty-text="$t('no_records_to_show')"
-              :empty-filtered-text="$t('no_records_matching_your_request')"
-              :busy="isBusy"
-              @filtered="onFiltered"
-            >
-              <div slot="table-busy" class="text-center text-danger my-2">
-                <b-spinner class="align-middle"></b-spinner>
-                <span>&nbsp; {{$t('loading')}}</span>
-              </div>
-              <template slot="a1.dbCodeNumber" slot-scope="row">{{ row.item.a1.dbCodeNumber }}</template>
-              <template slot="a1.subject" slot-scope="row">{{ row.item.a1.subject}}</template>
-              <template
-                slot="a1.datesOfUpdateQuestionnaire"
-                slot-scope="row"
-              >{{ $moment(row.item.a1.datesOfUpdateQuestionnaire[row.item.a1.datesOfUpdateQuestionnaire.length-1]).format("DD-MMM-YYYY HH:mm:ss")}}</template>
-
-              <template
-                slot="a1.dateOfQuestionnaireAdministration"
-                slot-scope="row"
-              >{{ row.item.a1.timeSdateOfQuestionnaireAdministration}}</template>
-
-              <template slot="actions" slot-scope="row">
-                <b-button
-                  class="fix-btn-size"
-                  :id="row.item.a1.dbCodeNumber+'check'"
-                  variant="outline-success"
-                  size="sm"
-                  @click="setDbCodeNumber(row.item.a1.dbCodeNumber)"
-                >
-                  <font-awesome-icon icon="check" />
-                </b-button>
-
-                <b-button
-                  :id="row.item.a1.dbCodeNumber+'eye'"
-                  variant="outline-info ml-2"
-                  size="sm"
-                  @click="row.toggleDetails"
-                >
-                  <font-awesome-icon icon="eye" />
-                </b-button>
-
-                <router-link :to="'/questionnaire/'+row.item.a1.dbCodeNumber" target="_blank">
-                  <b-button
-                    :id="row.item.a1.dbCodeNumber+'external-link-alt'"
-                    variant="outline-secondary ml-2"
-                    size="sm"
-                  >
-                    <font-awesome-icon icon="external-link-alt" />
-                  </b-button>
-                </router-link>
-              </template>
-
-              <template slot="row-details" slot-scope="row">
-                <b-card bg-variant="light">
-                  <tree-view
-                    :data="row.item"
-                    :options="{maxDepth: 1, rootObjectKey: 'questionnaire'}"
-                  ></tree-view>
-                </b-card>
-              </template>
-            </b-table>
-
-            <!-- pagination -->
-            <b-row>
-              <b-col md="6" class="my-1">
-                <b-pagination
-                  v-model="currentPage"
-                  :total-rows="questionnaires.length"
-                  :per-page="perPage"
-                  class="my-0"
-                ></b-pagination>
-              </b-col>
-            </b-row>
-          </b-container>
-        </div>
-      </b-card>
+      <!-- questionnaire's list-->
+      <TheTable />
     </div>
   </div>
 </template>
@@ -221,12 +82,13 @@ import {
 } from "@/store/actions.type";
 
 import Message from "@/components/Message.vue";
+import TheTable from "@/components/TheTable.vue";
 import model from "@/assets/model.json";
 import Utils from "@/common/utils";
 
 export default {
   name: "query",
-  components: { VueQueryBuilder, Message },
+  components: { VueQueryBuilder, Message, TheTable },
 
   data() {
     return {
@@ -236,35 +98,7 @@ export default {
         logicalOperator: "all",
         children: []
       },
-      currentPage: 1,
-      isBusy: false,
-      perPage: 5,
-      pageOptions: [5, 10, 15],
-      sortBy: "a1.datesOfUpdateQuestionnaire",
-      sortDirection: "asc",
-      filter: null,
-      fields: [
-        {
-          key: "a1.dbCodeNumber",
-          label: this.$t("db_code_number"),
-          sortable: true
-        },
-        {
-          key: "a1.subject",
-          label: this.$t("subject_table"),
-          sortable: true
-        },
-        {
-          key: "a1.datesOfUpdateQuestionnaire",
-          label: this.$t("dates_of_update_questionnaire_table"),
-          sortable: true
-        },
-        {
-          key: "actions",
-          label: this.$t("actions"),
-          sortable: false
-        }
-      ],
+
       rules: []
     };
   },
@@ -309,11 +143,7 @@ export default {
         });
       this.$store.dispatch(ADD_MESSAGE, "db_code_number_saved");
     },
-    onFiltered(filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    },
+
     back() {
       this.$router.back();
     }

@@ -118,7 +118,7 @@ export default {
     deleteDbCodeNumber() {
       this.$store.dispatch(DELETE_DB_CODE_NUMBER).then(() => {
         this.$store.dispatch(ADD_MESSAGE, "db_code_number_removed");
-        this.$router.push("home");
+        this.$router.push("/");
       });
     }
   },

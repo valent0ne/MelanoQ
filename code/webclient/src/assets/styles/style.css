@@ -374,3 +374,15 @@ a.nav-link {
 table thead tr th {
   font-weight: 600!important;
 }
+
+.inline-block {
+  display: inline-block!important;
+}
+
+.no-wrap {
+  white-space: nowrap
+}
+
+.font-weight-600 {
+  font-weight: 600!important;
+}

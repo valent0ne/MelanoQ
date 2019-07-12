@@ -17,9 +17,9 @@
   "rest_error_401": "Unauthorized",
   "connection_error": "Cannot communicate with the server",
   "logged_welcome_message_title": "you are now logged in with the following profile: ",
+  "logged_welcome_message_body": "Please choose an action from the following options: ",
   "hi": "Hi",
   "query_the_database": "Query the database",
-  "logged_welcome_message_body": "Please choose an action from the following options: ",
   "create_a_new_questionnaire": "New questionnaire",
   "update_an_existing_questionnaire": "Update an existing questionnaire",
   "section_a": "Section A",
@@ -492,6 +492,8 @@
   "loading": "Loading...",
   "no_records_to_show": "There are no resocrds to show.",
   "no_records_matching_your_request": "There are no records matching your request.",
-  "questionnaire_page_text": "Below you can read the data inside the selected questionnaire, use the button at the top right corner to explode/collapse the sections.",
-  "bad_credentials": "Bad credentials"
+  "questionnaire_page_text": "Below you can read the data inside the selected questionnaire, use the buttons at the top right corner to explode/collapse the sections.",
+  "bad_credentials": "Bad credentials",
+  "#_of_results": "# of results",
+  "cannot_update_questionnaires": "Cannot update the list"
 }
