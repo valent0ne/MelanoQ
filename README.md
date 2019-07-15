@@ -1,8 +1,8 @@
 # MelanoQ
 
-REST-based implementation of the MelanoQ questionnaire https://www.ncbi.nlm.nih.gov/pubmed/30098061
+REST-based implementation of the MelanoQ questionnaire <https://www.ncbi.nlm.nih.gov/pubmed/30098061>
 
-notes: 
+notes:
 
 - run `CREATE PRIMARY INDEX ON melanoq USING VIEW;` after having created the bucket.
 - backup: `cbbackup http://host:8091 path-to-dest-folder -u user -p password -b bucket-name`  
