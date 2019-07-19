@@ -28,7 +28,7 @@ Go to the <code>Query</code> section of the web interface and run:
 ```sql
 CREATE PRIMARY INDEX ON bucketname USING VIEW;
 ```
-where <code>bucket-name</code> is the name of the created bucket.
+where <code>bucketname</code> is the name of the created bucket.
 
 Now the database is empty, so you need to manually add an admin user for the MelanoQ api server: 
 - generate a <code>bcrypt</code> password from this online tool: [https://www.browserling.com/tools/bcrypt](https://www.browserling.com/tools/bcrypt) using *12 rounds* (be sure to check that the generated encrypted password starts with the <code>$2a</code> prefix)
