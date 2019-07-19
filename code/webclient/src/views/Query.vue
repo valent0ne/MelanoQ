@@ -1,6 +1,8 @@
 <template>
   <div>
     <div class="home container my-4">
+      <Message />
+
       <b-card v-if="isAuthenticated" class="mb-4">
         <div class="card-body d-flex flex-column">
           <b-card-title>
@@ -61,7 +63,6 @@
           </b-form>
         </div>
       </b-card>
-      <Message />
 
       <!-- questionnaire's list-->
       <TheTable :key="this.theTableComponentKey" />
