@@ -16,14 +16,16 @@ The last feature that made us decide to adopt this technology is its query lengu
 
 **Spring**: it is the standard-de-facto Java framework for what concerns the development of applications based on the MVC architectural pattern; it also comes with a generous amount of plugins that allow to easly connect to several types of database, deploy security filters, etc.  
 The following are the components that have been exploited:
-  - **Spring Boot**: TODO
+
+
+  - **Spring Boot**: Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run". It directly embeds the principal web servers without need to deploy WAR files, provides opinionated 'starter' dependencies to simplify the build configuration, configure Spring and 3rd party libraries whenever possible in automatic way and it needs no code generation and no requirement for XML configuration.
 
 
   - **Spring Data JPA for CouchBase:** Spring Data for Couchbase is part of the umbrella Spring Data project which aims to provide a familiar and consistent Spring-based programming model for new datastores while retaining store-specific features and capabilities. The Spring Data Couchbase project provides integration with the Couchbase Server database. Key functional areas of Spring Data Couchbase are a POJO centric model for interacting with Couchbase Buckets and easily writing a Repository style data access layer. It has been choosed to use this framework because of the  many features provided (configuration support using Java based *Configuration* classes or an XML namespace for the Couchbase driver, *CouchbaseTemplate* helper class that increases productivity performing common Couchbase operations, annotation based mapping metadata but extensible to support other metadata formats, automatic implementation of *Repository* interfaces including support for custom finder methods... ) and because already known and used before by the components of the group.
 
 
-  - **Spring Security and Json Web Token-based authentication**: TODO
-
+  - **Spring Security and Json Web Token-based authentication**: Spring Security is a powerful and highly customizable authentication and access-control framework. It is a framework that focuses on providing both authentication and authorization to Java applications. The real power of Spring Security is found in how easily it can be extended to meet custom requirements.  
+  JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.  Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily used across different domains
 
 ## Web Client
 
