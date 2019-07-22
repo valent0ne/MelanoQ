@@ -8,7 +8,7 @@ assessment.
 
 This project's goal is to implement a digital version of the aforementioned questionnaire by providing a way to *compile* the questionnaire itself and to expose the physicians, researchers and authorized personnel a way to *query* the data stored in the questionnaires' database.
 
-# Deplyment
+# Deployment
 
 ## Requirements
 - CouchBase Server - [https://www.couchbase.com/](https://www.couchbase.com/)
