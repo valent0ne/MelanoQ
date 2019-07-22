@@ -1,3 +1,9 @@
+# Authors
+
+- Stefano Valentini https://github.com/valent0ne
+- Valentina Cecchini https://github.com/Nimerya
+
+
 # Introduction
 
 Many melanoma observational studies have been carried out across different countries and geographic
