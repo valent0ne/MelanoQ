@@ -17,7 +17,7 @@
     "core-js": "^2.6.5",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.35",
     "popper.js": "^1.15.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
